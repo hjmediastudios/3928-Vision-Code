@@ -118,7 +118,7 @@ int main()
 					cvPutText(frame, floatToString(metersToInches(targetSet[i].offsets[1])), cvPoint(targetSet[i].getBoundingBoxPoint2().x+1,targetSet[i].getBoundingBoxPoint1().y+10), &font1, CV_RGB(0,255,255));
 					cvPutText(frame, floatToString(metersToInches(targetSet[i].offsets[2])), cvPoint(targetSet[i].getBoundingBoxPoint2().x+1,targetSet[i].getBoundingBoxPoint1().y+24), &font1, CV_RGB(255,255,0));
 
-					break; //TODO Get me out of here!
+					//break; //TODO Get me out of here!
 				}
 
 
@@ -179,7 +179,7 @@ int main()
 
 		cvShowImage("Targets", frame);
 		//Wait before moving on
-		int key = cvWaitKey(0);
+		int key = cvWaitKey(27);
 		if (key == 27)
 		{
 			exit(0);
