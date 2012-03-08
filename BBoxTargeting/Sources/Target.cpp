@@ -428,9 +428,9 @@ void Target::calculatePosition(aruco::CameraParameters camParams)
 	CvMat mvmMatrix = cvMat(4, 4, CV_64FC2, modelViewMatrix);
 
 	CvMat* mvmPtr = &mvmMatrix;
-	std::cerr << "Rows: " << mvmPtr->rows << ", cols: " << mvmPtr->cols << " ";
-	double determinant = cvDet(mvmPtr);//TODO ?
-	std::cerr << determinant << endl;
+	std::cerr << "Rows: " << mvmPtr->rows << ", cols: " << mvmPtr->cols << " \n";
+//	double determinant = cvDet(mvmPtr);//TODO ?
+//	std::cerr << determinant << endl;
 
 
 
