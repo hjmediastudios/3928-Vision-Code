@@ -1,0 +1,212 @@
+\hypertarget{classLines_1_1Line}{
+\section{Lines::Line Class Reference}
+\label{classLines_1_1Line}\index{Lines::Line@{Lines::Line}}
+}
+
+
+A class representing a line or line segment.  
+
+
+
+
+{\ttfamily \#include $<$Line.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLines_1_1Line_ad5d90c9b5c2c429b0836c17ff8adcead}{Line} ()
+\begin{DoxyCompactList}\small\item\em Constructs an empty \hyperlink{classLines_1_1Line}{Line} object. \item\end{DoxyCompactList}\item 
+\hyperlink{classLines_1_1Line_adfb91debbc6f85acaa956f03a6ba7181}{Line} (CvPoint pt1, CvPoint pt2)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classLines_1_1Line}{Line} object from two points. \item\end{DoxyCompactList}\item 
+CvPoint2D32f \hyperlink{classLines_1_1Line_a791086d937b2c040f290575d3a6184fc}{getIntersectionWith} (\hyperlink{classLines_1_1Line}{Line} otherLine)
+\begin{DoxyCompactList}\small\item\em Returns the intersection point of the current line with a given other line. \item\end{DoxyCompactList}\item 
+void \hyperlink{classLines_1_1Line_aa8d3f21dec769723995171fca1794e23}{drawInfiniteLine} (IplImage $\ast$img, CvScalar color)
+\begin{DoxyCompactList}\small\item\em Draws the infinite line representing this \hyperlink{classLines_1_1Line}{Line} object on an image. \item\end{DoxyCompactList}\item 
+float \hyperlink{classLines_1_1Line_ae98d61a9e9c87d7885718199a3f3ebb1}{dotProductWith} (\hyperlink{classLines_1_1Line}{Line} otherLine)
+\begin{DoxyCompactList}\small\item\em Returns the dot product of the current line and a given other \hyperlink{classLines_1_1Line}{Line} object. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classLines_1_1Line_a6f7ca43e76d34c90709495ef2daa631a}{Slope}
+\begin{DoxyCompactList}\small\item\em The slope of the line. \item\end{DoxyCompactList}\item 
+float \hyperlink{classLines_1_1Line_a61365108d69be8b700fa912b09c5ad41}{Intercept}
+\begin{DoxyCompactList}\small\item\em The line's Y-\/intercept. \item\end{DoxyCompactList}\item 
+float \hyperlink{classLines_1_1Line_a8f9ad3f6b37acb856d3f7781d163ab48}{Length}
+\begin{DoxyCompactList}\small\item\em The length of the line segment between the two given points. \item\end{DoxyCompactList}\item 
+CvPoint \hyperlink{classLines_1_1Line_a94abfd90c052a5486d09a8c1333d11bc}{point1}
+\begin{DoxyCompactList}\small\item\em The first point used to create the line. \item\end{DoxyCompactList}\item 
+CvPoint \hyperlink{classLines_1_1Line_ad6404e7f19ae9a7fc62300249b12662f}{point2}
+\begin{DoxyCompactList}\small\item\em The second point used to create the line. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classLines_1_1Line_aa150ea0e90c00de939de94d579fd97c0}{isVertical}
+\begin{DoxyCompactList}\small\item\em True if the line is vertical; false otherwise. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class representing a line or line segment. A class representing a line or line segment, with functions to perform operations such as intersection, length calculation, and vector math. \begin{DoxyAuthor}{Author}
+Nick Royer 
+\end{DoxyAuthor}
+
+
+Definition at line 20 of file Line.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classLines_1_1Line_ad5d90c9b5c2c429b0836c17ff8adcead}{
+\index{Lines::Line@{Lines::Line}!Line@{Line}}
+\index{Line@{Line}!Lines::Line@{Lines::Line}}
+\subsubsection[{Line}]{\setlength{\rightskip}{0pt plus 5cm}Lines::Line::Line ()}}
+\label{classLines_1_1Line_ad5d90c9b5c2c429b0836c17ff8adcead}
+
+
+Constructs an empty \hyperlink{classLines_1_1Line}{Line} object. 
+
+\hypertarget{classLines_1_1Line_adfb91debbc6f85acaa956f03a6ba7181}{
+\index{Lines::Line@{Lines::Line}!Line@{Line}}
+\index{Line@{Line}!Lines::Line@{Lines::Line}}
+\subsubsection[{Line}]{\setlength{\rightskip}{0pt plus 5cm}Lines::Line::Line (CvPoint {\em pt1}, \/  CvPoint {\em pt2})}}
+\label{classLines_1_1Line_adfb91debbc6f85acaa956f03a6ba7181}
+
+
+Creates a \hyperlink{classLines_1_1Line}{Line} object from two points. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em pt1}]The first CvPoint to create the line from. \item[{\em pt2}]The second CvPoint to create the line from. \end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classLines_1_1Line_ae98d61a9e9c87d7885718199a3f3ebb1}{
+\index{Lines::Line@{Lines::Line}!dotProductWith@{dotProductWith}}
+\index{dotProductWith@{dotProductWith}!Lines::Line@{Lines::Line}}
+\subsubsection[{dotProductWith}]{\setlength{\rightskip}{0pt plus 5cm}float Lines::Line::dotProductWith ({\bf Line} {\em otherLine})}}
+\label{classLines_1_1Line_ae98d61a9e9c87d7885718199a3f3ebb1}
+
+
+Returns the dot product of the current line and a given other \hyperlink{classLines_1_1Line}{Line} object. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em otherLine}]The other line to compute the dot product with. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The dot product of the current line and the given other line. 
+\end{DoxyReturn}
+\hypertarget{classLines_1_1Line_aa8d3f21dec769723995171fca1794e23}{
+\index{Lines::Line@{Lines::Line}!drawInfiniteLine@{drawInfiniteLine}}
+\index{drawInfiniteLine@{drawInfiniteLine}!Lines::Line@{Lines::Line}}
+\subsubsection[{drawInfiniteLine}]{\setlength{\rightskip}{0pt plus 5cm}void Lines::Line::drawInfiniteLine (IplImage $\ast$ {\em img}, \/  CvScalar {\em color})}}
+\label{classLines_1_1Line_aa8d3f21dec769723995171fca1794e23}
+
+
+Draws the infinite line representing this \hyperlink{classLines_1_1Line}{Line} object on an image. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em img}]A pointer to the IplImage the line should be drawn on. \item[{\em color}]The color to draw the line in. \end{DoxyParams}
+\hypertarget{classLines_1_1Line_a791086d937b2c040f290575d3a6184fc}{
+\index{Lines::Line@{Lines::Line}!getIntersectionWith@{getIntersectionWith}}
+\index{getIntersectionWith@{getIntersectionWith}!Lines::Line@{Lines::Line}}
+\subsubsection[{getIntersectionWith}]{\setlength{\rightskip}{0pt plus 5cm}CvPoint2D32f Lines::Line::getIntersectionWith ({\bf Line} {\em otherLine})}}
+\label{classLines_1_1Line_a791086d937b2c040f290575d3a6184fc}
+
+
+Returns the intersection point of the current line with a given other line. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em otherLine}]The line o intersect the current line with. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A CvPoint2D32f floating-\/value point representing th intersection derived. If no intersection is found, this returns (0, 0). 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classLines_1_1Line_a61365108d69be8b700fa912b09c5ad41}{
+\index{Lines::Line@{Lines::Line}!Intercept@{Intercept}}
+\index{Intercept@{Intercept}!Lines::Line@{Lines::Line}}
+\subsubsection[{Intercept}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Lines::Line::Intercept}}}
+\label{classLines_1_1Line_a61365108d69be8b700fa912b09c5ad41}
+
+
+The line's Y-\/intercept. 
+
+
+
+Definition at line 41 of file Line.h.
+
+\hypertarget{classLines_1_1Line_aa150ea0e90c00de939de94d579fd97c0}{
+\index{Lines::Line@{Lines::Line}!isVertical@{isVertical}}
+\index{isVertical@{isVertical}!Lines::Line@{Lines::Line}}
+\subsubsection[{isVertical}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf Lines::Line::isVertical}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classLines_1_1Line_aa150ea0e90c00de939de94d579fd97c0}
+
+
+True if the line is vertical; false otherwise. 
+
+
+
+Definition at line 47 of file Line.h.
+
+\hypertarget{classLines_1_1Line_a8f9ad3f6b37acb856d3f7781d163ab48}{
+\index{Lines::Line@{Lines::Line}!Length@{Length}}
+\index{Length@{Length}!Lines::Line@{Lines::Line}}
+\subsubsection[{Length}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Lines::Line::Length}}}
+\label{classLines_1_1Line_a8f9ad3f6b37acb856d3f7781d163ab48}
+
+
+The length of the line segment between the two given points. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{HelperFunctions_8h_a713752c5b3408bf1eb3332172ef93db0}{pointDistance} 
+\end{DoxySeeAlso}
+
+
+Definition at line 42 of file Line.h.
+
+\hypertarget{classLines_1_1Line_a94abfd90c052a5486d09a8c1333d11bc}{
+\index{Lines::Line@{Lines::Line}!point1@{point1}}
+\index{point1@{point1}!Lines::Line@{Lines::Line}}
+\subsubsection[{point1}]{\setlength{\rightskip}{0pt plus 5cm}CvPoint {\bf Lines::Line::point1}}}
+\label{classLines_1_1Line_a94abfd90c052a5486d09a8c1333d11bc}
+
+
+The first point used to create the line. 
+
+
+
+Definition at line 43 of file Line.h.
+
+\hypertarget{classLines_1_1Line_ad6404e7f19ae9a7fc62300249b12662f}{
+\index{Lines::Line@{Lines::Line}!point2@{point2}}
+\index{point2@{point2}!Lines::Line@{Lines::Line}}
+\subsubsection[{point2}]{\setlength{\rightskip}{0pt plus 5cm}CvPoint {\bf Lines::Line::point2}}}
+\label{classLines_1_1Line_ad6404e7f19ae9a7fc62300249b12662f}
+
+
+The second point used to create the line. 
+
+
+
+Definition at line 44 of file Line.h.
+
+\hypertarget{classLines_1_1Line_a6f7ca43e76d34c90709495ef2daa631a}{
+\index{Lines::Line@{Lines::Line}!Slope@{Slope}}
+\index{Slope@{Slope}!Lines::Line@{Lines::Line}}
+\subsubsection[{Slope}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Lines::Line::Slope}}}
+\label{classLines_1_1Line_a6f7ca43e76d34c90709495ef2daa631a}
+
+
+The slope of the line. 
+
+
+
+Definition at line 40 of file Line.h.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+Headers/\hyperlink{Line_8h}{Line.h}\end{DoxyCompactItemize}

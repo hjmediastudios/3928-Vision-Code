@@ -1,0 +1,78 @@
+.TH "main.cpp" 3 "1 Mar 2012" "Version 0.5" "Targeting" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+main.cpp \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <opencv/cv.h>\fP
+.br
+\fC#include <opencv/highgui.h>\fP
+.br
+\fC#include './Headers/Threshold.h'\fP
+.br
+\fC#include '../Constants.h'\fP
+.br
+\fC#include '../Headers/Target.h'\fP
+.br
+\fC#include <sstream>\fP
+.br
+\fC#include '../Headers/HelperFunctions.h'\fP
+.br
+\fC#include '../Headers/Line.h'\fP
+.br
+\fC#include <aruco/aruco.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBmain\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "IplImage * \fBframe\fP"
+.br
+.ti -1c
+.RI "IplImage * \fBframeThreshed\fP"
+.br
+.ti -1c
+.RI "CvCapture * \fBcamera\fP = NULL"
+.br
+.ti -1c
+.RI "CameraParameters \fBcamParameters\fP"
+.br
+.ti -1c
+.RI "CvFont \fBfont1\fP"
+.br
+.ti -1c
+.RI "CvSeq * \fBcontours\fP"
+.br
+.ti -1c
+.RI "Target \fBtargetSet\fP [50]"
+.br
+.ti -1c
+.RI "int \fBnumTargets\fP = 0"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int main ()"
+.SH "Variable Documentation"
+.PP 
+.SS "CvCapture* \fBcamera\fP = NULL"
+.SS "CameraParameters \fBcamParameters\fP"
+.SS "CvSeq* \fBcontours\fP"
+.SS "CvFont \fBfont1\fP"
+.SS "IplImage* \fBframe\fP"
+.SS "IplImage* \fBframeThreshed\fP"
+.SS "int \fBnumTargets\fP = 0"
+.SS "Target \fBtargetSet\fP[50]"
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Targeting from the source code.

@@ -1,0 +1,362 @@
+\hypertarget{Constants_8h}{
+\section{Constants.h File Reference}
+\label{Constants_8h}\index{Constants.h@{Constants.h}}
+}
+{\ttfamily \#include $<$opencv/cv.h$>$}\par
+{\ttfamily \#include $<$opencv/highgui.h$>$}\par
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structDebugConstants}{DebugConstants}
+\begin{DoxyCompactList}\small\item\em Constants not actually used in the running of the program, but rather for debugging purposes. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{Constants_8h_ac13f2e7722d534b41d683a62871dc250}{USE\_\-CAM}~0
+\begin{DoxyCompactList}\small\item\em Indicates whether the capture device is a camera (1) or provided video file. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_a066901ffac09dc72c1f6a76d29b1c575}{VERBOSITY}~1
+\begin{DoxyCompactList}\small\item\em A value denoting the output level on the console. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_ab311f23e23b415a3738a0bb7fb1fd3dc}{CAMERA\_\-INDEX}~2
+\begin{DoxyCompactList}\small\item\em Some constants. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_a0a22a417a54c551b0dabd01a42c252a6}{THRESHOLD\_\-HUE\_\-MIN}~34
+\begin{DoxyCompactList}\small\item\em The minimum hue value for thresholding a image to find targets. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_ae6b9ed18bf4e2d79fa94f4381f1387fb}{THRESHOLD\_\-HUE\_\-MAX}~79
+\begin{DoxyCompactList}\small\item\em The maximum hue value for thresholding a image to find targets. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_af880feca1da0f83c01f5b4444d2fa2f8}{THRESHOLD\_\-SAT\_\-MIN}~133
+\begin{DoxyCompactList}\small\item\em The minimum saturation value for thresholding a image to find targets. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_acad6f74dff3c20b3eee4a7f3b3c89324}{THRESHOLD\_\-SAT\_\-MAX}~255
+\begin{DoxyCompactList}\small\item\em The maximum saturation value for thresholding a image to find targets. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_a8a9db1f60e420df03142e67329389ed9}{THRESHOLD\_\-VAL\_\-MIN}~63
+\begin{DoxyCompactList}\small\item\em The minimum value value for thresholding a image to find targets. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_aca292127797fa51400f5873c7904e26b}{THRESHOLD\_\-VAL\_\-MAX}~255
+\begin{DoxyCompactList}\small\item\em The maximum value value for thresholding a image to find targets. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_a46ff9af246682a581f99bd727a179ecc}{FILTER\_\-CONTOURS\_\-BBOXBORDERTHRESHOLD}~5
+\begin{DoxyCompactList}\small\item\em The minimum number of pixels a target's bounding box can be near to the edges of the image for the contour to be considered as a target. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_a92ccab13fba7fdac55d0b2953e8afc43}{FILTER\_\-CONTOURS\_\-BBOXMAXAREAPERCENT}~0.4
+\begin{DoxyCompactList}\small\item\em The maximum percentage of the screen that can be coved by a contour's bounding box before it won't be considered as a target. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_a61ac937b561741ab0e25e67df9f166b8}{FILTER\_\-CONTOURS\_\-MINAREA}~550
+\begin{DoxyCompactList}\small\item\em The minimum value of a contour's area for it to be selected as a target. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_a9c9d77433845b6852ba611756da035e4}{FILTER\_\-CONTOURS\_\-ASPECTRATIO\_\-MIN}~0.5
+\begin{DoxyCompactList}\small\item\em The minimum aspect ratio of a potential target's bounding box. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_ae26d670bafd69d05f5f704e5b4a5e948}{FILTER\_\-CONTOURS\_\-ASPECTRATIO\_\-MAX}~1.5
+\begin{DoxyCompactList}\small\item\em The maximum aspect ratio of a potential target's bounding box. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_ae9b85ba0461a99df0638040ca4a64d67}{FILTER\_\-CONTOURS\_\-POINTSPERCONTOURSIDE}~6
+\begin{DoxyCompactList}\small\item\em The number of points on each target's contour's shortest side. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_a60964d4a36f7df4388d221e2fdaa1e60}{FILTER\_\-POINTS\_\-CROSSPRODUCTTHRESHOLD}~20
+\item 
+\#define \hyperlink{Constants_8h_a8ee8305c47f93d4054c3332ff3bc976d}{OFFSETS\_\-SAMPLESPERREADING}~32
+\begin{DoxyCompactList}\small\item\em The number of samples to track in the past for moving-\/camera averages of target offsets. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_afabceb3bb8be0a5f29b9ad47baf39a87}{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-X}~3
+\begin{DoxyCompactList}\small\item\em The X-\/offset (in meters) of the center of the hoop from the target's marker center. 3. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_a806088660b37c83b0b3a1b8cca8adb68}{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-Y}~15.5
+\begin{DoxyCompactList}\small\item\em The Y-\/offset (in meters) of the center of the hoop from the target's marker center. 11. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_aa02755756ea407ea03a1cf1578e8bec0}{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-Z}~11
+\begin{DoxyCompactList}\small\item\em The Z-\/offset (in meters) of the center of the hoop from the target's marker center. 15.5. \item\end{DoxyCompactList}\item 
+\#define \hyperlink{Constants_8h_a2d439929d6151a18de00ed3af302432e}{CAMERA\_\-ROTATION\_\-AXIS\_\-X}~0
+\begin{DoxyCompactList}\small\item\em The vertical axis angle offset of the camera on the robot. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\hypertarget{Constants_8h_ab311f23e23b415a3738a0bb7fb1fd3dc}{
+\index{Constants.h@{Constants.h}!CAMERA\_\-INDEX@{CAMERA\_\-INDEX}}
+\index{CAMERA\_\-INDEX@{CAMERA\_\-INDEX}!Constants.h@{Constants.h}}
+\subsubsection[{CAMERA\_\-INDEX}]{\setlength{\rightskip}{0pt plus 5cm}\#define CAMERA\_\-INDEX~2}}
+\label{Constants_8h_ab311f23e23b415a3738a0bb7fb1fd3dc}
+
+
+Some constants. 
+
+A lot of constants. The system index of the default camera to use. 
+
+Definition at line 28 of file Constants.h.
+
+
+
+Referenced by main().
+
+\hypertarget{Constants_8h_a2d439929d6151a18de00ed3af302432e}{
+\index{Constants.h@{Constants.h}!CAMERA\_\-ROTATION\_\-AXIS\_\-X@{CAMERA\_\-ROTATION\_\-AXIS\_\-X}}
+\index{CAMERA\_\-ROTATION\_\-AXIS\_\-X@{CAMERA\_\-ROTATION\_\-AXIS\_\-X}!Constants.h@{Constants.h}}
+\subsubsection[{CAMERA\_\-ROTATION\_\-AXIS\_\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define CAMERA\_\-ROTATION\_\-AXIS\_\-X~0}}
+\label{Constants_8h_a2d439929d6151a18de00ed3af302432e}
+
+
+The vertical axis angle offset of the camera on the robot. 
+
+
+
+Definition at line 53 of file Constants.h.
+
+\hypertarget{Constants_8h_ae26d670bafd69d05f5f704e5b4a5e948}{
+\index{Constants.h@{Constants.h}!FILTER\_\-CONTOURS\_\-ASPECTRATIO\_\-MAX@{FILTER\_\-CONTOURS\_\-ASPECTRATIO\_\-MAX}}
+\index{FILTER\_\-CONTOURS\_\-ASPECTRATIO\_\-MAX@{FILTER\_\-CONTOURS\_\-ASPECTRATIO\_\-MAX}!Constants.h@{Constants.h}}
+\subsubsection[{FILTER\_\-CONTOURS\_\-ASPECTRATIO\_\-MAX}]{\setlength{\rightskip}{0pt plus 5cm}\#define FILTER\_\-CONTOURS\_\-ASPECTRATIO\_\-MAX~1.5}}
+\label{Constants_8h_ae26d670bafd69d05f5f704e5b4a5e948}
+
+
+The maximum aspect ratio of a potential target's bounding box. 
+
+\begin{DoxySeeAlso}{See also}
+pickTargets 
+\end{DoxySeeAlso}
+
+
+Definition at line 42 of file Constants.h.
+
+\hypertarget{Constants_8h_a9c9d77433845b6852ba611756da035e4}{
+\index{Constants.h@{Constants.h}!FILTER\_\-CONTOURS\_\-ASPECTRATIO\_\-MIN@{FILTER\_\-CONTOURS\_\-ASPECTRATIO\_\-MIN}}
+\index{FILTER\_\-CONTOURS\_\-ASPECTRATIO\_\-MIN@{FILTER\_\-CONTOURS\_\-ASPECTRATIO\_\-MIN}!Constants.h@{Constants.h}}
+\subsubsection[{FILTER\_\-CONTOURS\_\-ASPECTRATIO\_\-MIN}]{\setlength{\rightskip}{0pt plus 5cm}\#define FILTER\_\-CONTOURS\_\-ASPECTRATIO\_\-MIN~0.5}}
+\label{Constants_8h_a9c9d77433845b6852ba611756da035e4}
+
+
+The minimum aspect ratio of a potential target's bounding box. 
+
+\begin{DoxySeeAlso}{See also}
+pickTargets 
+\end{DoxySeeAlso}
+
+
+Definition at line 41 of file Constants.h.
+
+\hypertarget{Constants_8h_a46ff9af246682a581f99bd727a179ecc}{
+\index{Constants.h@{Constants.h}!FILTER\_\-CONTOURS\_\-BBOXBORDERTHRESHOLD@{FILTER\_\-CONTOURS\_\-BBOXBORDERTHRESHOLD}}
+\index{FILTER\_\-CONTOURS\_\-BBOXBORDERTHRESHOLD@{FILTER\_\-CONTOURS\_\-BBOXBORDERTHRESHOLD}!Constants.h@{Constants.h}}
+\subsubsection[{FILTER\_\-CONTOURS\_\-BBOXBORDERTHRESHOLD}]{\setlength{\rightskip}{0pt plus 5cm}\#define FILTER\_\-CONTOURS\_\-BBOXBORDERTHRESHOLD~5}}
+\label{Constants_8h_a46ff9af246682a581f99bd727a179ecc}
+
+
+The minimum number of pixels a target's bounding box can be near to the edges of the image for the contour to be considered as a target. 
+
+\begin{DoxySeeAlso}{See also}
+pickTargets 
+\end{DoxySeeAlso}
+
+
+Definition at line 37 of file Constants.h.
+
+\hypertarget{Constants_8h_a92ccab13fba7fdac55d0b2953e8afc43}{
+\index{Constants.h@{Constants.h}!FILTER\_\-CONTOURS\_\-BBOXMAXAREAPERCENT@{FILTER\_\-CONTOURS\_\-BBOXMAXAREAPERCENT}}
+\index{FILTER\_\-CONTOURS\_\-BBOXMAXAREAPERCENT@{FILTER\_\-CONTOURS\_\-BBOXMAXAREAPERCENT}!Constants.h@{Constants.h}}
+\subsubsection[{FILTER\_\-CONTOURS\_\-BBOXMAXAREAPERCENT}]{\setlength{\rightskip}{0pt plus 5cm}\#define FILTER\_\-CONTOURS\_\-BBOXMAXAREAPERCENT~0.4}}
+\label{Constants_8h_a92ccab13fba7fdac55d0b2953e8afc43}
+
+
+The maximum percentage of the screen that can be coved by a contour's bounding box before it won't be considered as a target. 
+
+\begin{DoxySeeAlso}{See also}
+pickTargets 
+\end{DoxySeeAlso}
+
+
+Definition at line 38 of file Constants.h.
+
+\hypertarget{Constants_8h_a61ac937b561741ab0e25e67df9f166b8}{
+\index{Constants.h@{Constants.h}!FILTER\_\-CONTOURS\_\-MINAREA@{FILTER\_\-CONTOURS\_\-MINAREA}}
+\index{FILTER\_\-CONTOURS\_\-MINAREA@{FILTER\_\-CONTOURS\_\-MINAREA}!Constants.h@{Constants.h}}
+\subsubsection[{FILTER\_\-CONTOURS\_\-MINAREA}]{\setlength{\rightskip}{0pt plus 5cm}\#define FILTER\_\-CONTOURS\_\-MINAREA~550}}
+\label{Constants_8h_a61ac937b561741ab0e25e67df9f166b8}
+
+
+The minimum value of a contour's area for it to be selected as a target. 
+
+\begin{DoxySeeAlso}{See also}
+pickTargets 
+\end{DoxySeeAlso}
+
+
+Definition at line 40 of file Constants.h.
+
+\hypertarget{Constants_8h_ae9b85ba0461a99df0638040ca4a64d67}{
+\index{Constants.h@{Constants.h}!FILTER\_\-CONTOURS\_\-POINTSPERCONTOURSIDE@{FILTER\_\-CONTOURS\_\-POINTSPERCONTOURSIDE}}
+\index{FILTER\_\-CONTOURS\_\-POINTSPERCONTOURSIDE@{FILTER\_\-CONTOURS\_\-POINTSPERCONTOURSIDE}!Constants.h@{Constants.h}}
+\subsubsection[{FILTER\_\-CONTOURS\_\-POINTSPERCONTOURSIDE}]{\setlength{\rightskip}{0pt plus 5cm}\#define FILTER\_\-CONTOURS\_\-POINTSPERCONTOURSIDE~6}}
+\label{Constants_8h_ae9b85ba0461a99df0638040ca4a64d67}
+
+
+The number of points on each target's contour's shortest side. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classTarget_a11d364c4df4e83d475c33b4a4915a792}{Target::spacePointsEvenly} 
+\end{DoxySeeAlso}
+
+
+Definition at line 43 of file Constants.h.
+
+
+
+Referenced by main().
+
+\hypertarget{Constants_8h_a60964d4a36f7df4388d221e2fdaa1e60}{
+\index{Constants.h@{Constants.h}!FILTER\_\-POINTS\_\-CROSSPRODUCTTHRESHOLD@{FILTER\_\-POINTS\_\-CROSSPRODUCTTHRESHOLD}}
+\index{FILTER\_\-POINTS\_\-CROSSPRODUCTTHRESHOLD@{FILTER\_\-POINTS\_\-CROSSPRODUCTTHRESHOLD}!Constants.h@{Constants.h}}
+\subsubsection[{FILTER\_\-POINTS\_\-CROSSPRODUCTTHRESHOLD}]{\setlength{\rightskip}{0pt plus 5cm}\#define FILTER\_\-POINTS\_\-CROSSPRODUCTTHRESHOLD~20}}
+\label{Constants_8h_a60964d4a36f7df4388d221e2fdaa1e60}
+
+
+Definition at line 45 of file Constants.h.
+
+
+
+Referenced by main().
+
+\hypertarget{Constants_8h_afabceb3bb8be0a5f29b9ad47baf39a87}{
+\index{Constants.h@{Constants.h}!HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-X@{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-X}}
+\index{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-X@{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-X}!Constants.h@{Constants.h}}
+\subsubsection[{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-X}]{\setlength{\rightskip}{0pt plus 5cm}\#define HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-X~3}}
+\label{Constants_8h_afabceb3bb8be0a5f29b9ad47baf39a87}
+
+
+The X-\/offset (in meters) of the center of the hoop from the target's marker center. 3. 
+
+
+
+Definition at line 49 of file Constants.h.
+
+\hypertarget{Constants_8h_a806088660b37c83b0b3a1b8cca8adb68}{
+\index{Constants.h@{Constants.h}!HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-Y@{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-Y}}
+\index{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-Y@{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-Y}!Constants.h@{Constants.h}}
+\subsubsection[{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-Y~15.5}}
+\label{Constants_8h_a806088660b37c83b0b3a1b8cca8adb68}
+
+
+The Y-\/offset (in meters) of the center of the hoop from the target's marker center. 11. 
+
+
+
+Definition at line 50 of file Constants.h.
+
+\hypertarget{Constants_8h_aa02755756ea407ea03a1cf1578e8bec0}{
+\index{Constants.h@{Constants.h}!HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-Z@{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-Z}}
+\index{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-Z@{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-Z}!Constants.h@{Constants.h}}
+\subsubsection[{HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-Z}]{\setlength{\rightskip}{0pt plus 5cm}\#define HOOP\_\-OFFSETFROM\_\-CENTEROFSQUARE\_\-Z~11}}
+\label{Constants_8h_aa02755756ea407ea03a1cf1578e8bec0}
+
+
+The Z-\/offset (in meters) of the center of the hoop from the target's marker center. 15.5. 
+
+
+
+Definition at line 51 of file Constants.h.
+
+\hypertarget{Constants_8h_a8ee8305c47f93d4054c3332ff3bc976d}{
+\index{Constants.h@{Constants.h}!OFFSETS\_\-SAMPLESPERREADING@{OFFSETS\_\-SAMPLESPERREADING}}
+\index{OFFSETS\_\-SAMPLESPERREADING@{OFFSETS\_\-SAMPLESPERREADING}!Constants.h@{Constants.h}}
+\subsubsection[{OFFSETS\_\-SAMPLESPERREADING}]{\setlength{\rightskip}{0pt plus 5cm}\#define OFFSETS\_\-SAMPLESPERREADING~32}}
+\label{Constants_8h_a8ee8305c47f93d4054c3332ff3bc976d}
+
+
+The number of samples to track in the past for moving-\/camera averages of target offsets. 
+
+
+
+Definition at line 47 of file Constants.h.
+
+
+
+Referenced by main().
+
+\hypertarget{Constants_8h_ae6b9ed18bf4e2d79fa94f4381f1387fb}{
+\index{Constants.h@{Constants.h}!THRESHOLD\_\-HUE\_\-MAX@{THRESHOLD\_\-HUE\_\-MAX}}
+\index{THRESHOLD\_\-HUE\_\-MAX@{THRESHOLD\_\-HUE\_\-MAX}!Constants.h@{Constants.h}}
+\subsubsection[{THRESHOLD\_\-HUE\_\-MAX}]{\setlength{\rightskip}{0pt plus 5cm}\#define THRESHOLD\_\-HUE\_\-MAX~79}}
+\label{Constants_8h_ae6b9ed18bf4e2d79fa94f4381f1387fb}
+
+
+The maximum hue value for thresholding a image to find targets. 
+
+
+
+Definition at line 31 of file Constants.h.
+
+\hypertarget{Constants_8h_a0a22a417a54c551b0dabd01a42c252a6}{
+\index{Constants.h@{Constants.h}!THRESHOLD\_\-HUE\_\-MIN@{THRESHOLD\_\-HUE\_\-MIN}}
+\index{THRESHOLD\_\-HUE\_\-MIN@{THRESHOLD\_\-HUE\_\-MIN}!Constants.h@{Constants.h}}
+\subsubsection[{THRESHOLD\_\-HUE\_\-MIN}]{\setlength{\rightskip}{0pt plus 5cm}\#define THRESHOLD\_\-HUE\_\-MIN~34}}
+\label{Constants_8h_a0a22a417a54c551b0dabd01a42c252a6}
+
+
+The minimum hue value for thresholding a image to find targets. 
+
+
+
+Definition at line 30 of file Constants.h.
+
+\hypertarget{Constants_8h_acad6f74dff3c20b3eee4a7f3b3c89324}{
+\index{Constants.h@{Constants.h}!THRESHOLD\_\-SAT\_\-MAX@{THRESHOLD\_\-SAT\_\-MAX}}
+\index{THRESHOLD\_\-SAT\_\-MAX@{THRESHOLD\_\-SAT\_\-MAX}!Constants.h@{Constants.h}}
+\subsubsection[{THRESHOLD\_\-SAT\_\-MAX}]{\setlength{\rightskip}{0pt plus 5cm}\#define THRESHOLD\_\-SAT\_\-MAX~255}}
+\label{Constants_8h_acad6f74dff3c20b3eee4a7f3b3c89324}
+
+
+The maximum saturation value for thresholding a image to find targets. 
+
+
+
+Definition at line 33 of file Constants.h.
+
+\hypertarget{Constants_8h_af880feca1da0f83c01f5b4444d2fa2f8}{
+\index{Constants.h@{Constants.h}!THRESHOLD\_\-SAT\_\-MIN@{THRESHOLD\_\-SAT\_\-MIN}}
+\index{THRESHOLD\_\-SAT\_\-MIN@{THRESHOLD\_\-SAT\_\-MIN}!Constants.h@{Constants.h}}
+\subsubsection[{THRESHOLD\_\-SAT\_\-MIN}]{\setlength{\rightskip}{0pt plus 5cm}\#define THRESHOLD\_\-SAT\_\-MIN~133}}
+\label{Constants_8h_af880feca1da0f83c01f5b4444d2fa2f8}
+
+
+The minimum saturation value for thresholding a image to find targets. 
+
+
+
+Definition at line 32 of file Constants.h.
+
+\hypertarget{Constants_8h_aca292127797fa51400f5873c7904e26b}{
+\index{Constants.h@{Constants.h}!THRESHOLD\_\-VAL\_\-MAX@{THRESHOLD\_\-VAL\_\-MAX}}
+\index{THRESHOLD\_\-VAL\_\-MAX@{THRESHOLD\_\-VAL\_\-MAX}!Constants.h@{Constants.h}}
+\subsubsection[{THRESHOLD\_\-VAL\_\-MAX}]{\setlength{\rightskip}{0pt plus 5cm}\#define THRESHOLD\_\-VAL\_\-MAX~255}}
+\label{Constants_8h_aca292127797fa51400f5873c7904e26b}
+
+
+The maximum value value for thresholding a image to find targets. 
+
+
+
+Definition at line 35 of file Constants.h.
+
+\hypertarget{Constants_8h_a8a9db1f60e420df03142e67329389ed9}{
+\index{Constants.h@{Constants.h}!THRESHOLD\_\-VAL\_\-MIN@{THRESHOLD\_\-VAL\_\-MIN}}
+\index{THRESHOLD\_\-VAL\_\-MIN@{THRESHOLD\_\-VAL\_\-MIN}!Constants.h@{Constants.h}}
+\subsubsection[{THRESHOLD\_\-VAL\_\-MIN}]{\setlength{\rightskip}{0pt plus 5cm}\#define THRESHOLD\_\-VAL\_\-MIN~63}}
+\label{Constants_8h_a8a9db1f60e420df03142e67329389ed9}
+
+
+The minimum value value for thresholding a image to find targets. 
+
+
+
+Definition at line 34 of file Constants.h.
+
+\hypertarget{Constants_8h_ac13f2e7722d534b41d683a62871dc250}{
+\index{Constants.h@{Constants.h}!USE\_\-CAM@{USE\_\-CAM}}
+\index{USE\_\-CAM@{USE\_\-CAM}!Constants.h@{Constants.h}}
+\subsubsection[{USE\_\-CAM}]{\setlength{\rightskip}{0pt plus 5cm}\#define USE\_\-CAM~0}}
+\label{Constants_8h_ac13f2e7722d534b41d683a62871dc250}
+
+
+Indicates whether the capture device is a camera (1) or provided video file. 
+
+
+
+Definition at line 18 of file Constants.h.
+
+\hypertarget{Constants_8h_a066901ffac09dc72c1f6a76d29b1c575}{
+\index{Constants.h@{Constants.h}!VERBOSITY@{VERBOSITY}}
+\index{VERBOSITY@{VERBOSITY}!Constants.h@{Constants.h}}
+\subsubsection[{VERBOSITY}]{\setlength{\rightskip}{0pt plus 5cm}\#define VERBOSITY~1}}
+\label{Constants_8h_a066901ffac09dc72c1f6a76d29b1c575}
+
+
+A value denoting the output level on the console. 
+
+
+
+Definition at line 19 of file Constants.h.
+

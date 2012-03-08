@@ -1,0 +1,54 @@
+.TH "Headers/Threshold.h" 3 "2 Mar 2012" "Version 0.5" "Targeting" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Headers/Threshold.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <opencv/cv.h>\fP
+.br
+\fC#include '../Constants.h'\fP
+.br
+\fC#include '../Headers/Target.h'\fP
+.br
+\fC#include '../Headers/HelperFunctions.h'\fP
+.br
+\fC#include '../Headers/Line.h'\fP
+.br
+\fC#include <aruco/aruco.h>\fP
+.br
+\fC#include <sstream>\fP
+.br
+
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBTHRESHOLD_H_\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "IplImage * \fBthreshold_findGreen\fP (IplImage *img)"
+.br
+.ti -1c
+.RI "CvSeq * \fBfindContours\fP (IplImage *img)"
+.br
+.ti -1c
+.RI "void \fBpickTargets\fP (CvSeq *contours, IplImage *img, \fBTarget\fP *tgtSet, int *numTgts)"
+.br
+.in -1c
+.SH "Define Documentation"
+.PP 
+.SS "#define THRESHOLD_H_"
+.SH "Function Documentation"
+.PP 
+.SS "CvSeq* findContours (IplImage * img)"
+.SS "void pickTargets (CvSeq * contours, IplImage * img, \fBTarget\fP * tgtSet, int * numTgts)"
+.SS "IplImage* threshold_findGreen (IplImage * img)"
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Targeting from the source code.

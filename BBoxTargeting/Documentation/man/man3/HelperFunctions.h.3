@@ -1,0 +1,151 @@
+.TH "Headers/HelperFunctions.h" 3 "2 Mar 2012" "Version 0.5" "Targeting" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Headers/HelperFunctions.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <opencv/cv.h>\fP
+.br
+\fC#include <aruco/aruco.h>\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "float \fBpointDistance\fP (CvPoint point1, CvPoint point2)"
+.br
+.RI "\fIReturns the distance between two points. \fP"
+.ti -1c
+.RI "char * \fBfloatToString\fP (float flt)"
+.br
+.RI "\fIConverts a float variable into a string for easier display. \fP"
+.ti -1c
+.RI "CvFont * \fBgetFont\fP (float size)"
+.br
+.RI "\fIReturns a basic default font. \fP"
+.ti -1c
+.RI "float \fBcalculateVectorFrom3Offsets\fP (float vecX, float vecY, float vecZ)"
+.br
+.RI "\fICalculates the 3D distance from the origin to a point. \fP"
+.ti -1c
+.RI "void \fBdrawAxis\fP (IplImage *Image, aruco::Marker &m, const aruco::CameraParameters &CP)"
+.br
+.RI "\fIDraws the 3D axis indicating the orientation of a Aruco marker object. \fP"
+.ti -1c
+.RI "float \fBconvertMarkerCoordinateToInches\fP (float markerCoordinate)"
+.br
+.RI "\fIConverts the dimensions of an Aruco marker (meters) to inches. \fP"
+.ti -1c
+.RI "void \fBmatrixMultiply\fP (double *a, float *b, float *result, int dimension)"
+.br
+.RI "\fIMultiplies two square matrices. \fP"
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "float calculateVectorFrom3Offsets (float vecX, float vecY, float vecZ)"
+.PP
+Calculates the 3D distance from the origin to a point. \fBParameters:\fP
+.RS 4
+\fIvecX\fP The X-offset of the point from the origin. 
+.br
+\fIvecY\fP The Y-offset of the point from the origin. 
+.br
+\fIvecZ\fP The Z-offset of the point from the origin. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The distance from the origin to the given point, expressed in the same units as the inputs. 
+.RE
+.PP
+
+.SS "float convertMarkerCoordinateToInches (float markerCoordinate)"
+.PP
+Converts the dimensions of an Aruco marker (meters) to inches. \fBParameters:\fP
+.RS 4
+\fImarkerCoordinate\fP The dimension in meters. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The dimension in inches. 
+.RE
+.PP
+
+.SS "void drawAxis (IplImage * Image, aruco::Marker & m, const aruco::CameraParameters & CP)"
+.PP
+Draws the 3D axis indicating the orientation of a Aruco marker object. \fBParameters:\fP
+.RS 4
+\fIImage\fP A pointer to the desied image to draw on. 
+.br
+\fIm\fP The Aruco marker object the axis indicates the orientation of. 
+.br
+\fICP\fP The Aruco camera parameters used to project the axis onto the image. 
+.RE
+.PP
+
+.SS "char* floatToString (float flt)"
+.PP
+Converts a float variable into a string for easier display. Converts a float variable into a string for easier display. Note that this function is limited to 30 characters or fewer for the resulting string. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIThe\fP float variable desired to be converted to a string. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The float variable expressed as a string. 
+.RE
+.PP
+
+.SS "CvFont* getFont (float size)"
+.PP
+Returns a basic default font. \fBParameters:\fP
+.RS 4
+\fIsize\fP The desired font size, from 0 to 1 to an arbitrary float. 0.5 is used primarily by this code. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A pointer to a CvFont object of the desired size. 
+.RE
+.PP
+
+.SS "void matrixMultiply (double * a, float * b, float * result, int dimension)"
+.PP
+Multiplies two square matrices. Multiplies to matrices. The matrices are expressed as square arrays of dimensions indicated by the dimension parameter. Due to idiosyncracies of the requirements of this function, the first matrix uses doubles while the rest use floats. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIa\fP The first matrix to multiply. 
+.br
+\fIb\fP The second matrix to multiply. 
+.br
+\fIresult\fP the resulting multiplied matrix. 
+.br
+\fIdimension\fP The size of each square matrix. 
+.RE
+.PP
+
+.SS "float pointDistance (CvPoint point1, CvPoint point2)"
+.PP
+Returns the distance between two points. \fBParameters:\fP
+.RS 4
+\fIpoint1\fP The first point used for the calculation. 
+.br
+\fIpoint2\fP The second point used for the calculation. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+the distance, in pixels, between the two points. 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Targeting from the source code.

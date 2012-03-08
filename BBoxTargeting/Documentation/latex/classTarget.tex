@@ -1,0 +1,554 @@
+\hypertarget{classTarget}{
+\section{Target Class Reference}
+\label{classTarget}\index{Target@{Target}}
+}
+
+
+A class that represents a single 2012 'Rebound Rumble' rectangular target.  
+
+
+
+
+{\ttfamily \#include $<$Target.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTarget_a7008d6752ce64f82e56aae6ea6c2bb65}{Target} ()
+\begin{DoxyCompactList}\small\item\em Constructs an empty \hyperlink{classTarget}{Target} object. \item\end{DoxyCompactList}\item 
+\hyperlink{classTarget_a2275921d41d2d55f196ed5b7eb8d2c72}{Target} (CvSeq $\ast$cntr)
+\begin{DoxyCompactList}\small\item\em Creates a target from a CvSeq contour. \item\end{DoxyCompactList}\item 
+CvPoint \hyperlink{classTarget_a242ea75595d6ecf0aa93cbaff4a86464}{getBoundingBoxPoint1} ()
+\begin{DoxyCompactList}\small\item\em Returns the upper left point of the bounding box. \item\end{DoxyCompactList}\item 
+CvPoint \hyperlink{classTarget_ac8d03387c639c9acf18c056a8d36bd29}{getBoundingBoxPoint2} ()
+\begin{DoxyCompactList}\small\item\em Returns the bottom right point of the bounding box. \item\end{DoxyCompactList}\item 
+CvPoint \hyperlink{classTarget_a1746d549afb1a3df93f38bf6e57a1512}{getCenter} ()
+\begin{DoxyCompactList}\small\item\em Gets the center point of the target. \item\end{DoxyCompactList}\item 
+void \hyperlink{classTarget_a888695431f7e2c1cfaba678dbd99b6d1}{calculateHoopPosition} (int numPointsPerSide, int crossProductThreshold, aruco::CameraParameters camParams)
+\begin{DoxyCompactList}\small\item\em Calculates the position of the hoop relative to the camera. \item\end{DoxyCompactList}\item 
+aruco::Marker \hyperlink{classTarget_ac639d54e469f2a463ef6e3c22261b108}{getMarker} ()
+\begin{DoxyCompactList}\small\item\em Returns the Aruco marker representing the target. \item\end{DoxyCompactList}\item 
+void \hyperlink{classTarget_a81f8b1e169947fd2db3aed6356273ad2}{drawTarget} (IplImage $\ast$img, CvScalar color)
+\begin{DoxyCompactList}\small\item\em Draws the target on an image. \item\end{DoxyCompactList}\item 
+void \hyperlink{classTarget_a60f06174aec80a151a02ef5c6ef2735d}{getNavInfo} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classTarget_af1714dc10beafcd323003e43d787f7ab}{offsets} \mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em The X, Y, and Z offsets of the target from the camera. \item\end{DoxyCompactList}\item 
+CvSeq \hyperlink{classTarget_a5ea4a01adfb55ca0a5a7355472e02019}{contour}
+\begin{DoxyCompactList}\small\item\em The CvSeq contour of the target. \item\end{DoxyCompactList}\item 
+aruco::Marker \hyperlink{classTarget_a631383ffe78165e8af649470edb77986}{marker}
+\begin{DoxyCompactList}\small\item\em The Aruco Marker object defining the square portion of the target coplanar with the target and aligned with the target's left edge. \item\end{DoxyCompactList}\item 
+double \hyperlink{classTarget_acfcc0fcb67b56b407f7842871306c0ae}{modelViewMatrix} \mbox{[}16\mbox{]}
+\begin{DoxyCompactList}\small\item\em The OpenGL model view matrix of the target, in a 3x3 rotation matrix appended to a 3x1 translation matrix. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classTarget_a5863d9c3708b47db4e2a2bd60723c9d4}{mergeColinearLines} ()
+\begin{DoxyCompactList}\small\item\em Merges all colinear line segments into a single segment; one for each edge of the target. \item\end{DoxyCompactList}\item 
+void \hyperlink{classTarget_a11d364c4df4e83d475c33b4a4915a792}{spacePointsEvenly} (int numPointsPerSide)
+\begin{DoxyCompactList}\small\item\em A function to space a list of points from a contour in even intervals around the contour. \item\end{DoxyCompactList}\item 
+void \hyperlink{classTarget_a097b47c75568969a979ef67247b6f919}{calculateSegmentsFromPoints} (int crossProductThreshold)
+\begin{DoxyCompactList}\small\item\em Makes the set of segments on a target from points. \item\end{DoxyCompactList}\item 
+void \hyperlink{classTarget_a8dad4ab3c5aefb6a07aa41a4b450fdea}{calculateIntersectionsOfLines} ()
+\begin{DoxyCompactList}\small\item\em Calculates all the intersections of the edges of the target. \item\end{DoxyCompactList}\item 
+void \hyperlink{classTarget_a02a9ec40b224fe31bf6635bfc78820b3}{calculateVanishingPoints} ()
+\begin{DoxyCompactList}\small\item\em Calculates vanishing pints from the segments contained in lineSet. \item\end{DoxyCompactList}\item 
+void \hyperlink{classTarget_a8e4a735a5ce6ebaa32ac83712ec4e75f}{calculateCornersFromVanishingPoints} ()
+\begin{DoxyCompactList}\small\item\em Intersects vanishing ponts to get the four corners of the target. \item\end{DoxyCompactList}\item 
+void \hyperlink{classTarget_aad1871823a8599d3d095c988451ad3ea}{calculateSquare} ()
+\begin{DoxyCompactList}\small\item\em Calculates the corners of the square Marker object. Performs two dicing operations on the four corner points to create an Aruco Marker object, square, centered on the left edge of the target. \item\end{DoxyCompactList}\item 
+void \hyperlink{classTarget_aaeb297087804d9d7952b0588d76ac213}{calculatePosition} (aruco::CameraParameters camParams)
+\begin{DoxyCompactList}\small\item\em Calculates the position of the target's hoop from the Aruco marker object. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+CvRect \hyperlink{classTarget_ab883696aeef59f629cd850e0bb3c15e2}{boundingBox}
+\begin{DoxyCompactList}\small\item\em The CvRect defining the bounding box of the target. \item\end{DoxyCompactList}\item 
+CvPoint \hyperlink{classTarget_a8cdd69bb1321e6928fcdfaf6959e5fe2}{pointSet} \mbox{[}500\mbox{]}
+\begin{DoxyCompactList}\small\item\em An array of CvPoints defining the points on the target's contour. \item\end{DoxyCompactList}\item 
+int \hyperlink{classTarget_af7e7aa3898edd34429c99d391e7fe995}{numPoints}
+\begin{DoxyCompactList}\small\item\em The number of poins on the tart's contour. \item\end{DoxyCompactList}\item 
+\hyperlink{classLines_1_1Line}{Line} \hyperlink{classTarget_af112a6c4b4cb598d27f33332de574680}{lineSet} \mbox{[}500\mbox{]}
+\begin{DoxyCompactList}\small\item\em An array of Line objects containing the segments between tetarget's points, and, later, the edges of the target. \item\end{DoxyCompactList}\item 
+int \hyperlink{classTarget_ae66edfe3234fad4f2e46c2975b29ab89}{numLines}
+\begin{DoxyCompactList}\small\item\em The number of Line objects contained in lineSet. \item\end{DoxyCompactList}\item 
+CvPoint2D32f \hyperlink{classTarget_a26d36f01443f1f26da59e18ad4552a4f}{intersectionSet} \mbox{[}1000\mbox{]}
+\begin{DoxyCompactList}\small\item\em The set of floating-\/point CvPoints defining the intersection of the edges of the target. \item\end{DoxyCompactList}\item 
+int \hyperlink{classTarget_a8299a806d41327ee1827fc0f0b0b2131}{numIntersections}
+\begin{DoxyCompactList}\small\item\em The number of intersections between the target's edges. \item\end{DoxyCompactList}\item 
+int \hyperlink{classTarget_a8826919bae5e9653ab4c7b7ab6a4b03a}{intersectionLineIndices} \mbox{[}2\mbox{]}\mbox{[}1000\mbox{]}
+\begin{DoxyCompactList}\small\item\em An array that indicates which lines formed each intersection points. The first column contains the first line that formed the given intersection point,the second column the second line, and each row is used for a single intersection point. \item\end{DoxyCompactList}\item 
+CvPoint2D32f \hyperlink{classTarget_a55d4dc8c3f14d8229ee0d05fcebe0b42}{vPointArray} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em An array of CvPoint2D32f's defining the two vanishing points of the target's parallel lines. \item\end{DoxyCompactList}\item 
+\hyperlink{classLines_1_1Line}{Line} \hyperlink{classTarget_a5a19c47a5b28c7e2a1d2b2cb24b322a1}{vLines} \mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em An array of Line objects, two per vanishing point-\/ one for each line that creaed that vanishing point via intersection. \item\end{DoxyCompactList}\item 
+CvPoint2D32f \hyperlink{classTarget_aa77c3e5ee30ba4c31a6633f74b32f62f}{cornerArray} \mbox{[}4\mbox{]}
+\begin{DoxyCompactList}\small\item\em The four corners of the target, in CvPoint2D32f format. \item\end{DoxyCompactList}\item 
+float \hyperlink{classTarget_a6f52fbce823f229f68368c241dd39f46}{hoopCoordinatesArray} \mbox{[}16\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class that represents a single 2012 'Rebound Rumble' rectangular target. \begin{DoxyAuthor}{Author}
+Nick Royer 
+\end{DoxyAuthor}
+
+
+Definition at line 22 of file Target.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classTarget_a7008d6752ce64f82e56aae6ea6c2bb65}{
+\index{Target@{Target}!Target@{Target}}
+\index{Target@{Target}!Target@{Target}}
+\subsubsection[{Target}]{\setlength{\rightskip}{0pt plus 5cm}Target::Target ()}}
+\label{classTarget_a7008d6752ce64f82e56aae6ea6c2bb65}
+
+
+Constructs an empty \hyperlink{classTarget}{Target} object. 
+
+Constructs a new \hyperlink{classTarget}{Target} object with a null contour pointer. \hypertarget{classTarget_a2275921d41d2d55f196ed5b7eb8d2c72}{
+\index{Target@{Target}!Target@{Target}}
+\index{Target@{Target}!Target@{Target}}
+\subsubsection[{Target}]{\setlength{\rightskip}{0pt plus 5cm}Target::Target (CvSeq $\ast$ {\em cntr})}}
+\label{classTarget_a2275921d41d2d55f196ed5b7eb8d2c72}
+
+
+Creates a target from a CvSeq contour. 
+
+Constructs a new \hyperlink{classTarget}{Target} objec using the given pointer to a contour. Ideally, the contour should belong to an actual target. This method assumes the given contour is correct; no filtering methods are performed. 
+\begin{DoxyParams}{Parameters}
+\item[{\em cntr}]The contour that the target will represent. \end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classTarget_a8e4a735a5ce6ebaa32ac83712ec4e75f}{
+\index{Target@{Target}!calculateCornersFromVanishingPoints@{calculateCornersFromVanishingPoints}}
+\index{calculateCornersFromVanishingPoints@{calculateCornersFromVanishingPoints}!Target@{Target}}
+\subsubsection[{calculateCornersFromVanishingPoints}]{\setlength{\rightskip}{0pt plus 5cm}void Target::calculateCornersFromVanishingPoints ()\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_a8e4a735a5ce6ebaa32ac83712ec4e75f}
+
+
+Intersects vanishing ponts to get the four corners of the target. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classTarget_a55d4dc8c3f14d8229ee0d05fcebe0b42}{vPointArray} 
+\end{DoxySeeAlso}
+\hypertarget{classTarget_a888695431f7e2c1cfaba678dbd99b6d1}{
+\index{Target@{Target}!calculateHoopPosition@{calculateHoopPosition}}
+\index{calculateHoopPosition@{calculateHoopPosition}!Target@{Target}}
+\subsubsection[{calculateHoopPosition}]{\setlength{\rightskip}{0pt plus 5cm}void Target::calculateHoopPosition (int {\em numPointsPerSide}, \/  int {\em crossProductThreshold}, \/  aruco::CameraParameters {\em camParams})}}
+\label{classTarget_a888695431f7e2c1cfaba678dbd99b6d1}
+
+
+Calculates the position of the hoop relative to the camera. 
+
+Calculates the position, in inches, of the target's hoop center and stores it in an array of X,Y,Z and vector offsets. 
+\begin{DoxyParams}{Parameters}
+\item[{\em numPointsPerSide}]The number of points desired on the shortest side of the target's contour when spacing the points evenly. \item[{\em crossProductThreshold}]A scalar value used to filter out non-\/colinear lines from the target's segment array. A very low number will filter few lines. A very high number will filter out most lines. \item[{\em camParams}]The Aruco camera parameters used in determining the target's position. \end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classTarget_a11d364c4df4e83d475c33b4a4915a792}{spacePointsEvenly} 
+
+\hyperlink{classTarget_a097b47c75568969a979ef67247b6f919}{calculateSegmentsFromPoints} 
+
+\hyperlink{classTarget_a8dad4ab3c5aefb6a07aa41a4b450fdea}{calculateIntersectionsOfLines} 
+
+\hyperlink{classTarget_a02a9ec40b224fe31bf6635bfc78820b3}{calculateVanishingPoints} 
+
+\hyperlink{classTarget_a8e4a735a5ce6ebaa32ac83712ec4e75f}{calculateCornersFromVanishingPoints} 
+
+\hyperlink{classTarget_aad1871823a8599d3d095c988451ad3ea}{calculateSquare} 
+
+\hyperlink{classTarget_aaeb297087804d9d7952b0588d76ac213}{calculatePosition} 
+\end{DoxySeeAlso}
+
+
+Referenced by main().
+
+\hypertarget{classTarget_a8dad4ab3c5aefb6a07aa41a4b450fdea}{
+\index{Target@{Target}!calculateIntersectionsOfLines@{calculateIntersectionsOfLines}}
+\index{calculateIntersectionsOfLines@{calculateIntersectionsOfLines}!Target@{Target}}
+\subsubsection[{calculateIntersectionsOfLines}]{\setlength{\rightskip}{0pt plus 5cm}void Target::calculateIntersectionsOfLines ()\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_a8dad4ab3c5aefb6a07aa41a4b450fdea}
+
+
+Calculates all the intersections of the edges of the target. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classTarget_af112a6c4b4cb598d27f33332de574680}{lineSet} 
+
+\hyperlink{classTarget_a26d36f01443f1f26da59e18ad4552a4f}{intersectionSet} 
+\end{DoxySeeAlso}
+\hypertarget{classTarget_aaeb297087804d9d7952b0588d76ac213}{
+\index{Target@{Target}!calculatePosition@{calculatePosition}}
+\index{calculatePosition@{calculatePosition}!Target@{Target}}
+\subsubsection[{calculatePosition}]{\setlength{\rightskip}{0pt plus 5cm}void Target::calculatePosition (aruco::CameraParameters {\em camParams})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_aaeb297087804d9d7952b0588d76ac213}
+
+
+Calculates the position of the target's hoop from the Aruco marker object. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em camParams}]The Aruco camera parameters used to determine the target's position. \end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classTarget_a631383ffe78165e8af649470edb77986}{marker} 
+
+\hyperlink{classTarget_af1714dc10beafcd323003e43d787f7ab}{offsets} 
+\end{DoxySeeAlso}
+\hypertarget{classTarget_a097b47c75568969a979ef67247b6f919}{
+\index{Target@{Target}!calculateSegmentsFromPoints@{calculateSegmentsFromPoints}}
+\index{calculateSegmentsFromPoints@{calculateSegmentsFromPoints}!Target@{Target}}
+\subsubsection[{calculateSegmentsFromPoints}]{\setlength{\rightskip}{0pt plus 5cm}void Target::calculateSegmentsFromPoints (int {\em crossProductThreshold})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_a097b47c75568969a979ef67247b6f919}
+
+
+Makes the set of segments on a target from points. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em crossProductThreshold}]An integer value defining the threshold for filtering out non-\/colinear line segments. \end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classTarget_af112a6c4b4cb598d27f33332de574680}{lineSet} 
+\end{DoxySeeAlso}
+\hypertarget{classTarget_aad1871823a8599d3d095c988451ad3ea}{
+\index{Target@{Target}!calculateSquare@{calculateSquare}}
+\index{calculateSquare@{calculateSquare}!Target@{Target}}
+\subsubsection[{calculateSquare}]{\setlength{\rightskip}{0pt plus 5cm}void Target::calculateSquare ()\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_aad1871823a8599d3d095c988451ad3ea}
+
+
+Calculates the corners of the square Marker object. Performs two dicing operations on the four corner points to create an Aruco Marker object, square, centered on the left edge of the target. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classTarget_a631383ffe78165e8af649470edb77986}{marker} 
+
+\hyperlink{classTarget_a55d4dc8c3f14d8229ee0d05fcebe0b42}{vPointArray} 
+\end{DoxySeeAlso}
+\hypertarget{classTarget_a02a9ec40b224fe31bf6635bfc78820b3}{
+\index{Target@{Target}!calculateVanishingPoints@{calculateVanishingPoints}}
+\index{calculateVanishingPoints@{calculateVanishingPoints}!Target@{Target}}
+\subsubsection[{calculateVanishingPoints}]{\setlength{\rightskip}{0pt plus 5cm}void Target::calculateVanishingPoints ()\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_a02a9ec40b224fe31bf6635bfc78820b3}
+
+
+Calculates vanishing pints from the segments contained in lineSet. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classTarget_af112a6c4b4cb598d27f33332de574680}{lineSet} 
+\end{DoxySeeAlso}
+\hypertarget{classTarget_a81f8b1e169947fd2db3aed6356273ad2}{
+\index{Target@{Target}!drawTarget@{drawTarget}}
+\index{drawTarget@{drawTarget}!Target@{Target}}
+\subsubsection[{drawTarget}]{\setlength{\rightskip}{0pt plus 5cm}void Target::drawTarget (IplImage $\ast$ {\em img}, \/  CvScalar {\em color})}}
+\label{classTarget_a81f8b1e169947fd2db3aed6356273ad2}
+
+
+Draws the target on an image. 
+
+Draws the target on a provided image, including the target's bounding box, center, axes of rotation, contour, and selected points. 
+\begin{DoxyParams}{Parameters}
+\item[{\em img}]The pointer to an IplImage that the target is to be drawn on. \item[{\em color}]A CvScalar defining the desired color of the target's bounding box, contour, and points. Note that all X,Y,Z values are rendered in their conventional colors. \end{DoxyParams}
+
+
+Referenced by main().
+
+\hypertarget{classTarget_a242ea75595d6ecf0aa93cbaff4a86464}{
+\index{Target@{Target}!getBoundingBoxPoint1@{getBoundingBoxPoint1}}
+\index{getBoundingBoxPoint1@{getBoundingBoxPoint1}!Target@{Target}}
+\subsubsection[{getBoundingBoxPoint1}]{\setlength{\rightskip}{0pt plus 5cm}CvPoint Target::getBoundingBoxPoint1 ()}}
+\label{classTarget_a242ea75595d6ecf0aa93cbaff4a86464}
+
+
+Returns the upper left point of the bounding box. 
+
+Returns the upper-\/left point of the target's bounding box. \begin{DoxyReturn}{Returns}
+A CvPoint representing the upper-\/left point of the target's bounding box. 
+\end{DoxyReturn}
+\hypertarget{classTarget_ac8d03387c639c9acf18c056a8d36bd29}{
+\index{Target@{Target}!getBoundingBoxPoint2@{getBoundingBoxPoint2}}
+\index{getBoundingBoxPoint2@{getBoundingBoxPoint2}!Target@{Target}}
+\subsubsection[{getBoundingBoxPoint2}]{\setlength{\rightskip}{0pt plus 5cm}CvPoint Target::getBoundingBoxPoint2 ()}}
+\label{classTarget_ac8d03387c639c9acf18c056a8d36bd29}
+
+
+Returns the bottom right point of the bounding box. 
+
+Returns the lower-\/right point of the target's bounding box. \begin{DoxyReturn}{Returns}
+A CvPoint representing the lower-\/right point. 
+\end{DoxyReturn}
+\hypertarget{classTarget_a1746d549afb1a3df93f38bf6e57a1512}{
+\index{Target@{Target}!getCenter@{getCenter}}
+\index{getCenter@{getCenter}!Target@{Target}}
+\subsubsection[{getCenter}]{\setlength{\rightskip}{0pt plus 5cm}CvPoint Target::getCenter ()}}
+\label{classTarget_a1746d549afb1a3df93f38bf6e57a1512}
+
+
+Gets the center point of the target. 
+
+Returns the center of the target's bounding box. \begin{DoxyReturn}{Returns}
+A CvPoint at the center o the taget's bounding box. 
+\end{DoxyReturn}
+
+
+Referenced by main().
+
+\hypertarget{classTarget_ac639d54e469f2a463ef6e3c22261b108}{
+\index{Target@{Target}!getMarker@{getMarker}}
+\index{getMarker@{getMarker}!Target@{Target}}
+\subsubsection[{getMarker}]{\setlength{\rightskip}{0pt plus 5cm}aruco::Marker Target::getMarker ()}}
+\label{classTarget_ac639d54e469f2a463ef6e3c22261b108}
+
+
+Returns the Aruco marker representing the target. 
+
+\hypertarget{classTarget_a60f06174aec80a151a02ef5c6ef2735d}{
+\index{Target@{Target}!getNavInfo@{getNavInfo}}
+\index{getNavInfo@{getNavInfo}!Target@{Target}}
+\subsubsection[{getNavInfo}]{\setlength{\rightskip}{0pt plus 5cm}void Target::getNavInfo ()}}
+\label{classTarget_a60f06174aec80a151a02ef5c6ef2735d}
+
+
+Referenced by main().
+
+\hypertarget{classTarget_a5863d9c3708b47db4e2a2bd60723c9d4}{
+\index{Target@{Target}!mergeColinearLines@{mergeColinearLines}}
+\index{mergeColinearLines@{mergeColinearLines}!Target@{Target}}
+\subsubsection[{mergeColinearLines}]{\setlength{\rightskip}{0pt plus 5cm}void Target::mergeColinearLines ()\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_a5863d9c3708b47db4e2a2bd60723c9d4}
+
+
+Merges all colinear line segments into a single segment; one for each edge of the target. 
+
+\hypertarget{classTarget_a11d364c4df4e83d475c33b4a4915a792}{
+\index{Target@{Target}!spacePointsEvenly@{spacePointsEvenly}}
+\index{spacePointsEvenly@{spacePointsEvenly}!Target@{Target}}
+\subsubsection[{spacePointsEvenly}]{\setlength{\rightskip}{0pt plus 5cm}void Target::spacePointsEvenly (int {\em numPointsPerSide})\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_a11d364c4df4e83d475c33b4a4915a792}
+
+
+A function to space a list of points from a contour in even intervals around the contour. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em numPointsPerSide}]The number of points desired on the shortest side of the contour. \end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classTarget_ab883696aeef59f629cd850e0bb3c15e2}{
+\index{Target@{Target}!boundingBox@{boundingBox}}
+\index{boundingBox@{boundingBox}!Target@{Target}}
+\subsubsection[{boundingBox}]{\setlength{\rightskip}{0pt plus 5cm}CvRect {\bf Target::boundingBox}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_ab883696aeef59f629cd850e0bb3c15e2}
+
+
+The CvRect defining the bounding box of the target. 
+
+
+
+Definition at line 83 of file Target.h.
+
+\hypertarget{classTarget_a5ea4a01adfb55ca0a5a7355472e02019}{
+\index{Target@{Target}!contour@{contour}}
+\index{contour@{contour}!Target@{Target}}
+\subsubsection[{contour}]{\setlength{\rightskip}{0pt plus 5cm}CvSeq {\bf Target::contour}}}
+\label{classTarget_a5ea4a01adfb55ca0a5a7355472e02019}
+
+
+The CvSeq contour of the target. 
+
+
+
+Definition at line 67 of file Target.h.
+
+\hypertarget{classTarget_aa77c3e5ee30ba4c31a6633f74b32f62f}{
+\index{Target@{Target}!cornerArray@{cornerArray}}
+\index{cornerArray@{cornerArray}!Target@{Target}}
+\subsubsection[{cornerArray}]{\setlength{\rightskip}{0pt plus 5cm}CvPoint2D32f {\bf Target::cornerArray}\mbox{[}4\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_aa77c3e5ee30ba4c31a6633f74b32f62f}
+
+
+The four corners of the target, in CvPoint2D32f format. 
+
+
+
+Definition at line 100 of file Target.h.
+
+\hypertarget{classTarget_a6f52fbce823f229f68368c241dd39f46}{
+\index{Target@{Target}!hoopCoordinatesArray@{hoopCoordinatesArray}}
+\index{hoopCoordinatesArray@{hoopCoordinatesArray}!Target@{Target}}
+\subsubsection[{hoopCoordinatesArray}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Target::hoopCoordinatesArray}\mbox{[}16\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_a6f52fbce823f229f68368c241dd39f46}
+
+
+Definition at line 144 of file Target.h.
+
+\hypertarget{classTarget_a8826919bae5e9653ab4c7b7ab6a4b03a}{
+\index{Target@{Target}!intersectionLineIndices@{intersectionLineIndices}}
+\index{intersectionLineIndices@{intersectionLineIndices}!Target@{Target}}
+\subsubsection[{intersectionLineIndices}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Target::intersectionLineIndices}\mbox{[}2\mbox{]}\mbox{[}1000\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_a8826919bae5e9653ab4c7b7ab6a4b03a}
+
+
+An array that indicates which lines formed each intersection points. The first column contains the first line that formed the given intersection point,the second column the second line, and each row is used for a single intersection point. 
+
+
+
+Definition at line 93 of file Target.h.
+
+\hypertarget{classTarget_a26d36f01443f1f26da59e18ad4552a4f}{
+\index{Target@{Target}!intersectionSet@{intersectionSet}}
+\index{intersectionSet@{intersectionSet}!Target@{Target}}
+\subsubsection[{intersectionSet}]{\setlength{\rightskip}{0pt plus 5cm}CvPoint2D32f {\bf Target::intersectionSet}\mbox{[}1000\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_a26d36f01443f1f26da59e18ad4552a4f}
+
+
+The set of floating-\/point CvPoints defining the intersection of the edges of the target. 
+
+
+
+Definition at line 91 of file Target.h.
+
+\hypertarget{classTarget_af112a6c4b4cb598d27f33332de574680}{
+\index{Target@{Target}!lineSet@{lineSet}}
+\index{lineSet@{lineSet}!Target@{Target}}
+\subsubsection[{lineSet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Line} {\bf Target::lineSet}\mbox{[}500\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_af112a6c4b4cb598d27f33332de574680}
+
+
+An array of Line objects containing the segments between tetarget's points, and, later, the edges of the target. 
+
+
+
+Definition at line 88 of file Target.h.
+
+\hypertarget{classTarget_a631383ffe78165e8af649470edb77986}{
+\index{Target@{Target}!marker@{marker}}
+\index{marker@{marker}!Target@{Target}}
+\subsubsection[{marker}]{\setlength{\rightskip}{0pt plus 5cm}aruco::Marker {\bf Target::marker}}}
+\label{classTarget_a631383ffe78165e8af649470edb77986}
+
+
+The Aruco Marker object defining the square portion of the target coplanar with the target and aligned with the target's left edge. 
+
+
+
+Definition at line 68 of file Target.h.
+
+\hypertarget{classTarget_acfcc0fcb67b56b407f7842871306c0ae}{
+\index{Target@{Target}!modelViewMatrix@{modelViewMatrix}}
+\index{modelViewMatrix@{modelViewMatrix}!Target@{Target}}
+\subsubsection[{modelViewMatrix}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf Target::modelViewMatrix}\mbox{[}16\mbox{]}}}
+\label{classTarget_acfcc0fcb67b56b407f7842871306c0ae}
+
+
+The OpenGL model view matrix of the target, in a 3x3 rotation matrix appended to a 3x1 translation matrix. 
+
+
+
+Definition at line 71 of file Target.h.
+
+\hypertarget{classTarget_a8299a806d41327ee1827fc0f0b0b2131}{
+\index{Target@{Target}!numIntersections@{numIntersections}}
+\index{numIntersections@{numIntersections}!Target@{Target}}
+\subsubsection[{numIntersections}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Target::numIntersections}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_a8299a806d41327ee1827fc0f0b0b2131}
+
+
+The number of intersections between the target's edges. 
+
+
+
+Definition at line 92 of file Target.h.
+
+\hypertarget{classTarget_ae66edfe3234fad4f2e46c2975b29ab89}{
+\index{Target@{Target}!numLines@{numLines}}
+\index{numLines@{numLines}!Target@{Target}}
+\subsubsection[{numLines}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Target::numLines}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_ae66edfe3234fad4f2e46c2975b29ab89}
+
+
+The number of Line objects contained in lineSet. 
+
+
+
+Definition at line 89 of file Target.h.
+
+\hypertarget{classTarget_af7e7aa3898edd34429c99d391e7fe995}{
+\index{Target@{Target}!numPoints@{numPoints}}
+\index{numPoints@{numPoints}!Target@{Target}}
+\subsubsection[{numPoints}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Target::numPoints}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_af7e7aa3898edd34429c99d391e7fe995}
+
+
+The number of poins on the tart's contour. 
+
+
+
+Definition at line 86 of file Target.h.
+
+\hypertarget{classTarget_af1714dc10beafcd323003e43d787f7ab}{
+\index{Target@{Target}!offsets@{offsets}}
+\index{offsets@{offsets}!Target@{Target}}
+\subsubsection[{offsets}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf Target::offsets}\mbox{[}4\mbox{]}}}
+\label{classTarget_af1714dc10beafcd323003e43d787f7ab}
+
+
+The X, Y, and Z offsets of the target from the camera. 
+
+
+
+Definition at line 66 of file Target.h.
+
+
+
+Referenced by main().
+
+\hypertarget{classTarget_a8cdd69bb1321e6928fcdfaf6959e5fe2}{
+\index{Target@{Target}!pointSet@{pointSet}}
+\index{pointSet@{pointSet}!Target@{Target}}
+\subsubsection[{pointSet}]{\setlength{\rightskip}{0pt plus 5cm}CvPoint {\bf Target::pointSet}\mbox{[}500\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_a8cdd69bb1321e6928fcdfaf6959e5fe2}
+
+
+An array of CvPoints defining the points on the target's contour. 
+
+
+
+Definition at line 85 of file Target.h.
+
+\hypertarget{classTarget_a5a19c47a5b28c7e2a1d2b2cb24b322a1}{
+\index{Target@{Target}!vLines@{vLines}}
+\index{vLines@{vLines}!Target@{Target}}
+\subsubsection[{vLines}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Line} {\bf Target::vLines}\mbox{[}4\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_a5a19c47a5b28c7e2a1d2b2cb24b322a1}
+
+
+An array of Line objects, two per vanishing point-\/ one for each line that creaed that vanishing point via intersection. 
+
+
+
+Definition at line 98 of file Target.h.
+
+\hypertarget{classTarget_a55d4dc8c3f14d8229ee0d05fcebe0b42}{
+\index{Target@{Target}!vPointArray@{vPointArray}}
+\index{vPointArray@{vPointArray}!Target@{Target}}
+\subsubsection[{vPointArray}]{\setlength{\rightskip}{0pt plus 5cm}CvPoint2D32f {\bf Target::vPointArray}\mbox{[}2\mbox{]}\hspace{0.3cm}{\ttfamily  \mbox{[}private\mbox{]}}}}
+\label{classTarget_a55d4dc8c3f14d8229ee0d05fcebe0b42}
+
+
+An array of CvPoint2D32f's defining the two vanishing points of the target's parallel lines. 
+
+
+
+Definition at line 97 of file Target.h.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+Headers/\hyperlink{Target_8h}{Target.h}\end{DoxyCompactItemize}

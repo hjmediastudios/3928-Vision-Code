@@ -1,0 +1,89 @@
+\hypertarget{namespaceThreshold}{
+\section{Threshold Namespace Reference}
+\label{namespaceThreshold}\index{Threshold@{Threshold}}
+}
+
+
+A series of functions for performing thresholding and target-\/selection operations on image.  
+
+
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+IplImage $\ast$ \hyperlink{namespaceThreshold_a7b9d70b26f11d21f8eb737512c502fdf}{threshold\_\-findGreen} (IplImage $\ast$img, int dilates)
+\begin{DoxyCompactList}\small\item\em Finds green target-\/colored objects and converts the color image into a black-\/and-\/white thresholded one. \item\end{DoxyCompactList}\item 
+CvSeq $\ast$ \hyperlink{namespaceThreshold_aa7e5d8d44e549fadc62258d6fd18b988}{findContours} (IplImage $\ast$img)
+\begin{DoxyCompactList}\small\item\em Finds contours in the thresholded image. \item\end{DoxyCompactList}\item 
+void \hyperlink{namespaceThreshold_a71ea4886f013bfadb7386d7b5ad88661}{pickTargets} (CvSeq $\ast$\hyperlink{main_8cpp_abda9aa51226269d37735e140998e8320}{contours}, CvSize imgSize, \hyperlink{classTarget}{Target} $\ast$tgtSet, int $\ast$numTgts)
+\begin{DoxyCompactList}\small\item\em Selects the valid targets from a CvSequence of contours. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A series of functions for performing thresholding and target-\/selection operations on image. 
+
+\subsection{Function Documentation}
+\hypertarget{namespaceThreshold_aa7e5d8d44e549fadc62258d6fd18b988}{
+\index{Threshold@{Threshold}!findContours@{findContours}}
+\index{findContours@{findContours}!Threshold@{Threshold}}
+\subsubsection[{findContours}]{\setlength{\rightskip}{0pt plus 5cm}CvSeq$\ast$ Threshold::findContours (IplImage $\ast$ {\em img})}}
+\label{namespaceThreshold_aa7e5d8d44e549fadc62258d6fd18b988}
+
+
+Finds contours in the thresholded image. 
+
+This function takes in a 1-\/channel grayscale IplImage and performs a contour-\/finding operation on it. After finding the contours; they are returned as a pointer to a CvSequence of contours.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em img}]A pointer to the grayscale IplImage to fin contours in. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to a CvSeq containing the detected contours. 
+\end{DoxyReturn}
+
+
+Referenced by main().
+
+\hypertarget{namespaceThreshold_a71ea4886f013bfadb7386d7b5ad88661}{
+\index{Threshold@{Threshold}!pickTargets@{pickTargets}}
+\index{pickTargets@{pickTargets}!Threshold@{Threshold}}
+\subsubsection[{pickTargets}]{\setlength{\rightskip}{0pt plus 5cm}void Threshold::pickTargets (CvSeq $\ast$ {\em contours}, \/  CvSize {\em imgSize}, \/  {\bf Target} $\ast$ {\em tgtSet}, \/  int $\ast$ {\em numTgts})}}
+\label{namespaceThreshold_a71ea4886f013bfadb7386d7b5ad88661}
+
+
+Selects the valid targets from a CvSequence of contours. 
+
+This function takes in a pointer to a CvSeq of contours, then processes the contours to select which contours represent legitimate Rebound Rumble targets. First, contours that are within other contours or contours that are too small are filtered out. Then, contours that have passedthstest have a bounding box created. If the bounding box is sufficiently far away from the image border and does not take up an excessive amount of screen space, the bounding box's aspect ratio is checked. If this passes the test, a new \hyperlink{classTarget}{Target} object is created and added to an array of \hyperlink{classTarget}{Target} objects. All of the thresholding operations are controlled by values located in the constants file.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em contours}]A pointer to the CvSeq containing the contours to test. \item[{\em imgSize}]The CvSize object representing the image size, used for border thresholding. \item[{\em tgtSet}]A pointer to an array of \hyperlink{classTarget}{Target} objects. \item[{\em numTgts}]A pointer to an integer variable that keeps track of how many targets there are in the current frame.\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{Constants_8h}{Constants.h} 
+
+\hyperlink{classTarget}{Target} 
+\end{DoxySeeAlso}
+
+
+Referenced by main().
+
+\hypertarget{namespaceThreshold_a7b9d70b26f11d21f8eb737512c502fdf}{
+\index{Threshold@{Threshold}!threshold\_\-findGreen@{threshold\_\-findGreen}}
+\index{threshold\_\-findGreen@{threshold\_\-findGreen}!Threshold@{Threshold}}
+\subsubsection[{threshold\_\-findGreen}]{\setlength{\rightskip}{0pt plus 5cm}IplImage$\ast$ Threshold::threshold\_\-findGreen (IplImage $\ast$ {\em img}, \/  int {\em dilates})}}
+\label{namespaceThreshold_a7b9d70b26f11d21f8eb737512c502fdf}
+
+
+Finds green target-\/colored objects and converts the color image into a black-\/and-\/white thresholded one. 
+
+This function takes an input 3-\/channel image and thresholds it, converting it into a thresholded black-\/and-\/white image with white being all pixels within the given threshold and black being all pixels outside the given range. Note that the threshold values are defined in the \hyperlink{Constants_8h}{Constants.h} file so as to provide for easier modification of the thresholded image, and are not passes as arguments into the function.
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em img}]The pointer to the input IplImage used for the thresholding operation \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The pointer to the thresholded IpImage; a 1-\/channel grayscale image 
+\end{DoxyReturn}
+
+
+Referenced by main().
+

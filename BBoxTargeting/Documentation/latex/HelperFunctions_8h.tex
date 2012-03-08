@@ -1,0 +1,159 @@
+\hypertarget{HelperFunctions_8h}{
+\section{Headers/HelperFunctions.h File Reference}
+\label{HelperFunctions_8h}\index{Headers/HelperFunctions.h@{Headers/HelperFunctions.h}}
+}
+{\ttfamily \#include $<$opencv/cv.h$>$}\par
+{\ttfamily \#include $<$aruco/aruco.h$>$}\par
+{\ttfamily \#include $<$opencv/cvaux.h$>$}\par
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{HelperFunctions_8h_a713752c5b3408bf1eb3332172ef93db0}{pointDistance} (CvPoint point1, CvPoint point2)
+\begin{DoxyCompactList}\small\item\em Returns the distance between two points. \item\end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{HelperFunctions_8h_a648d813097a5a1371fc9552249d6f4ec}{floatToString} (float flt)
+\begin{DoxyCompactList}\small\item\em Converts a float variable into a string for easier display. \item\end{DoxyCompactList}\item 
+CvFont $\ast$ \hyperlink{HelperFunctions_8h_ad7ab75eb51c4d5b0657d92ac9a2da7c0}{getFont} (float size)
+\begin{DoxyCompactList}\small\item\em Returns a basic default font. \item\end{DoxyCompactList}\item 
+float \hyperlink{HelperFunctions_8h_a210f59883bf0ba649835eb1c453c2885}{calculateVectorFrom3Offsets} (float vecX, float vecY, float vecZ)
+\begin{DoxyCompactList}\small\item\em Calculates the 3D distance from the origin to a point. \item\end{DoxyCompactList}\item 
+void \hyperlink{HelperFunctions_8h_a0f62bbd320a7a9e3273f7adc5d9c3320}{drawAxis} (IplImage $\ast$Image, aruco::Marker \&m, const aruco::CameraParameters \&CP)
+\begin{DoxyCompactList}\small\item\em Draws the 3D axis indicating the orientation of a Aruco marker object. \item\end{DoxyCompactList}\item 
+float \hyperlink{HelperFunctions_8h_a063f25f048149663740d63c2b70e9354}{convertMarkerCoordinateToInches} (float markerCoordinate)
+\begin{DoxyCompactList}\small\item\em Converts the dimensions of an Aruco marker (meters) to inches. \item\end{DoxyCompactList}\item 
+void \hyperlink{HelperFunctions_8h_a8fbcb315fa95193be47120826ef43d48}{matrixMultiply} (float $\ast$a, double $\ast$b, float $\ast$result, int dimension)
+\begin{DoxyCompactList}\small\item\em Multiplies two square matrices. \item\end{DoxyCompactList}\item 
+float \hyperlink{HelperFunctions_8h_a2c28dbecc264306a6750ae93198e2267}{inchesToMeters} (int inches)
+\item 
+float \hyperlink{HelperFunctions_8h_abdebeaa05179d23a8791c369fc1ad71b}{rad2deg} (float rads)
+\item 
+float \hyperlink{HelperFunctions_8h_a190809364cb24ed9a2dfc5e0830e1543}{deg2rad} (float degrees)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{HelperFunctions_8h_a210f59883bf0ba649835eb1c453c2885}{
+\index{HelperFunctions.h@{HelperFunctions.h}!calculateVectorFrom3Offsets@{calculateVectorFrom3Offsets}}
+\index{calculateVectorFrom3Offsets@{calculateVectorFrom3Offsets}!HelperFunctions.h@{HelperFunctions.h}}
+\subsubsection[{calculateVectorFrom3Offsets}]{\setlength{\rightskip}{0pt plus 5cm}float calculateVectorFrom3Offsets (float {\em vecX}, \/  float {\em vecY}, \/  float {\em vecZ})}}
+\label{HelperFunctions_8h_a210f59883bf0ba649835eb1c453c2885}
+
+
+Calculates the 3D distance from the origin to a point. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em vecX}]The X-\/offset of the point from the origin. \item[{\em vecY}]The Y-\/offset of the point from the origin. \item[{\em vecZ}]The Z-\/offset of the point from the origin. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The distance from the origin to the given point, expressed in the same units as the inputs. 
+\end{DoxyReturn}
+\hypertarget{HelperFunctions_8h_a063f25f048149663740d63c2b70e9354}{
+\index{HelperFunctions.h@{HelperFunctions.h}!convertMarkerCoordinateToInches@{convertMarkerCoordinateToInches}}
+\index{convertMarkerCoordinateToInches@{convertMarkerCoordinateToInches}!HelperFunctions.h@{HelperFunctions.h}}
+\subsubsection[{convertMarkerCoordinateToInches}]{\setlength{\rightskip}{0pt plus 5cm}float convertMarkerCoordinateToInches (float {\em markerCoordinate})}}
+\label{HelperFunctions_8h_a063f25f048149663740d63c2b70e9354}
+
+
+Converts the dimensions of an Aruco marker (meters) to inches. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em markerCoordinate}]The dimension in meters. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The dimension in inches. 
+\end{DoxyReturn}
+
+
+Referenced by main().
+
+\hypertarget{HelperFunctions_8h_a190809364cb24ed9a2dfc5e0830e1543}{
+\index{HelperFunctions.h@{HelperFunctions.h}!deg2rad@{deg2rad}}
+\index{deg2rad@{deg2rad}!HelperFunctions.h@{HelperFunctions.h}}
+\subsubsection[{deg2rad}]{\setlength{\rightskip}{0pt plus 5cm}float deg2rad (float {\em degrees})}}
+\label{HelperFunctions_8h_a190809364cb24ed9a2dfc5e0830e1543}
+\hypertarget{HelperFunctions_8h_a0f62bbd320a7a9e3273f7adc5d9c3320}{
+\index{HelperFunctions.h@{HelperFunctions.h}!drawAxis@{drawAxis}}
+\index{drawAxis@{drawAxis}!HelperFunctions.h@{HelperFunctions.h}}
+\subsubsection[{drawAxis}]{\setlength{\rightskip}{0pt plus 5cm}void drawAxis (IplImage $\ast$ {\em Image}, \/  aruco::Marker \& {\em m}, \/  const aruco::CameraParameters \& {\em CP})}}
+\label{HelperFunctions_8h_a0f62bbd320a7a9e3273f7adc5d9c3320}
+
+
+Draws the 3D axis indicating the orientation of a Aruco marker object. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Image}]A pointer to the desied image to draw on. \item[{\em m}]The Aruco marker object the axis indicates the orientation of. \item[{\em CP}]The Aruco camera parameters used to project the axis onto the image. \end{DoxyParams}
+
+
+Referenced by main().
+
+\hypertarget{HelperFunctions_8h_a648d813097a5a1371fc9552249d6f4ec}{
+\index{HelperFunctions.h@{HelperFunctions.h}!floatToString@{floatToString}}
+\index{floatToString@{floatToString}!HelperFunctions.h@{HelperFunctions.h}}
+\subsubsection[{floatToString}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ floatToString (float {\em flt})}}
+\label{HelperFunctions_8h_a648d813097a5a1371fc9552249d6f4ec}
+
+
+Converts a float variable into a string for easier display. 
+
+Converts a float variable into a string for easier display. Note that this function is limited to 30 characters or fewer for the resulting string. 
+\begin{DoxyParams}{Parameters}
+\item[{\em flt}]The float variable desired to be converted to a string. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The float variable expressed as a string. 
+\end{DoxyReturn}
+
+
+Referenced by main().
+
+\hypertarget{HelperFunctions_8h_ad7ab75eb51c4d5b0657d92ac9a2da7c0}{
+\index{HelperFunctions.h@{HelperFunctions.h}!getFont@{getFont}}
+\index{getFont@{getFont}!HelperFunctions.h@{HelperFunctions.h}}
+\subsubsection[{getFont}]{\setlength{\rightskip}{0pt plus 5cm}CvFont$\ast$ getFont (float {\em size})}}
+\label{HelperFunctions_8h_ad7ab75eb51c4d5b0657d92ac9a2da7c0}
+
+
+Returns a basic default font. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em size}]The desired font size, from 0 to 1 to an arbitrary float. 0.5 is used primarily by this code. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to a CvFont object of the desired size. 
+\end{DoxyReturn}
+\hypertarget{HelperFunctions_8h_a2c28dbecc264306a6750ae93198e2267}{
+\index{HelperFunctions.h@{HelperFunctions.h}!inchesToMeters@{inchesToMeters}}
+\index{inchesToMeters@{inchesToMeters}!HelperFunctions.h@{HelperFunctions.h}}
+\subsubsection[{inchesToMeters}]{\setlength{\rightskip}{0pt plus 5cm}float inchesToMeters (int {\em inches})}}
+\label{HelperFunctions_8h_a2c28dbecc264306a6750ae93198e2267}
+\hypertarget{HelperFunctions_8h_a8fbcb315fa95193be47120826ef43d48}{
+\index{HelperFunctions.h@{HelperFunctions.h}!matrixMultiply@{matrixMultiply}}
+\index{matrixMultiply@{matrixMultiply}!HelperFunctions.h@{HelperFunctions.h}}
+\subsubsection[{matrixMultiply}]{\setlength{\rightskip}{0pt plus 5cm}void matrixMultiply (float $\ast$ {\em a}, \/  double $\ast$ {\em b}, \/  float $\ast$ {\em result}, \/  int {\em dimension})}}
+\label{HelperFunctions_8h_a8fbcb315fa95193be47120826ef43d48}
+
+
+Multiplies two square matrices. 
+
+Multiplies to matrices. The matrices are expressed as square arrays of dimensions indicated by the dimension parameter. Due to idiosyncracies of the requirements of this function, the first matrix uses doubles while the rest use floats. 
+\begin{DoxyParams}{Parameters}
+\item[{\em a}]The first matrix to multiply. \item[{\em b}]The second matrix to multiply. \item[{\em result}]the resulting multiplied matrix. \item[{\em dimension}]The size of each square matrix. \end{DoxyParams}
+\hypertarget{HelperFunctions_8h_a713752c5b3408bf1eb3332172ef93db0}{
+\index{HelperFunctions.h@{HelperFunctions.h}!pointDistance@{pointDistance}}
+\index{pointDistance@{pointDistance}!HelperFunctions.h@{HelperFunctions.h}}
+\subsubsection[{pointDistance}]{\setlength{\rightskip}{0pt plus 5cm}float pointDistance (CvPoint {\em point1}, \/  CvPoint {\em point2})}}
+\label{HelperFunctions_8h_a713752c5b3408bf1eb3332172ef93db0}
+
+
+Returns the distance between two points. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em point1}]The first point used for the calculation. \item[{\em point2}]The second point used for the calculation. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the distance, in pixels, between the two points. 
+\end{DoxyReturn}
+\hypertarget{HelperFunctions_8h_abdebeaa05179d23a8791c369fc1ad71b}{
+\index{HelperFunctions.h@{HelperFunctions.h}!rad2deg@{rad2deg}}
+\index{rad2deg@{rad2deg}!HelperFunctions.h@{HelperFunctions.h}}
+\subsubsection[{rad2deg}]{\setlength{\rightskip}{0pt plus 5cm}float rad2deg (float {\em rads})}}
+\label{HelperFunctions_8h_abdebeaa05179d23a8791c369fc1ad71b}

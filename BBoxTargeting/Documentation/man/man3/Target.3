@@ -1,0 +1,379 @@
+.TH "Target" 3 "2 Mar 2012" "Version 0.5" "Targeting" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Target \- 
+.PP
+A class that represents a single 2012 'Rebound Rumble' rectangular target.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Target.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTarget\fP ()"
+.br
+.RI "\fIConstructs an empty \fBTarget\fP object. \fP"
+.ti -1c
+.RI "\fBTarget\fP (CvSeq *cntr)"
+.br
+.RI "\fICreates a target from a CvSeq contour. \fP"
+.ti -1c
+.RI "CvPoint \fBgetBoundingBoxPoint1\fP ()"
+.br
+.RI "\fIReturns the upper left point of the bounding box. \fP"
+.ti -1c
+.RI "CvPoint \fBgetBoundingBoxPoint2\fP ()"
+.br
+.RI "\fIReturns the bottom right point of the bounding box. \fP"
+.ti -1c
+.RI "CvPoint \fBgetCenter\fP ()"
+.br
+.ti -1c
+.RI "void \fBcalculateHoopPosition\fP (int numPointsPerSide, int crossProductThreshold, aruco::CameraParameters camParams)"
+.br
+.RI "\fICalculates the position of the hoop relative to the camera. \fP"
+.ti -1c
+.RI "aruco::Marker \fBgetMarker\fP ()"
+.br
+.RI "\fIReturns the Aruco marker representing the target. \fP"
+.ti -1c
+.RI "void \fBdrawTarget\fP (IplImage *img, CvScalar color)"
+.br
+.RI "\fIDraws the target on an image. \fP"
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "float \fBoffsets\fP [4]"
+.br
+.RI "\fIThe X, Y, and Z offsets of the target from the camera. \fP"
+.ti -1c
+.RI "CvSeq \fBcontour\fP"
+.br
+.RI "\fIThe CvSeq contour of the target. \fP"
+.ti -1c
+.RI "aruco::Marker \fBmarker\fP"
+.br
+.RI "\fIThe Aruco Marker object defining the square portion of the target coplanar with the target and aligned with the target's left edge. \fP"
+.ti -1c
+.RI "double \fBmodelViewMatrix\fP [16]"
+.br
+.RI "\fIThe OpenGL model view matrix of the target, in a 3x3 rotation matrix appended to a 3x1 translation matrix. \fP"
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBmergeColinearLines\fP ()"
+.br
+.RI "\fIMerges all colinear line segments into a single segment; one for each edge of the target. \fP"
+.ti -1c
+.RI "void \fBspacePointsEvenly\fP (int numPointsPerSide)"
+.br
+.RI "\fIA function to space a list of points from a contour in even intervals around the contour. \fP"
+.ti -1c
+.RI "void \fBcalculateSegmentsFromPoints\fP (int crossProductThreshold)"
+.br
+.RI "\fIMakes the set of segments on a target from points. \fP"
+.ti -1c
+.RI "void \fBcalculateIntersectionsOfLines\fP ()"
+.br
+.RI "\fICalculates all the intersections of the edges of the target. \fP"
+.ti -1c
+.RI "void \fBcalculateVanishingPoints\fP ()"
+.br
+.RI "\fICalculates vanishing pints from the segments contained in lineSet. \fP"
+.ti -1c
+.RI "void \fBcalculateCornersFromVanishingPoints\fP ()"
+.br
+.RI "\fIIntersects vanishing ponts to get the four corners of the target. \fP"
+.ti -1c
+.RI "void \fBcalculateSquare\fP ()"
+.br
+.RI "\fICalculates the corners of the square Marker object. Performs two dicing operations on the four corner points to create an Aruco Marker object, square, centered on the left edge of the target. \fP"
+.ti -1c
+.RI "void \fBcalculatePosition\fP (aruco::CameraParameters camParams)"
+.br
+.RI "\fICalculates the position of the target's hoop from the Aruco marker object. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "CvRect \fBboundingBox\fP"
+.br
+.RI "\fIThe CvRect defining the bounding box of the target. \fP"
+.ti -1c
+.RI "CvPoint \fBpointSet\fP [500]"
+.br
+.RI "\fIAn array of CvPoints defining the points on the target's contour. \fP"
+.ti -1c
+.RI "int \fBnumPoints\fP"
+.br
+.RI "\fIThe number of poins on the tart's contour. \fP"
+.ti -1c
+.RI "\fBLine\fP \fBlineSet\fP [500]"
+.br
+.RI "\fIAn array of \fBLine\fP objects containing the segments between tetarget's points, and, later, the edges of the target. \fP"
+.ti -1c
+.RI "int \fBnumLines\fP"
+.br
+.RI "\fIThe number of \fBLine\fP objects contained in lineSet. \fP"
+.ti -1c
+.RI "CvPoint2D32f \fBintersectionSet\fP [1000]"
+.br
+.RI "\fIThe set of floating-point CvPoints defining the intersection of the edges of the target. \fP"
+.ti -1c
+.RI "int \fBnumIntersections\fP"
+.br
+.RI "\fIThe number of intersections between the target's edges. \fP"
+.ti -1c
+.RI "int \fBintersectionLineIndices\fP [2][1000]"
+.br
+.RI "\fIAn array that indicates which lines formed each intersection points. The first column contains the first line that formed the given intersection point,the second column the second line, and each row is used for a single intersection point. \fP"
+.ti -1c
+.RI "CvPoint2D32f \fBvPointArray\fP [2]"
+.br
+.RI "\fIAn array of CvPoint2D32f's defining the two vanishing points of the target's parallel lines. \fP"
+.ti -1c
+.RI "\fBLine\fP \fBvLines\fP [4]"
+.br
+.RI "\fIAn array of \fBLine\fP objects, two per vanishing point- one for each line that creaed that vanishing point via intersection. \fP"
+.ti -1c
+.RI "CvPoint2D32f \fBcornerArray\fP [4]"
+.br
+.RI "\fIThe four corners of the target, in CvPoint2D32f format. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+A class that represents a single 2012 'Rebound Rumble' rectangular target. 
+
+\fBAuthor:\fP
+.RS 4
+Nick Royer 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Target::Target ()"
+.PP
+Constructs an empty \fBTarget\fP object. Constructs a new \fBTarget\fP object with a null contour pointer. 
+.SS "Target::Target (CvSeq * cntr)"
+.PP
+Creates a target from a CvSeq contour. Constructs a new \fBTarget\fP objec using the given pointer to a contour. Ideally, the contour should belong to an actual target. This method assumes the given contour is correct; no filtering methods are performed. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcntr\fP The contour that the target will represent. 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void Target::calculateCornersFromVanishingPoints ()\fC [private]\fP"
+.PP
+Intersects vanishing ponts to get the four corners of the target. \fBSee also:\fP
+.RS 4
+\fBvPointArray\fP 
+.RE
+.PP
+
+.SS "void Target::calculateHoopPosition (int numPointsPerSide, int crossProductThreshold, aruco::CameraParameters camParams)"
+.PP
+Calculates the position of the hoop relative to the camera. Calculates the position, in inches, of the target's hoop center and stores it in an array of X,Y,Z and vector offsets. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fInumPointsPerSide\fP The number of points desired on the shortest side of the target's contour when spacing the points evenly. 
+.br
+\fIcrossProductThreshold\fP A scalar value used to filter out non-colinear lines from the target's segment array. A very low number will filter few lines. A very high number will filter out most lines. 
+.br
+\fIcamParams\fP The Aruco camera parameters used in determining the target's position. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBspacePointsEvenly\fP 
+.PP
+\fBcalculateSegmentsFromPoints\fP 
+.PP
+\fBcalculateIntersectionsOfLines\fP 
+.PP
+\fBcalculateVanishingPoints\fP 
+.PP
+\fBcalculateCornersFromVanishingPoints\fP 
+.PP
+\fBcalculateSquare\fP 
+.PP
+\fBcalculatePosition\fP 
+.RE
+.PP
+
+.SS "void Target::calculateIntersectionsOfLines ()\fC [private]\fP"
+.PP
+Calculates all the intersections of the edges of the target. \fBSee also:\fP
+.RS 4
+\fBlineSet\fP 
+.PP
+\fBintersectionSet\fP 
+.RE
+.PP
+
+.SS "void Target::calculatePosition (aruco::CameraParameters camParams)\fC [private]\fP"
+.PP
+Calculates the position of the target's hoop from the Aruco marker object. \fBParameters:\fP
+.RS 4
+\fIcamParams\fP The Aruco camera parameters used to determine the target's position. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBmarker\fP 
+.PP
+\fBoffsets\fP 
+.RE
+.PP
+
+.SS "void Target::calculateSegmentsFromPoints (int crossProductThreshold)\fC [private]\fP"
+.PP
+Makes the set of segments on a target from points. \fBParameters:\fP
+.RS 4
+\fIcrossProductThreshold\fP An integer value defining the threshold for filtering out non-colinear line segments. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+\fBlineSet\fP 
+.RE
+.PP
+
+.SS "void Target::calculateSquare ()\fC [private]\fP"
+.PP
+Calculates the corners of the square Marker object. Performs two dicing operations on the four corner points to create an Aruco Marker object, square, centered on the left edge of the target. \fBSee also:\fP
+.RS 4
+\fBmarker\fP 
+.PP
+\fBvPointArray\fP 
+.RE
+.PP
+
+.SS "void Target::calculateVanishingPoints ()\fC [private]\fP"
+.PP
+Calculates vanishing pints from the segments contained in lineSet. \fBSee also:\fP
+.RS 4
+\fBlineSet\fP 
+.RE
+.PP
+
+.SS "void Target::drawTarget (IplImage * img, CvScalar color)"
+.PP
+Draws the target on an image. Draws the target on a provided image, including the target's bounding box, center, axes of rotation, contour, and selected points. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIimg\fP The pointer to an IplImage that the target is to be drawn on. 
+.br
+\fIcolor\fP A CvScalar defining the desired color of the target's bounding box, contour, and points. Note that all X,Y,Z values are rendered in their conventional colors. 
+.RE
+.PP
+
+.SS "CvPoint Target::getBoundingBoxPoint1 ()"
+.PP
+Returns the upper left point of the bounding box. Returns the upper-left point of the target's bounding box. 
+.PP
+\fBReturns:\fP
+.RS 4
+A CvPoint representing the upper-left point of the target's bounding box. 
+.RE
+.PP
+
+.SS "CvPoint Target::getBoundingBoxPoint2 ()"
+.PP
+Returns the bottom right point of the bounding box. Returns the lower-right point of the target's bounding box. 
+.PP
+\fBReturns:\fP
+.RS 4
+A CvPoint representing the lower-right point. 
+.RE
+.PP
+
+.SS "CvPoint Target::getCenter ()"Returns the center of the target's bounding box. 
+.PP
+\fBReturns:\fP
+.RS 4
+A CvPoint at the center o the taget's bounding box. 
+.RE
+.PP
+
+.SS "aruco::Marker Target::getMarker ()"
+.PP
+Returns the Aruco marker representing the target. 
+.SS "void Target::mergeColinearLines ()\fC [private]\fP"
+.PP
+Merges all colinear line segments into a single segment; one for each edge of the target. 
+.SS "void Target::spacePointsEvenly (int numPointsPerSide)\fC [private]\fP"
+.PP
+A function to space a list of points from a contour in even intervals around the contour. \fBParameters:\fP
+.RS 4
+\fInumPointsPerSide\fP The number of points desired on the shortest side of the contour. 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "CvRect \fBTarget::boundingBox\fP\fC [private]\fP"
+.PP
+The CvRect defining the bounding box of the target. 
+.SS "CvSeq \fBTarget::contour\fP"
+.PP
+The CvSeq contour of the target. 
+.SS "CvPoint2D32f \fBTarget::cornerArray\fP[4]\fC [private]\fP"
+.PP
+The four corners of the target, in CvPoint2D32f format. 
+.SS "int \fBTarget::intersectionLineIndices\fP[2][1000]\fC [private]\fP"
+.PP
+An array that indicates which lines formed each intersection points. The first column contains the first line that formed the given intersection point,the second column the second line, and each row is used for a single intersection point. 
+.SS "CvPoint2D32f \fBTarget::intersectionSet\fP[1000]\fC [private]\fP"
+.PP
+The set of floating-point CvPoints defining the intersection of the edges of the target. 
+.SS "\fBLine\fP \fBTarget::lineSet\fP[500]\fC [private]\fP"
+.PP
+An array of \fBLine\fP objects containing the segments between tetarget's points, and, later, the edges of the target. 
+.SS "aruco::Marker \fBTarget::marker\fP"
+.PP
+The Aruco Marker object defining the square portion of the target coplanar with the target and aligned with the target's left edge. 
+.SS "double \fBTarget::modelViewMatrix\fP[16]"
+.PP
+The OpenGL model view matrix of the target, in a 3x3 rotation matrix appended to a 3x1 translation matrix. 
+.SS "int \fBTarget::numIntersections\fP\fC [private]\fP"
+.PP
+The number of intersections between the target's edges. 
+.SS "int \fBTarget::numLines\fP\fC [private]\fP"
+.PP
+The number of \fBLine\fP objects contained in lineSet. 
+.SS "int \fBTarget::numPoints\fP\fC [private]\fP"
+.PP
+The number of poins on the tart's contour. 
+.SS "float \fBTarget::offsets\fP[4]"
+.PP
+The X, Y, and Z offsets of the target from the camera. 
+.SS "CvPoint \fBTarget::pointSet\fP[500]\fC [private]\fP"
+.PP
+An array of CvPoints defining the points on the target's contour. 
+.SS "\fBLine\fP \fBTarget::vLines\fP[4]\fC [private]\fP"
+.PP
+An array of \fBLine\fP objects, two per vanishing point- one for each line that creaed that vanishing point via intersection. 
+.SS "CvPoint2D32f \fBTarget::vPointArray\fP[2]\fC [private]\fP"
+.PP
+An array of CvPoint2D32f's defining the two vanishing points of the target's parallel lines. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Targeting from the source code.

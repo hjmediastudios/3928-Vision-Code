@@ -1,0 +1,55 @@
+\hypertarget{Threshold_8h}{
+\section{Headers/Threshold.h File Reference}
+\label{Threshold_8h}\index{Headers/Threshold.h@{Headers/Threshold.h}}
+}
+{\ttfamily \#include $<$opencv/cv.h$>$}\par
+{\ttfamily \#include \char`\"{}../Constants.h\char`\"{}}\par
+{\ttfamily \#include $<$opencv/highgui.h$>$}\par
+{\ttfamily \#include \char`\"{}../Headers/HelperFunctions.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}../Headers/Line.h\char`\"{}}\par
+{\ttfamily \#include $<$aruco/aruco.h$>$}\par
+{\ttfamily \#include $<$sstream$>$}\par
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespaceThreshold}{Threshold}
+
+
+\begin{DoxyCompactList}\small\item\em A series of functions for performing thresholding and target-\/selection operations on image. \item\end{DoxyCompactList}
+
+\end{DoxyCompactItemize}
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{Threshold_8h_a5924ccd17232b94af9eec0c3bcd58740}{THRESHOLD\_\-H\_\-}
+\begin{DoxyCompactList}\small\item\em A series of functions for thresholding images and detecting targets based on that information. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+IplImage $\ast$ \hyperlink{namespaceThreshold_a7b9d70b26f11d21f8eb737512c502fdf}{Threshold::threshold\_\-findGreen} (IplImage $\ast$img, int dilates)
+\begin{DoxyCompactList}\small\item\em Finds green target-\/colored objects and converts the color image into a black-\/and-\/white thresholded one. \item\end{DoxyCompactList}\item 
+CvSeq $\ast$ \hyperlink{namespaceThreshold_aa7e5d8d44e549fadc62258d6fd18b988}{Threshold::findContours} (IplImage $\ast$img)
+\begin{DoxyCompactList}\small\item\em Finds contours in the thresholded image. \item\end{DoxyCompactList}\item 
+void \hyperlink{namespaceThreshold_a71ea4886f013bfadb7386d7b5ad88661}{Threshold::pickTargets} (CvSeq $\ast$\hyperlink{main_8cpp_abda9aa51226269d37735e140998e8320}{contours}, CvSize imgSize, \hyperlink{classTarget}{Target} $\ast$tgtSet, int $\ast$numTgts)
+\begin{DoxyCompactList}\small\item\em Selects the valid targets from a CvSequence of contours. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\hypertarget{Threshold_8h_a5924ccd17232b94af9eec0c3bcd58740}{
+\index{Threshold.h@{Threshold.h}!THRESHOLD\_\-H\_\-@{THRESHOLD\_\-H\_\-}}
+\index{THRESHOLD\_\-H\_\-@{THRESHOLD\_\-H\_\-}!Threshold.h@{Threshold.h}}
+\subsubsection[{THRESHOLD\_\-H\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\#define THRESHOLD\_\-H\_\-}}
+\label{Threshold_8h_a5924ccd17232b94af9eec0c3bcd58740}
+
+
+A series of functions for thresholding images and detecting targets based on that information. 
+
+\hyperlink{Threshold_8h}{Threshold.h}
+
+\begin{DoxyAuthor}{Author}
+Nick Royer 
+\end{DoxyAuthor}
+
+
+Definition at line 14 of file Threshold.h.
+

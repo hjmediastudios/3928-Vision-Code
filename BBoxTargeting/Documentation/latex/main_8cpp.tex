@@ -1,0 +1,286 @@
+\hypertarget{main_8cpp}{
+\section{main.cpp File Reference}
+\label{main_8cpp}\index{main.cpp@{main.cpp}}
+}
+{\ttfamily \#include $<$opencv/cv.h$>$}\par
+{\ttfamily \#include $<$opencv/highgui.h$>$}\par
+{\ttfamily \#include \char`\"{}./Headers/Threshold.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}../Constants.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}../Headers/Target.h\char`\"{}}\par
+{\ttfamily \#include $<$sstream$>$}\par
+{\ttfamily \#include \char`\"{}./Headers/Target.h\char`\"{}}\par
+{\ttfamily \#include $<$aruco/aruco.h$>$}\par
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+IplImage $\ast$ \hyperlink{main_8cpp_af1c168e7f866cf67294dde21073cfddd}{frame}
+\begin{DoxyCompactList}\small\item\em A pointer to the currently-\/evaluated frame. \item\end{DoxyCompactList}\item 
+CvSize \hyperlink{main_8cpp_a8b1387d273e63cb0feedf02601f81526}{frameSize}
+\begin{DoxyCompactList}\small\item\em A CvSize object containing the frame's dimensions. \item\end{DoxyCompactList}\item 
+IplImage $\ast$ \hyperlink{main_8cpp_ac41795104f1b4deb8970519469e4e90e}{frameThreshed}
+\begin{DoxyCompactList}\small\item\em A pointer to the thresholded (B \& W) version of the current frame. \item\end{DoxyCompactList}\item 
+CvCapture $\ast$ \hyperlink{main_8cpp_a19135f0a722b10f0dbfe362a40dd6935}{camera} = NULL
+\begin{DoxyCompactList}\small\item\em A pointer to the current capture device. \item\end{DoxyCompactList}\item 
+CameraParameters \hyperlink{main_8cpp_aaa36b7ab3c4fd5ad2d96456ae56f36ea}{camParameters}
+\begin{DoxyCompactList}\small\item\em The Aruco camera parameters of the current camera. \item\end{DoxyCompactList}\item 
+CvFont \hyperlink{main_8cpp_a0bc3e5c8c7dd3238aed69d85d56be3d5}{font1}
+\begin{DoxyCompactList}\small\item\em The font used for all drawing on the current frame. \item\end{DoxyCompactList}\item 
+float \hyperlink{main_8cpp_ac7555b2582cb626fb4148d7e12a23409}{movingCameraAverageForHighestTarget} \mbox{[}OFFSETS\_\-SAMPLESPERREADING\mbox{]}\mbox{[}3\mbox{]}
+\begin{DoxyCompactList}\small\item\em The number of samples taveraged together to provide a moving-\/camera average for he highest target's position. \item\end{DoxyCompactList}\item 
+float \hyperlink{main_8cpp_a9bbe9ad7cf5f89b9b5fab864c7ce8f63}{movingCameraRunningSum} \mbox{[}3\mbox{]} = \{0, 0, 0\}
+\begin{DoxyCompactList}\small\item\em The running sums (X, Y, Z) of the highest target's offsets. \item\end{DoxyCompactList}\item 
+int \hyperlink{main_8cpp_a0ec3e7b0fc92d8d7bfbf310abbc8f7f3}{currentSample} = 0
+\begin{DoxyCompactList}\small\item\em The current sample for the running average. \item\end{DoxyCompactList}\item 
+int \hyperlink{main_8cpp_a03ae7a29fdf575617b3609a71940bcb2}{highestTargetIndex} = 0
+\begin{DoxyCompactList}\small\item\em The index index in targetSet of the highest target in the view. \item\end{DoxyCompactList}\item 
+CvSeq $\ast$ \hyperlink{main_8cpp_abda9aa51226269d37735e140998e8320}{contours}
+\begin{DoxyCompactList}\small\item\em A pointer to the CvSeq object containing the current set of contours in the image. \item\end{DoxyCompactList}\item 
+\hyperlink{classTarget}{Target} \hyperlink{main_8cpp_a7e36744b4d4b3c196a39f3bc301f2c74}{targetSet} \mbox{[}50\mbox{]}
+\begin{DoxyCompactList}\small\item\em A set of \hyperlink{classTarget}{Target} objects containing all valid targets visible in the current view. \item\end{DoxyCompactList}\item 
+int \hyperlink{main_8cpp_aeacae739ca4abccedb01f7074ef00656}{numTargets} = 0
+\begin{DoxyCompactList}\small\item\em The number of valid targets visible in the current view. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main ()}}
+\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}
+
+
+Definition at line 30 of file main.cpp.
+
+
+
+References Target::calculateHoopPosition(), camera, CAMERA\_\-INDEX, camParameters, contours, convertMarkerCoordinateToInches(), drawAxis(), Target::drawTarget(), FILTER\_\-CONTOURS\_\-POINTSPERCONTOURSIDE, FILTER\_\-POINTS\_\-CROSSPRODUCTTHRESHOLD, Threshold::findContours(), floatToString(), font1, frame, frameSize, frameThreshed, Target::getCenter(), Target::getNavInfo(), highestTargetIndex, movingCameraAverageForHighestTarget, numTargets, Target::offsets, OFFSETS\_\-SAMPLESPERREADING, Threshold::pickTargets(), and Threshold::threshold\_\-findGreen().
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{main_8cpp_a19135f0a722b10f0dbfe362a40dd6935}{
+\index{main.cpp@{main.cpp}!camera@{camera}}
+\index{camera@{camera}!main.cpp@{main.cpp}}
+\subsubsection[{camera}]{\setlength{\rightskip}{0pt plus 5cm}CvCapture$\ast$ {\bf camera} = NULL}}
+\label{main_8cpp_a19135f0a722b10f0dbfe362a40dd6935}
+
+
+A pointer to the current capture device. 
+
+
+
+Definition at line 14 of file main.cpp.
+
+
+
+Referenced by main().
+
+\hypertarget{main_8cpp_aaa36b7ab3c4fd5ad2d96456ae56f36ea}{
+\index{main.cpp@{main.cpp}!camParameters@{camParameters}}
+\index{camParameters@{camParameters}!main.cpp@{main.cpp}}
+\subsubsection[{camParameters}]{\setlength{\rightskip}{0pt plus 5cm}CameraParameters {\bf camParameters}}}
+\label{main_8cpp_aaa36b7ab3c4fd5ad2d96456ae56f36ea}
+
+
+The Aruco camera parameters of the current camera. 
+
+
+
+Definition at line 15 of file main.cpp.
+
+
+
+Referenced by main().
+
+\hypertarget{main_8cpp_abda9aa51226269d37735e140998e8320}{
+\index{main.cpp@{main.cpp}!contours@{contours}}
+\index{contours@{contours}!main.cpp@{main.cpp}}
+\subsubsection[{contours}]{\setlength{\rightskip}{0pt plus 5cm}CvSeq$\ast$ {\bf contours}}}
+\label{main_8cpp_abda9aa51226269d37735e140998e8320}
+
+
+A pointer to the CvSeq object containing the current set of contours in the image. 
+
+
+
+Definition at line 23 of file main.cpp.
+
+
+
+Referenced by main().
+
+\hypertarget{main_8cpp_a0ec3e7b0fc92d8d7bfbf310abbc8f7f3}{
+\index{main.cpp@{main.cpp}!currentSample@{currentSample}}
+\index{currentSample@{currentSample}!main.cpp@{main.cpp}}
+\subsubsection[{currentSample}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf currentSample} = 0}}
+\label{main_8cpp_a0ec3e7b0fc92d8d7bfbf310abbc8f7f3}
+
+
+The current sample for the running average. 
+
+\begin{DoxySeeAlso}{See also}
+movingCameraAveragForHighestTarget 
+\end{DoxySeeAlso}
+
+
+Definition at line 20 of file main.cpp.
+
+\hypertarget{main_8cpp_a0bc3e5c8c7dd3238aed69d85d56be3d5}{
+\index{main.cpp@{main.cpp}!font1@{font1}}
+\index{font1@{font1}!main.cpp@{main.cpp}}
+\subsubsection[{font1}]{\setlength{\rightskip}{0pt plus 5cm}CvFont {\bf font1}}}
+\label{main_8cpp_a0bc3e5c8c7dd3238aed69d85d56be3d5}
+
+
+The font used for all drawing on the current frame. 
+
+
+
+Definition at line 16 of file main.cpp.
+
+
+
+Referenced by main().
+
+\hypertarget{main_8cpp_af1c168e7f866cf67294dde21073cfddd}{
+\index{main.cpp@{main.cpp}!frame@{frame}}
+\index{frame@{frame}!main.cpp@{main.cpp}}
+\subsubsection[{frame}]{\setlength{\rightskip}{0pt plus 5cm}IplImage$\ast$ {\bf frame}}}
+\label{main_8cpp_af1c168e7f866cf67294dde21073cfddd}
+
+
+A pointer to the currently-\/evaluated frame. 
+
+
+
+Definition at line 11 of file main.cpp.
+
+
+
+Referenced by main().
+
+\hypertarget{main_8cpp_a8b1387d273e63cb0feedf02601f81526}{
+\index{main.cpp@{main.cpp}!frameSize@{frameSize}}
+\index{frameSize@{frameSize}!main.cpp@{main.cpp}}
+\subsubsection[{frameSize}]{\setlength{\rightskip}{0pt plus 5cm}CvSize {\bf frameSize}}}
+\label{main_8cpp_a8b1387d273e63cb0feedf02601f81526}
+
+
+A CvSize object containing the frame's dimensions. 
+
+
+
+Definition at line 12 of file main.cpp.
+
+
+
+Referenced by main().
+
+\hypertarget{main_8cpp_ac41795104f1b4deb8970519469e4e90e}{
+\index{main.cpp@{main.cpp}!frameThreshed@{frameThreshed}}
+\index{frameThreshed@{frameThreshed}!main.cpp@{main.cpp}}
+\subsubsection[{frameThreshed}]{\setlength{\rightskip}{0pt plus 5cm}IplImage$\ast$ {\bf frameThreshed}}}
+\label{main_8cpp_ac41795104f1b4deb8970519469e4e90e}
+
+
+A pointer to the thresholded (B \& W) version of the current frame. 
+
+
+
+Definition at line 13 of file main.cpp.
+
+
+
+Referenced by main().
+
+\hypertarget{main_8cpp_a03ae7a29fdf575617b3609a71940bcb2}{
+\index{main.cpp@{main.cpp}!highestTargetIndex@{highestTargetIndex}}
+\index{highestTargetIndex@{highestTargetIndex}!main.cpp@{main.cpp}}
+\subsubsection[{highestTargetIndex}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf highestTargetIndex} = 0}}
+\label{main_8cpp_a03ae7a29fdf575617b3609a71940bcb2}
+
+
+The index index in targetSet of the highest target in the view. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{main_8cpp_a7e36744b4d4b3c196a39f3bc301f2c74}{targetSet} 
+\end{DoxySeeAlso}
+
+
+Definition at line 21 of file main.cpp.
+
+
+
+Referenced by main().
+
+\hypertarget{main_8cpp_ac7555b2582cb626fb4148d7e12a23409}{
+\index{main.cpp@{main.cpp}!movingCameraAverageForHighestTarget@{movingCameraAverageForHighestTarget}}
+\index{movingCameraAverageForHighestTarget@{movingCameraAverageForHighestTarget}!main.cpp@{main.cpp}}
+\subsubsection[{movingCameraAverageForHighestTarget}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf movingCameraAverageForHighestTarget}\mbox{[}OFFSETS\_\-SAMPLESPERREADING\mbox{]}\mbox{[}3\mbox{]}}}
+\label{main_8cpp_ac7555b2582cb626fb4148d7e12a23409}
+
+
+The number of samples taveraged together to provide a moving-\/camera average for he highest target's position. 
+
+
+
+Definition at line 18 of file main.cpp.
+
+
+
+Referenced by main().
+
+\hypertarget{main_8cpp_a9bbe9ad7cf5f89b9b5fab864c7ce8f63}{
+\index{main.cpp@{main.cpp}!movingCameraRunningSum@{movingCameraRunningSum}}
+\index{movingCameraRunningSum@{movingCameraRunningSum}!main.cpp@{main.cpp}}
+\subsubsection[{movingCameraRunningSum}]{\setlength{\rightskip}{0pt plus 5cm}float {\bf movingCameraRunningSum}\mbox{[}3\mbox{]} = \{0, 0, 0\}}}
+\label{main_8cpp_a9bbe9ad7cf5f89b9b5fab864c7ce8f63}
+
+
+The running sums (X, Y, Z) of the highest target's offsets. 
+
+
+
+Definition at line 19 of file main.cpp.
+
+\hypertarget{main_8cpp_aeacae739ca4abccedb01f7074ef00656}{
+\index{main.cpp@{main.cpp}!numTargets@{numTargets}}
+\index{numTargets@{numTargets}!main.cpp@{main.cpp}}
+\subsubsection[{numTargets}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf numTargets} = 0}}
+\label{main_8cpp_aeacae739ca4abccedb01f7074ef00656}
+
+
+The number of valid targets visible in the current view. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{main_8cpp_a7e36744b4d4b3c196a39f3bc301f2c74}{targetSet} 
+\end{DoxySeeAlso}
+
+
+Definition at line 25 of file main.cpp.
+
+
+
+Referenced by main().
+
+\hypertarget{main_8cpp_a7e36744b4d4b3c196a39f3bc301f2c74}{
+\index{main.cpp@{main.cpp}!targetSet@{targetSet}}
+\index{targetSet@{targetSet}!main.cpp@{main.cpp}}
+\subsubsection[{targetSet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Target} {\bf targetSet}\mbox{[}50\mbox{]}}}
+\label{main_8cpp_a7e36744b4d4b3c196a39f3bc301f2c74}
+
+
+A set of \hyperlink{classTarget}{Target} objects containing all valid targets visible in the current view. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classTarget_a7008d6752ce64f82e56aae6ea6c2bb65}{Target::Target} 
+\end{DoxySeeAlso}
+
+
+Definition at line 24 of file main.cpp.
+

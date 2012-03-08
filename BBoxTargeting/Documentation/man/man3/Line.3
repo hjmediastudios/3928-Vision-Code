@@ -1,0 +1,167 @@
+.TH "Line" 3 "2 Mar 2012" "Version 0.5" "Targeting" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Line \- 
+.PP
+A class representing a line or line segment.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Line.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBLine\fP ()"
+.br
+.RI "\fIConstructs an empty \fBLine\fP object. \fP"
+.ti -1c
+.RI "\fBLine\fP (CvPoint pt1, CvPoint pt2)"
+.br
+.RI "\fICreates a \fBLine\fP object from two points. \fP"
+.ti -1c
+.RI "CvPoint2D32f \fBgetIntersectionWith\fP (\fBLine\fP otherLine)"
+.br
+.RI "\fIReturns the intersection point of the current line with a given other line. \fP"
+.ti -1c
+.RI "void \fBdrawInfiniteLine\fP (IplImage *img, CvScalar color)"
+.br
+.RI "\fIDraws the infinite line representing this \fBLine\fP object on an image. \fP"
+.ti -1c
+.RI "float \fBdotProductWith\fP (\fBLine\fP otherLine)"
+.br
+.RI "\fIReturns the dot product of the current line and a given other \fBLine\fP object. \fP"
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "float \fBSlope\fP"
+.br
+.RI "\fIThe slope of the line. \fP"
+.ti -1c
+.RI "float \fBIntercept\fP"
+.br
+.RI "\fIThe line's Y-intercept. \fP"
+.ti -1c
+.RI "float \fBLength\fP"
+.br
+.RI "\fIThe length of the line segment between the two given points. \fP"
+.ti -1c
+.RI "CvPoint \fBpoint1\fP"
+.br
+.RI "\fIThe first point used to create the line. \fP"
+.ti -1c
+.RI "CvPoint \fBpoint2\fP"
+.br
+.RI "\fIThe second point used to create the line. \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "bool \fBisVertical\fP"
+.br
+.RI "\fITrue if the line is vertical; false otherwise. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+A class representing a line or line segment. 
+
+\fBLine.h\fP
+.PP
+Created on: Feb 29, 2012 Author: Nick Royer
+.PP
+A class representing a line or line segment, with functions to perform operations such as intersection, length calculation, and vector math. 
+.PP
+\fBAuthor:\fP
+.RS 4
+Nick Royer 
+.RE
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Line::Line ()"
+.PP
+Constructs an empty \fBLine\fP object. 
+.SS "Line::Line (CvPoint pt1, CvPoint pt2)"
+.PP
+Creates a \fBLine\fP object from two points. \fBParameters:\fP
+.RS 4
+\fIpt1\fP The first CvPoint to create the line from. 
+.br
+\fIpt2\fP The second CvPoint to create the line from. 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "float Line::dotProductWith (\fBLine\fP otherLine)"
+.PP
+Returns the dot product of the current line and a given other \fBLine\fP object. \fBParameters:\fP
+.RS 4
+\fIotherLine\fP The other line to compute the dot product with. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+The dot product of the current line and the given other line. 
+.RE
+.PP
+
+.SS "void Line::drawInfiniteLine (IplImage * img, CvScalar color)"
+.PP
+Draws the infinite line representing this \fBLine\fP object on an image. \fBParameters:\fP
+.RS 4
+\fIimg\fP A pointer to the IplImage the line should be drawn on. 
+.br
+\fIcolor\fP The color to draw the line in. 
+.RE
+.PP
+
+.SS "CvPoint2D32f Line::getIntersectionWith (\fBLine\fP otherLine)"
+.PP
+Returns the intersection point of the current line with a given other line. \fBParameters:\fP
+.RS 4
+\fIotherLine\fP The line o intersect the current line with. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+A CvPoint2D32f floating-value point representing th intersection derived. If no intersection is found, this returns (0, 0). 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "float \fBLine::Intercept\fP"
+.PP
+The line's Y-intercept. 
+.SS "bool \fBLine::isVertical\fP\fC [private]\fP"
+.PP
+True if the line is vertical; false otherwise. 
+.SS "float \fBLine::Length\fP"
+.PP
+The length of the line segment between the two given points. \fBSee also:\fP
+.RS 4
+\fBpointDistance\fP 
+.RE
+.PP
+
+.SS "CvPoint \fBLine::point1\fP"
+.PP
+The first point used to create the line. 
+.SS "CvPoint \fBLine::point2\fP"
+.PP
+The second point used to create the line. 
+.SS "float \fBLine::Slope\fP"
+.PP
+The slope of the line. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Targeting from the source code.
