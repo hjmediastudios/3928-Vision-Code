@@ -407,12 +407,6 @@ void Target::calculatePosition(aruco::CameraParameters camParams)
 		std::cout << "   " << i << ": " << cornerArray[i].x << ", " << cornerArray[i].y << endl;
 	}
 
-//	cornerArray[0] = cvPoint2D32f(297, 187);
-//	cornerArray[1] = cvPoint2D32f(356, 238);
-//	cornerArray[2] = cvPoint2D32f(299, 242);
-//	cornerArray[3] = cvPoint2D32f(355, 180);
-
-
 	ptList.push_back(cornerArray[0]);
 	ptList.push_back(cornerArray[3]);
 	ptList.push_back(cornerArray[1]);
@@ -423,20 +417,19 @@ void Target::calculatePosition(aruco::CameraParameters camParams)
 
 	marker.id = 01;
 	marker.calculateExtrinsics(0.4572, camParams);
-	marker.glGetModelViewMatrix(modelViewMatrix); //TODO crossProduct
+	marker.glGetModelViewMatrix(modelViewMatrix); //TODO fix flipping
 
-	CvMat mvmMatrix = cvMat(4, 4, CV_64FC2, modelViewMatrix);
+	if ( (modelViewMatrix[8]*modelViewMatrix[9]*modelViewMatrix[10]) < 0)
+	{
+		for (int i=4; i<=6; i++)
+		{
+			modelViewMatrix[i] = modelViewMatrix[i]*-1;
+		}
+		cvCircle(originImage, cvPoint(20, 20), 5, CV_RGB(255,0,0), 2, 8, 0);
+	}
 
-	CvMat* mvmPtr = &mvmMatrix;
-	std::cerr << "Rows: " << mvmPtr->rows << ", cols: " << mvmPtr->cols << " \n";
-//	double determinant = cvDet(mvmPtr);//TODO ?
-//	std::cerr << determinant << endl;
 
 
-
-
-	for (int j=0; j<16; j++)
-		std::cout << "MVM[" << j <<"]: " << modelViewMatrix[j] << endl;
 
 	/* Model view matrix:
 	 * X-component of X axis, Y[x], Z[x], translation[x]
@@ -452,11 +445,6 @@ void Target::calculatePosition(aruco::CameraParameters camParams)
 	 */
 
 
-	std::cout << "Translation: \n";
-	std::cout << "MVM: " <<  metersToInches(modelViewMatrix[12]) //x offset
-											<< " " << metersToInches(modelViewMatrix[13]) //y offset
-											<< " " << metersToInches(modelViewMatrix[14]) << "\n"; //z offset
-
 	//Convert from target coordinates to hoop offsets
 	float hoopTransformationArray[16] = {1, 0, 0, 0,
 			0, 1, 0, 0,
@@ -465,17 +453,17 @@ void Target::calculatePosition(aruco::CameraParameters camParams)
 
 	matrixMultiply(hoopTransformationArray, modelViewMatrix, hoopCoordinatesArray, 4);
 
-	std::cout << "0: " << metersToInches(marker.Tvec.at<float>(0, 0)) << endl;
-	std::cout << "1: " << metersToInches(marker.Tvec.at<float>(1, 0)) << endl;
-	std::cout << "2: " << metersToInches(marker.Tvec.at<float>(2, 0)) << endl;
+//	std::cout << "0: " << metersToInches(marker.Tvec.at<float>(0, 0)) << endl;
+//	std::cout << "1: " << metersToInches(marker.Tvec.at<float>(1, 0)) << endl;
+//	std::cout << "2: " << metersToInches(marker.Tvec.at<float>(2, 0)) << endl;
 
 	marker.Tvec.at<float>(0, 0) = hoopCoordinatesArray[12];
 	marker.Tvec.at<float>(1, 0) = hoopCoordinatesArray[13];
 	marker.Tvec.at<float>(2, 0) = hoopCoordinatesArray[14]*-1;
 
-	std::cout << "0': " << metersToInches(marker.Tvec.at<float>(0, 0)) << endl;
-	std::cout << "1': " << metersToInches(marker.Tvec.at<float>(1, 0)) << endl;
-	std::cout << "2': " << metersToInches(marker.Tvec.at<float>(2, 0)) << endl;
+//	std::cout << "0': " << metersToInches(marker.Tvec.at<float>(0, 0)) << endl;
+//	std::cout << "1': " << metersToInches(marker.Tvec.at<float>(1, 0)) << endl;
+//	std::cout << "2': " << metersToInches(marker.Tvec.at<float>(2, 0)) << endl;
 
 
 
@@ -513,7 +501,7 @@ void Target::getNavInfo(float camAngleDegrees)
 
 
 
-	std::cout << "Y: " << metersToInches(marker.Tvec.at<float>(1, 0)) << endl;
+//	std::cout << "Y: " << metersToInches(marker.Tvec.at<float>(1, 0)) << endl;
 	float camAngle = deg2rad(camAngleDegrees);
 
 	double camRotationMatrix[16] = {1, 0, 0, 0,

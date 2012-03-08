@@ -117,8 +117,6 @@ int main()
 					cvPutText(frame, floatToString(rad2deg(targetSet[i].offsets[0])), cvPoint(targetSet[i].getBoundingBoxPoint2().x+1,targetSet[i].getBoundingBoxPoint1().y), &font1, CV_RGB(255,255,255));
 					cvPutText(frame, floatToString(metersToInches(targetSet[i].offsets[1])), cvPoint(targetSet[i].getBoundingBoxPoint2().x+1,targetSet[i].getBoundingBoxPoint1().y+10), &font1, CV_RGB(0,255,255));
 					cvPutText(frame, floatToString(metersToInches(targetSet[i].offsets[2])), cvPoint(targetSet[i].getBoundingBoxPoint2().x+1,targetSet[i].getBoundingBoxPoint1().y+24), &font1, CV_RGB(255,255,0));
-//					cvPutText(frame, floatToString(targetSet[i].getBoundingBoxPoint2().y - targetSet[i].getBoundingBoxPoint1().y - 0.0), cvPoint(targetSet[i].getCenter().x ,targetSet[i].getBoundingBoxPoint1().y - 10), &font1, CV_RGB(255,0,0));
-//					cvPutText(frame, floatToString(targetSet[i].numLines - 0.0), cvPoint(targetSet[i].getCenter().x ,targetSet[i].getBoundingBoxPoint1().y - 24), &font1, CV_RGB(0,150,0));
 
 					break; //TODO Get me out of here!
 				}
