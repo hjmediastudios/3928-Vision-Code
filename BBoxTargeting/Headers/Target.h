@@ -83,7 +83,7 @@ class Target
 	private:
 		CvRect boundingBox; //!< The CvRect defining the bounding box of the target.
 
-		IplImage* originImage;
+		IplImage* originImage; //!< The IplImage the target was originally created from.
 		CvPoint pointSet[500]; //!< An array of CvPoints defining the points on the target's contour.
 		int numPoints; //!< The number of poins on the tart's contour.
 
