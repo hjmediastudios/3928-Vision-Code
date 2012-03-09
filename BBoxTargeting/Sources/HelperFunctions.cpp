@@ -40,9 +40,10 @@ void drawAxis(IplImage *Image, aruco::Marker &m,const aruco::CameraParameters &C
 		cv::projectPoints( objectPoints, m.Rvec, m.Tvec, CP.CameraMatrix,CP.Distorsion,   imagePoints);
 
 		//draw lines of different colors
-		cvLine(Image,imagePoints[0],imagePoints[1],Scalar(255,0,0,255),1,CV_AA);
-		cvLine(Image,imagePoints[0],imagePoints[2],Scalar(0,255,0,255),1,CV_AA);
-		cvLine(Image,imagePoints[0],imagePoints[3],Scalar(0,0,255,255),1,CV_AA);
+		cvCircle(Image, imagePoints[0], 2, CV_RGB(255,255,255), 2, 8, 0);
+//		cvLine(Image,imagePoints[0],imagePoints[1],Scalar(255,0,0,255),1,CV_AA);
+//		cvLine(Image,imagePoints[0],imagePoints[2],Scalar(0,255,0,255),1,CV_AA);
+//		cvLine(Image,imagePoints[0],imagePoints[3],Scalar(0,0,255,255),1,CV_AA);
 }
 
 float metersToInches(float markerCoordinate)

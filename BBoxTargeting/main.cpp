@@ -179,7 +179,7 @@ int main()
 
 		cvShowImage("Targets", frame);
 		//Wait before moving on
-		int key = cvWaitKey(27);
+		int key = cvWaitKey(0);
 		if (key == 27)
 		{
 			exit(0);

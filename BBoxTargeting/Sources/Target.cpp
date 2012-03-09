@@ -77,7 +77,6 @@ void Target::drawTarget(CvScalar color)
 	//	cvLine(originImage, cvPointFrom32f(vPointArray[0]), getCenter(), CV_RGB(255, 255, 255), 2, 8, 0);
 	//	cvLine(originImage, cvPointFrom32f(vPointArray[1]), getCenter(), CV_RGB(150, 150, 150), 2, 8, 0); //TODO problem finding vPoints!
 
-
 	cvCircle(originImage, cvPointFrom32f(cornerArray[0]), 2, CV_RGB(0,255,0), 3, 8, 0);
 	cvCircle(originImage, cvPointFrom32f(cornerArray[1]), 2, CV_RGB(0,0,255), 3, 8, 0);
 	cvCircle(originImage, cvPointFrom32f(cornerArray[2]), 2, CV_RGB(255,0,0), 3, 8, 0);
@@ -419,13 +418,16 @@ void Target::calculatePosition(aruco::CameraParameters camParams)
 	marker.calculateExtrinsics(0.4572, camParams);
 	marker.glGetModelViewMatrix(modelViewMatrix); //TODO fix flipping
 
+	int flippy = 1;
+
 	if ( (modelViewMatrix[8]*modelViewMatrix[9]*modelViewMatrix[10]) < 0)
 	{
-		for (int i=4; i<=6; i++)
-		{
-			modelViewMatrix[i] = modelViewMatrix[i]*-1;
-		}
-		cvCircle(originImage, cvPoint(20, 20), 5, CV_RGB(255,0,0), 2, 8, 0);
+		flippy = -1;
+		cvCircle(originImage, getCenter(), 12, CV_RGB(255,0,0), 6, 8, 0);
+	}
+	else
+	{
+		flippy = 1;
 	}
 
 
@@ -446,24 +448,24 @@ void Target::calculatePosition(aruco::CameraParameters camParams)
 
 
 	//Convert from target coordinates to hoop offsets
-	float hoopTransformationArray[16] = {1, 0, 0, 0,
+	 float hoopTransformationArray[16] = {1, 0, 0, 0,
 			0, 1, 0, 0,
 			0, 0, 1, 0,
-			inchesToMeters(HOOP_OFFSETFROM_CENTEROFSQUARE_Z), inchesToMeters(HOOP_OFFSETFROM_CENTEROFSQUARE_Y), inchesToMeters(-1*HOOP_OFFSETFROM_CENTEROFSQUARE_X), 1};
+			inchesToMeters(HOOP_OFFSETFROM_CENTEROFSQUARE_Z), inchesToMeters(HOOP_OFFSETFROM_CENTEROFSQUARE_Y*flippy), inchesToMeters(-1*HOOP_OFFSETFROM_CENTEROFSQUARE_X), 1};
 
 	matrixMultiply(hoopTransformationArray, modelViewMatrix, hoopCoordinatesArray, 4);
 
-//	std::cout << "0: " << metersToInches(marker.Tvec.at<float>(0, 0)) << endl;
-//	std::cout << "1: " << metersToInches(marker.Tvec.at<float>(1, 0)) << endl;
-//	std::cout << "2: " << metersToInches(marker.Tvec.at<float>(2, 0)) << endl;
+	//	std::cout << "0: " << metersToInches(marker.Tvec.at<float>(0, 0)) << endl;
+	//	std::cout << "1: " << metersToInches(marker.Tvec.at<float>(1, 0)) << endl;
+	//	std::cout << "2: " << metersToInches(marker.Tvec.at<float>(2, 0)) << endl;
 
 	marker.Tvec.at<float>(0, 0) = hoopCoordinatesArray[12];
 	marker.Tvec.at<float>(1, 0) = hoopCoordinatesArray[13];
 	marker.Tvec.at<float>(2, 0) = hoopCoordinatesArray[14]*-1;
 
-//	std::cout << "0': " << metersToInches(marker.Tvec.at<float>(0, 0)) << endl;
-//	std::cout << "1': " << metersToInches(marker.Tvec.at<float>(1, 0)) << endl;
-//	std::cout << "2': " << metersToInches(marker.Tvec.at<float>(2, 0)) << endl;
+	//	std::cout << "0': " << metersToInches(marker.Tvec.at<float>(0, 0)) << endl;
+	//	std::cout << "1': " << metersToInches(marker.Tvec.at<float>(1, 0)) << endl;
+	//	std::cout << "2': " << metersToInches(marker.Tvec.at<float>(2, 0)) << endl;
 
 
 
