@@ -59,10 +59,12 @@ class Target
 		void getNavigationString();
 		int getArea();
 		float getAspectRatio();
+		float getRectangularity();
 
 	private:
 		CvRect boundingBox; //!< The CvRect defining the bounding box of the target.
 		IplImage* originImage;
+		CvSeq pointSeq;
 };
 
 

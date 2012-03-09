@@ -6,11 +6,9 @@
  */
 #include "../Headers/Target.h"
 #include "../Headers/HelperFunctions.h"
-#include <aruco/aruco.h>
 #include "../Constants.h"
 #include <math.h>
 
-using namespace aruco;
 using namespace cv;
 using namespace Lines;
 
@@ -68,6 +66,11 @@ void Target::getNavigationString()
 int Target::getArea()
 {
 	return boundingBox.width*boundingBox.height;
+}
+
+float Target::getRectangularity()
+{
+	return (cvContourArea(&contour)/getArea())*100;
 }
 
 float Target::getAspectRatio()

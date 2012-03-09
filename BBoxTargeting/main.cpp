@@ -4,8 +4,6 @@
 #include "./Headers/Target.h"
 #include <sstream>
 
-//#define CAMERA_USED
-
 IplImage *frame; //!< A pointer to the currently-evaluated frame.
 CvSize frameSize; //!< A CvSize object containing the frame's dimensions.
 IplImage *frameThreshed; //!< A pointer to the thresholded (B & W) version of the current frame.
@@ -104,23 +102,10 @@ int main()
 					cvPutText(frame, floatToString(targetSet[i].offsets[1]), cvPoint(targetSet[i].getBoundingBoxPoint2().x+1,targetSet[i].getBoundingBoxPoint1().y + 14), &font1, CV_RGB(255,0,255));
 					cvPutText(frame, floatToString((float) targetSet[i].getArea()), cvPoint(targetSet[i].getBoundingBoxPoint1().x,targetSet[i].getBoundingBoxPoint2().y + 14), &font1, CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
 					cvPutText(frame, floatToString(targetSet[i].getAspectRatio()), cvPoint(targetSet[i].getBoundingBoxPoint1().x,targetSet[i].getBoundingBoxPoint2().y + 28), &font1, CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
+					cvPutText(frame, floatToString(targetSet[i].getRectangularity()), cvPoint(targetSet[i].getBoundingBoxPoint1().x,targetSet[i].getBoundingBoxPoint2().y + 42), &font1, CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
 
 				}
 
-
-
-//				highestTargetIndex = 0;
-//				int highestCenterY = 9000;
-//				int currY;
-//				for (int i=0; i<numTargets; i++)
-//				{
-//					currY = targetSet[i].getCenter().y;
-//					if (currY <= highestCenterY && targetSet[i].offsets[0] != 0)
-//					{
-//						highestCenterY = currY;
-//						highestTargetIndex = i;
-//					}
-//				}
 
 			}
 
@@ -128,8 +113,6 @@ int main()
 
 		//draw crosshairs
 		cvLine(frame, cvPoint(320, 0), cvPoint(320,480), CV_RGB(255,0,0), 1, 8, 0);
-//		cvLine(frame, cvPoint(280, 240), cvPoint(360,240), CV_RGB(255,0,0), 1, 8, 0);
-//		cvCircle(frame, cvPoint(320,240), 30, CV_RGB(255, 0, 0), 1, 8, 0);
 		cvLine(frame, cvPoint(0, 240), cvPoint(640, 240), CV_RGB(255,0,0), 1, 8, 0);
 
 		cvShowImage("Targets", frame);
