@@ -6,7 +6,6 @@
  */
 #include "../Headers/HelperFunctions.h"
 using namespace cv;
-using namespace aruco;
 
 float pointDistance(CvPoint point1, CvPoint point2)
 {
@@ -18,31 +17,6 @@ char* floatToString(float flt)
     char* str = new char[30];
     sprintf(str, "%.4g", flt );
     return str;
-}
-
-void drawAxis(IplImage *Image, aruco::Marker &m,const aruco::CameraParameters &CP)
-{
-	Mat objectPoints (4,3,CV_32FC1);
-		objectPoints.at<float>(0,0)=0;
-		objectPoints.at<float>(0,1)=0;
-		objectPoints.at<float>(0,2)=0;
-		objectPoints.at<float>(1,0)=m.ssize;
-		objectPoints.at<float>(1,1)=0;
-		objectPoints.at<float>(1,2)=0;
-		objectPoints.at<float>(2,0)=0;
-		objectPoints.at<float>(2,1)=m.ssize;
-		objectPoints.at<float>(2,2)=0;
-		objectPoints.at<float>(3,0)=0;
-		objectPoints.at<float>(3,1)=0;
-		objectPoints.at<float>(3,2)=m.ssize;
-
-		vector<Point2f> imagePoints;
-		cv::projectPoints( objectPoints, m.Rvec, m.Tvec, CP.CameraMatrix,CP.Distorsion,   imagePoints);
-
-		//draw lines of different colors
-		cvLine(Image,imagePoints[0],imagePoints[1],Scalar(255,0,0,255),1,CV_AA);
-		cvLine(Image,imagePoints[0],imagePoints[2],Scalar(0,255,0,255),1,CV_AA);
-		cvLine(Image,imagePoints[0],imagePoints[3],Scalar(0,0,255,255),1,CV_AA);
 }
 
 float metersToInches(float markerCoordinate)

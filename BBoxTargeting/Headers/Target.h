@@ -10,9 +10,7 @@
 #include <opencv/cv.h>
 #include "../Headers/HelperFunctions.h"
 #include "../Headers/Line.h"
-#include <aruco/aruco.h>
 
-using namespace aruco;
 using namespace Lines;
 
 /**

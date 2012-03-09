@@ -3,16 +3,13 @@
 #include "./Headers/Threshold.h"
 #include "./Headers/Target.h"
 #include <sstream>
-#include <aruco/aruco.h>
 
 //#define CAMERA_USED
-using namespace aruco;
 
 IplImage *frame; //!< A pointer to the currently-evaluated frame.
 CvSize frameSize; //!< A CvSize object containing the frame's dimensions.
 IplImage *frameThreshed; //!< A pointer to the thresholded (B & W) version of the current frame.
 CvCapture *camera = NULL; //!< A pointer to the current capture device.
-CameraParameters camParameters; //!< The Aruco camera parameters of the current camera.
 CvFont font1; //!< The font used for all drawing on the current frame.
 
 float movingCameraAverageForHighestTarget[OFFSETS_SAMPLESPERREADING][3]; //!< The number of samples taveraged together to provide a moving-camera average for he highest target's position
@@ -59,7 +56,6 @@ int main()
 			//Backlight compensation 0, have to set through GUVCview
 			cvSetCaptureProperty(camera, CV_CAP_PROP_FRAME_WIDTH, 640);
 			cvSetCaptureProperty(camera, CV_CAP_PROP_FRAME_HEIGHT, 480);
-			camParameters.readFromXMLFile("intrinsics.yml");
 			cvInitFont(&font1,CV_FONT_HERSHEY_SIMPLEX|CV_FONT_ITALIC, 0.5,0.5,0,1);
 			memset(movingCameraAverageForHighestTarget, 0, sizeof(float)*3*OFFSETS_SAMPLESPERREADING);
 
