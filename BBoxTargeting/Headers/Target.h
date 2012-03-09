@@ -79,6 +79,7 @@ class Target
 		void drawTarget(CvScalar color); //!< Draws the target on an image
 
 		void getNavInfo(float camAngleDegrees);
+		void getNavigationString();
 
 	private:
 		CvRect boundingBox; //!< The CvRect defining the bounding box of the target.

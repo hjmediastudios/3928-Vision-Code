@@ -61,7 +61,7 @@ CvPoint Target::getCenter()
 void Target::drawTarget(CvScalar color)
 {
 	cvCircle(originImage, this->getCenter(), 5, color, 2, 8, 0);
-	cvRectangleR(originImage, boundingBox, color, 1, 8, 0);
+	cvRectangleR(originImage, boundingBox, color, 2, 8, 0);
 	cvDrawContours(originImage, &contour, color, color, 1, 1, 0);
 
 	//	for (int i=0; i < numPoints; i++)
@@ -77,11 +77,10 @@ void Target::drawTarget(CvScalar color)
 	//	cvLine(originImage, cvPointFrom32f(vPointArray[0]), getCenter(), CV_RGB(255, 255, 255), 2, 8, 0);
 	//	cvLine(originImage, cvPointFrom32f(vPointArray[1]), getCenter(), CV_RGB(150, 150, 150), 2, 8, 0); //TODO problem finding vPoints!
 
+	cvLine(originImage, getCenter(), cvPoint(320, getCenter().y), color, 1, 8, 0);
+	cvLine(originImage, getCenter(), cvPoint(getCenter().x, 240), color, 1, 8, 0);
 
-	cvCircle(originImage, cvPointFrom32f(cornerArray[0]), 2, CV_RGB(0,255,0), 3, 8, 0);
-	cvCircle(originImage, cvPointFrom32f(cornerArray[1]), 2, CV_RGB(0,0,255), 3, 8, 0);
-	cvCircle(originImage, cvPointFrom32f(cornerArray[2]), 2, CV_RGB(255,0,0), 3, 8, 0);
-	cvCircle(originImage, cvPointFrom32f(cornerArray[3]), 2, CV_RGB(255,255,0), 3, 8, 0);
+
 
 	//draw height of bbox
 
@@ -516,4 +515,12 @@ void Target::getNavInfo(float camAngleDegrees)
 	offsets[1] = (-1*newHoopCoordinates[13]) + inchesToMeters(CAMERA_HEIGHT);
 	offsets[2] = newHoopCoordinates[14]*cos(angle);
 
+}
+
+void Target::getNavigationString()
+{
+	float x = getCenter().x- 320.0;
+	float angle = asin((x*0.608761429)/320); //0.608761429 = sin(37.5 degrees)
+	offsets[1] = x/(tan(angle));
+	offsets[0] = rad2deg(angle);
 }
