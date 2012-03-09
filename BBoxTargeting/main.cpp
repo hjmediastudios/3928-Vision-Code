@@ -87,7 +87,7 @@ int main()
 			exit(0);
 		}
 		frameThreshed = Threshold::threshold_findGreen(frame, 5);
-		cvShowImage("Threshold", frameThreshed);
+//		cvShowImage("Threshold", frameThreshed);
 		contours = Threshold::findContours(frameThreshed);
 		cvReleaseImage(&frameThreshed);
 		//cvShowImage("Contours", frame);
@@ -106,6 +106,8 @@ int main()
 
 					cvPutText(frame, floatToString(targetSet[i].offsets[0]), cvPoint(targetSet[i].getBoundingBoxPoint2().x+1,targetSet[i].getBoundingBoxPoint1().y), &font1, CV_RGB(255,255,255));
 					cvPutText(frame, floatToString(targetSet[i].offsets[1]), cvPoint(targetSet[i].getBoundingBoxPoint2().x+1,targetSet[i].getBoundingBoxPoint1().y + 14), &font1, CV_RGB(255,0,255));
+					cvPutText(frame, floatToString((float) targetSet[i].getArea()), cvPoint(targetSet[i].getBoundingBoxPoint1().x,targetSet[i].getBoundingBoxPoint2().y + 14), &font1, CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
+					cvPutText(frame, floatToString(targetSet[i].getAspectRatio()), cvPoint(targetSet[i].getBoundingBoxPoint1().x,targetSet[i].getBoundingBoxPoint2().y + 28), &font1, CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
 
 				}
 
