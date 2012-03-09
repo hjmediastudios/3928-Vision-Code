@@ -103,7 +103,7 @@ int main()
 					cvPutText(frame, floatToString((float) targetSet[i].getArea()), cvPoint(targetSet[i].getBoundingBoxPoint1().x,targetSet[i].getBoundingBoxPoint2().y + 14), &font1, CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
 					cvPutText(frame, floatToString(targetSet[i].getAspectRatio()), cvPoint(targetSet[i].getBoundingBoxPoint1().x,targetSet[i].getBoundingBoxPoint2().y + 28), &font1, CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
 					cvPutText(frame, floatToString(targetSet[i].getRectangularity()), cvPoint(targetSet[i].getBoundingBoxPoint1().x,targetSet[i].getBoundingBoxPoint2().y + 42), &font1, CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
-
+					break; //TODO get me out of here!
 				}
 
 

@@ -23,6 +23,12 @@ Target::Target(CvSeq* cntr, IplImage* img)
 	boundingBox = cvBoundingRect(cntr);
 	originImage = img;
 	contour = *cntr;
+	//Create a set of Lines based off the bounding box.
+	bBoxLines[0] = Line::Line(cvPoint(boundingBox.x, boundingBox.y), cvPoint(boundingBox.x + boundingBox.width, boundingBox.y));
+	bBoxLines[1] = Line::Line(cvPoint(boundingBox.x + boundingBox.width, boundingBox.y), cvPoint(boundingBox.x + boundingBox.width, boundingBox.y + boundingBox.height));
+	bBoxLines[2] = Line::Line(cvPoint(boundingBox.x, boundingBox.y + boundingBox.height), cvPoint(boundingBox.x + boundingBox.width, boundingBox.y + boundingBox.height));
+	bBoxLines[3] = Line::Line(cvPoint(boundingBox.x, boundingBox.y), cvPoint(boundingBox.x, boundingBox.y + boundingBox.height));
+
 }
 
 CvPoint Target::getBoundingBoxPoint1()
@@ -49,10 +55,11 @@ void Target::drawTarget(CvScalar color)
 	cvLine(originImage, getCenter(), cvPoint(320, getCenter().y), color, 1, 8, 0);
 	cvLine(originImage, getCenter(), cvPoint(getCenter().x, 240), color, 1, 8, 0);
 
-
-
-	//draw height of bbox
-
+	//draw BBox Lines
+	for (int i=0; i<4; i++)
+	{
+		bBoxLines[i].drawInfiniteLine(originImage, color);
+	}
 }
 
 void Target::getNavigationString()
