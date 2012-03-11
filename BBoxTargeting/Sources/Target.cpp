@@ -44,6 +44,7 @@ CvPoint Target::getCenter()
 void Target::drawTarget(CvScalar color)
 {
 	cvCircle(originImage, this->getCenter(), 5, color, 2, 8, 0);
+	cvCircle(originImage, cvPoint(leftX(), bottomY()), 2, color, 4, 8, 0);
 	cvRectangleR(originImage, boundingBox, color, 2, 8, 0);
 	cvDrawContours(originImage, &contour, color, color, 1, 1, 0);
 
@@ -53,8 +54,10 @@ void Target::drawTarget(CvScalar color)
 
 void Target::getNavigationString()
 {
-	float x = getCenter().x- 320.0;
-	float y = getCenter().y - 240.0;
+	//IMPORTANT: ALL OFFSETS ARE MEASURED FROM BOTTOM-LEFT CORNER
+	//TODO remember to account for perspective distortion depending on whether the camera is on the left or right for determining distance to bottom-right corner.
+	float x = leftX() - 320.0; // <-- Edit this
+	float y = bottomY() - 240.0; // <-- and this for perspective distortion
 	float angleX = asin((x*sin(CAMERA_VIEWING_ANGLE_HALF_X))/320); //0.608761429 = sin(37.5 degrees) //37.5 = half viewing angle in y direction
 	float angleY = -1 * asin((y*sin(CAMERA_VIEWING_ANGLE_HALF_Y))/240); //28.1255 = half viewing angle in X-direction
 
@@ -66,6 +69,8 @@ void Target::getNavigationString()
 	 * get the angular Y offset from the center of the camera irrespective of camera rotation
 	 */
 	offsets[1] = rad2deg(angleY) + CAMERA_ROTATION_AXIS_X;
+	offsets[2] = TOP_TARGET_HEIGHT_FROM_BOTTOM_TO_GROUND;
+	offsets[3] = (TOP_TARGET_HEIGHT_FROM_BOTTOM_TO_GROUND - CAMERA_HEIGHT_OFF_GROUND)/tan(deg2rad(offsets[1]));
 }
 
 int Target::getArea()

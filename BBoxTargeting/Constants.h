@@ -50,7 +50,8 @@ struct DebugConstants
 #define CAMERA_VIEWING_ANGLE_HALF_Y 28.1255
 
 #define CAMERA_ROTATION_AXIS_X 0 //14.6209 //!< The vertical axis angle offset of the camera on the robot.
-#define CAMERA_HEIGHT 19.5 //!< The camera's height on the robot.
-	//Cosmetic attributes
+#define CAMERA_HEIGHT_OFF_GROUND 19.5 //!< The camera's height on the robot.
+
+#define TOP_TARGET_HEIGHT_FROM_BOTTOM_TO_GROUND 50
 
 #endif /* CONSTANTS_H_ */

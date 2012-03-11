@@ -106,8 +106,11 @@ int main()
 				}
 
 				targetSet[highestTargetIndex].getNavigationString();
-				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[0]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY()), &font1, CV_RGB(255,255,255));
-				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[1]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY() + 14), &font1, CV_RGB(255,0,255));
+				//IMPORTANT: ALL OFFSETS ARE MEASURED FROM BOTTOM-LEFT CORNER
+				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[0]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY()), &font1, CV_RGB(255,255,255)); //X-angle offset
+				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[1]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY() + 14), &font1, CV_RGB(255,0,0)); //Y-angle offset
+				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[2]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY() + 28), &font1, CV_RGB(255,255,0)); //Height off ground of targeyt
+				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[3]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY() + 42), &font1, CV_RGB(0,255,255)); //camera distance to target
 
 			}
 		}
