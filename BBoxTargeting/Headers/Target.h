@@ -10,6 +10,8 @@
 #include <opencv/cv.h>
 #include "../Headers/HelperFunctions.h"
 #include "../Headers/Line.h"
+#include <string>
+#include <math.h>
 
 using namespace Lines;
 
@@ -76,7 +78,7 @@ class Target
 		IplImage* originImage; //!< A pointer to the IplImage the target originated from.
 		int targetIndex; //!< The index the target is at. 0 = top target; 1 = middle left; 2 = middle right; 3 = bottom target
 
-		float getGroundDistanceFromArea();
+		float getGroundDistanceFromArea(float area);
 };
 
 

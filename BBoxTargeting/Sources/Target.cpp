@@ -7,7 +7,6 @@
 #include "../Headers/Target.h"
 #include "../Headers/HelperFunctions.h"
 #include "../Constants.h"
-#include <math.h>
 
 using namespace cv;
 using namespace Lines;
@@ -55,7 +54,7 @@ void Target::drawTarget(CvScalar color)
 void Target::getNavigationString()
 {
 	//TODO add functions here to make it work
-	groundDistance = getGroundDistanceFromArea();
+	groundDistance = getGroundDistanceFromArea(boundingBox.width * boundingBox.height * 1.0);
 }
 
 int Target::getArea()
@@ -113,7 +112,8 @@ int Target::height()
 	return boundingBox.height;
 }
 
-float Target::getGroundDistanceFromArea()
+float Target::getGroundDistanceFromArea(float area)
 {
+	return pow((double) area, -0.5598084)*20293.5996;
 
 }
