@@ -3,8 +3,7 @@ main.d main.o: ../main.cpp .././Headers/Threshold.h \
  .././Headers/../Headers/../Headers/HelperFunctions.h \
  .././Headers/../Headers/../Headers/Line.h \
  .././Headers/../Headers/../Headers/../Headers/HelperFunctions.h \
- .././Headers/Target.h ../Headers/TargetPositionDetermination.h \
- ../Headers/../Headers/Target.h ../Headers/../Constants.h
+ .././Headers/Target.h
 
 .././Headers/Threshold.h:
 
@@ -19,9 +18,3 @@ main.d main.o: ../main.cpp .././Headers/Threshold.h \
 .././Headers/../Headers/../Headers/../Headers/HelperFunctions.h:
 
 .././Headers/Target.h:
-
-../Headers/TargetPositionDetermination.h:
-
-../Headers/../Headers/Target.h:
-
-../Headers/../Constants.h:

@@ -16,7 +16,7 @@
 struct DebugConstants
 {
 	#define USE_CAM 0 //!< Indicates whether the capture device is a camera (1) or provided video file.
-	#define VERBOSITY 1 //!< A value denoting the output level on the console.
+	#define VERBOSITY 0 //!< A value denoting the output level on the console.
 };
 
 /**
@@ -37,21 +37,21 @@ struct DebugConstants
 #define FILTER_CONTOURS_BBOXBORDERTHRESHOLD 5 //!< The minimum number of pixels a target's bounding box can be near to the edges of the image for the contour to be considered as a target. @see pickTargets
 #define FILTER_CONTOURS_BBOXMAXAREAPERCENT 0.4 //!< The maximum percentage of the screen that can be coved by a contour's bounding box before it won't be considered as a target. @see pickTargets
 
-#define FILTER_CONTOURS_MINAREA 200 //!< The minimum value of a contour's area for it to be selected as a target. @see pickTargets
-#define FILTER_CONTOURS_ASPECTRATIO_MIN 0  //!< The minimum aspect ratio of a potential target's bounding box. @see pickTargets
-#define FILTER_CONTOURS_ASPECTRATIO_MAX 2 //!< The maximum aspect ratio of a potential target's bounding box. @see pickTargets
+#define FILTER_CONTOURS_MINAREA 550 //!< The minimum value of a contour's area for it to be selected as a target. @see pickTargets
+#define FILTER_CONTOURS_ASPECTRATIO_MIN 0.5 //!< The minimum aspect ratio of a potential target's bounding box. @see pickTargets
+#define FILTER_CONTOURS_ASPECTRATIO_MAX 1.5 //!< The maximum aspect ratio of a potential target's bounding box. @see pickTargets
 #define FILTER_CONTOURS_POINTSPERCONTOURSIDE 6 //!< The number of points on each target's contour's shortest side. @see Target::spacePointsEvenly
 
 #define FILTER_POINTS_CROSSPRODUCTTHRESHOLD 30 //20 //!< The threshold value used for filtering non-colinear lines on contours. @see Target::calculateSegmentsFromPoints
 
-#define TARGET_INDEX_SELECTION_ACCEPTABLE_ALIGMENT_ERROR 25
+#define OFFSETS_SAMPLESPERREADING 32 //!< The number of samples to track in the past for moving-camera averages of target offsets.
 
-#define CAMERA_VIEWING_ANGLE_HALF_X 37.5
-#define CAMERA_VIEWING_ANGLE_HALF_Y 28.125
+#define HOOP_OFFSETFROM_CENTEROFSQUARE_X 3//!< The X-offset (in meters) of the center of the hoop from the target's marker center. 3
+#define HOOP_OFFSETFROM_CENTEROFSQUARE_Y 15.5//!< The Y-offset (in meters) of the center of the hoop from the target's marker center. 11
+#define HOOP_OFFSETFROM_CENTEROFSQUARE_Z 11//!< The Z-offset (in meters) of the center of the hoop from the target's marker center. 15.5
 
-#define CAMERA_ROTATION_AXIS_X 0 //14.6209 //!< The vertical axis angle offset of the camera on the robot.
-#define CAMERA_HEIGHT_OFF_GROUND 33 //!< The camera's height on the robot.
-
-#define TOP_TARGET_HEIGHT_FROM_BOTTOM_TO_GROUND 63
+#define CAMERA_ROTATION_AXIS_X 20 //14.6209 //!< The vertical axis angle offset of the camera on the robot.
+#define CAMERA_HEIGHT 19.5 //!< The camera's height on the robot.
+	//Cosmetic attributes
 
 #endif /* CONSTANTS_H_ */

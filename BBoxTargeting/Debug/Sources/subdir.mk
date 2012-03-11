@@ -7,21 +7,18 @@ CPP_SRCS += \
 ../Sources/HelperFunctions.cpp \
 ../Sources/Line.cpp \
 ../Sources/Target.cpp \
-../Sources/TargetPositionDetermination.cpp \
 ../Sources/Threshold.cpp 
 
 OBJS += \
 ./Sources/HelperFunctions.o \
 ./Sources/Line.o \
 ./Sources/Target.o \
-./Sources/TargetPositionDetermination.o \
 ./Sources/Threshold.o 
 
 CPP_DEPS += \
 ./Sources/HelperFunctions.d \
 ./Sources/Line.d \
 ./Sources/Target.d \
-./Sources/TargetPositionDetermination.d \
 ./Sources/Threshold.d 
 
 
