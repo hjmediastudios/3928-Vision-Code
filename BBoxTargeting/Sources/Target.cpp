@@ -22,13 +22,7 @@ Target::Target(CvSeq* cntr, IplImage* img)
 {
 	boundingBox = cvBoundingRect(cntr);
 	originImage = img;
-	contour = *cntr;
-	//Create a set of Lines based off the bounding box.
-	bBoxLines[0] = Line::Line(cvPoint(boundingBox.x, boundingBox.y), cvPoint(boundingBox.x + boundingBox.width, boundingBox.y));
-	bBoxLines[1] = Line::Line(cvPoint(boundingBox.x + boundingBox.width, boundingBox.y), cvPoint(boundingBox.x + boundingBox.width, boundingBox.y + boundingBox.height));
-	bBoxLines[2] = Line::Line(cvPoint(boundingBox.x, boundingBox.y + boundingBox.height), cvPoint(boundingBox.x + boundingBox.width, boundingBox.y + boundingBox.height));
-	bBoxLines[3] = Line::Line(cvPoint(boundingBox.x, boundingBox.y), cvPoint(boundingBox.x, boundingBox.y + boundingBox.height));
-
+	contour = *cntr;.
 }
 
 CvPoint Target::getBoundingBoxPoint1()
@@ -65,9 +59,11 @@ void Target::drawTarget(CvScalar color)
 void Target::getNavigationString()
 {
 	float x = getCenter().x- 320.0;
-	float angle = asin((x*0.608761429)/320); //0.608761429 = sin(37.5 degrees)
-	offsets[1] = x/(tan(angle));
-	offsets[0] = rad2deg(angle);
+	float y = getCenter().y - 240.0;
+	float angleX = asin((x*sin(CAMERA_VIEWING_ANGLE_HALF_X))/320); //0.608761429 = sin(37.5 degrees) //37.5 = half viewing angle in y direction
+	float angleY = -1 * asin((y*sin(CAMERA_VIEWING_ANGLE_HALF_Y))/240); //28.1255 = half viewing angle in X-direction
+	offsets[0] = rad2deg(angleX); //Offsets[0] = angle offset in x-direction.
+	offsets[1] = rad2deg(angleY);
 }
 
 int Target::getArea()

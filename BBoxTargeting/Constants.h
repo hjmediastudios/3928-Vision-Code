@@ -50,6 +50,9 @@ struct DebugConstants
 #define HOOP_OFFSETFROM_CENTEROFSQUARE_Y 15.5//!< The Y-offset (in meters) of the center of the hoop from the target's marker center. 11
 #define HOOP_OFFSETFROM_CENTEROFSQUARE_Z 11//!< The Z-offset (in meters) of the center of the hoop from the target's marker center. 15.5
 
+#define CAMERA_VIEWING_ANGLE_HALF_X 37.5
+#define CAMERA_VIEWING_ANGLE_HALF_Y 28.1255
+
 #define CAMERA_ROTATION_AXIS_X 20 //14.6209 //!< The vertical axis angle offset of the camera on the robot.
 #define CAMERA_HEIGHT 19.5 //!< The camera's height on the robot.
 	//Cosmetic attributes

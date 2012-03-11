@@ -63,8 +63,8 @@ class Target
 
 	private:
 		CvRect boundingBox; //!< The CvRect defining the bounding box of the target.
-		IplImage* originImage;
-		Line bBoxLines[4];
+		IplImage* originImage; //!< A pointer to the IplImage the target originated from.
+
 };
 
 
