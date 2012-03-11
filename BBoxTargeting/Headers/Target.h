@@ -78,6 +78,7 @@ class Target
 
 		float getYDistanceFromBBoxHeight();
 		float getXDistanceFromAspectRatio();
+		float getAngleFromOffsets();
 };
 
 
