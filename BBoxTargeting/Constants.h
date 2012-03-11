@@ -44,11 +44,7 @@ struct DebugConstants
 
 #define FILTER_POINTS_CROSSPRODUCTTHRESHOLD 30 //20 //!< The threshold value used for filtering non-colinear lines on contours. @see Target::calculateSegmentsFromPoints
 
-#define OFFSETS_SAMPLESPERREADING 32 //!< The number of samples to track in the past for moving-camera averages of target offsets.
-
-#define HOOP_OFFSETFROM_CENTEROFSQUARE_X 3//!< The X-offset (in meters) of the center of the hoop from the target's marker center. 3
-#define HOOP_OFFSETFROM_CENTEROFSQUARE_Y 15.5//!< The Y-offset (in meters) of the center of the hoop from the target's marker center. 11
-#define HOOP_OFFSETFROM_CENTEROFSQUARE_Z 11//!< The Z-offset (in meters) of the center of the hoop from the target's marker center. 15.5
+#define TARGET_INDEX_SELECTION_ACCEPTABLE_ALIGMENT_ERROR 25
 
 #define CAMERA_VIEWING_ANGLE_HALF_X 37.5
 #define CAMERA_VIEWING_ANGLE_HALF_Y 28.1255

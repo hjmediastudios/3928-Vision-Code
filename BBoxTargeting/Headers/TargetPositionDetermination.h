@@ -12,6 +12,8 @@
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 #include "../Headers/Target.h"
+#include "../Constants.h"
+
 
 namespace targetPositionDetermination
 {
