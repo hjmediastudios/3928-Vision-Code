@@ -7,6 +7,7 @@ IplImage* Threshold::threshold_findGreen(IplImage* img, int dilates)
 	IplImage *imgThreshold = cvCreateImage(imgSize, 8, 1);
 	cvCvtColor(img, imgHSV, CV_BGR2HSV); //convert the BGR image to an HSV image stored in imgHSV
 	cvInRangeS(imgHSV, cvScalar(THRESHOLD_HUE_MIN, THRESHOLD_SAT_MIN, THRESHOLD_VAL_MIN), cvScalar(THRESHOLD_HUE_MAX, THRESHOLD_SAT_MAX, THRESHOLD_VAL_MAX), imgThreshold);
+	//Dilates are sloooow...
 	for (int i=0; i<dilates; i++)
 		cvDilate(imgThreshold, imgThreshold);
 
