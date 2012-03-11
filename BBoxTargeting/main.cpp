@@ -97,6 +97,7 @@ int main()
 
 			if (numTargets> 0) //Run the following code if targets have been found
 			{
+				targetPositionDetermination::setTargetIndices(targetSet, &numTargets, frame);
 				for (int i=0; i<numTargets; i++) //Cycle through targets.
 				{
 					targetSet[i].drawTarget(CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
@@ -107,11 +108,7 @@ int main()
 					//print target index
 					cvPutText(frame, floatToString(targetSet[i].getTargetIndex() + 0.0), cvPoint(targetSet[i].getBoundingBoxPoint1().x, targetSet[i].getBoundingBoxPoint1().y - 8), &font1, CV_RGB(255,255,255));
 				}
-
-				targetPositionDetermination::setTargetIndices(targetSet, &numTargets, frame);
 			}
-
-
 		}
 
 		//draw crosshairs
