@@ -54,24 +54,9 @@ void Target::drawTarget(CvScalar color)
 
 void Target::getNavigationString()
 {
-	//IMPORTANT: ALL OFFSETS ARE MEASURED FROM BOTTOM-LEFT CORNER
-	//TODO remember to account for perspective distortion depending on whether the camera is on the left or right for determining distance to bottom-right corner.
-	float x = leftX() - 320.0; // <-- Edit this
-	float y = bottomY() - 240.0; // <-- and this for perspective distortion
-	float angleX = asin((x*sin(CAMERA_VIEWING_ANGLE_HALF_X))/320); //0.608761429 = sin(37.5 degrees) //37.5 = half viewing angle in y direction
-	float angleY = asin((y*sin(CAMERA_VIEWING_ANGLE_HALF_Y))/240); //28.1255 = half viewing angle in X-direction
-
-	//offsets[0] = angle offset in X direction
-	offsets[0] = rad2deg(angleX);
-	angleY += deg2rad(CAMERA_ROTATION_AXIS_X);
-	/*
-	 * offsets[1] = angle offset from center of camera in Y direction, with camera angle offset added to
-	 * get the angular Y offset from the center of the camera irrespective of camera rotation
-	 */
-	offsets[1] = -1 * rad2deg(angleY);
-	offsets[2] = TOP_TARGET_HEIGHT_FROM_BOTTOM_TO_GROUND - CAMERA_HEIGHT_OFF_GROUND;
-	offsets[3] = (offsets[2])/(tan(angleY));
-
+	//TODO add functions here to make it work
+	offsets[0] = getXDistanceFromAspectRatio();
+	offsets[1] = getYDistanceFromBBoxHeight();
 }
 
 int Target::getArea()
@@ -127,4 +112,14 @@ int Target::width()
 int Target::height()
 {
 	return boundingBox.height;
+}
+
+float Target::getYDistanceFromBBoxHeight()
+{
+	return 0.0;
+}
+
+float Target::getXDistanceFromAspectRatio()
+{
+	return 0.0;
 }

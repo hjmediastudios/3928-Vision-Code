@@ -46,7 +46,7 @@ class Target
 		 */
 		CvPoint getCenter(); //!< Gets the center point of the target.
 
-		float offsets[4]; //!< The X, Y, and Z offsets of the target from the camera
+		float offsets[3]; //!< The X, Y, and Z offsets of the target from the camera
 		CvSeq contour; //!< The CvSeq contour of the target.
 
 		/**
@@ -76,6 +76,8 @@ class Target
 		IplImage* originImage; //!< A pointer to the IplImage the target originated from.
 		int targetIndex; //!< The index the target is at. 0 = top target; 1 = middle left; 2 = middle right; 3 = bottom target
 
+		float getYDistanceFromBBoxHeight();
+		float getXDistanceFromAspectRatio();
 };
 
 
