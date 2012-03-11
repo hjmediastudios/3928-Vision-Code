@@ -118,3 +118,13 @@ int Target::bottomY()
 {
 	return boundingBox.y + boundingBox.height;
 }
+
+int Target::width()
+{
+	return boundingBox.width;
+}
+
+int Target::height()
+{
+	return boundingBox.height;
+}

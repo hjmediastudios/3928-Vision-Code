@@ -103,15 +103,12 @@ int main()
 					targetSet[i].drawTarget(CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
 					//print target index
 					cvPutText(frame, floatToString(targetSet[i].getTargetIndex() + 0.0), cvPoint(targetSet[i].leftX(), targetSet[i].topY() - 8), &font1, CV_RGB(255,255,255));
+					targetSet[i].getNavigationString();
+					cvPutText(frame, floatToString(targetSet[i].width()), cvPoint(targetSet[i].leftX()+20,targetSet[i].topY()-8), &font1, CV_RGB(255, 0, 0)); //X-angle offset
+					cvPutText(frame, floatToString(targetSet[i].height()), cvPoint(targetSet[i].rightX()+6,targetSet[i].topY()+20), &font1, CV_RGB(0, 255, 0)); //X-angle offset
+					cvPutText(frame, floatToString(targetSet[i].getAspectRatio()), cvPoint(targetSet[i].rightX()+6,targetSet[i].topY()+34), &font1, CV_RGB(150, 150, 150)); //X-angle offset
+
 				}
-
-				targetSet[highestTargetIndex].getNavigationString();
-				//IMPORTANT: ALL OFFSETS ARE MEASURED FROM BOTTOM-LEFT CORNER
-				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[0]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY()), &font1, CV_RGB(255,255,255)); //X-angle offset
-				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[1]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY() + 14), &font1, CV_RGB(255,0,0)); //Y-angle offset
-				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[2]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY() + 28), &font1, CV_RGB(255,255,0)); //Height off ground of targeyt
-				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[3]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY() + 42), &font1, CV_RGB(0,255,255)); //camera distance to target
-
 			}
 		}
 

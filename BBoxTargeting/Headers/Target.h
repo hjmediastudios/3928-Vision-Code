@@ -68,6 +68,9 @@ class Target
 		int rightX();
 		int leftX();
 
+		int width();
+		int height();
+
 	private:
 		CvRect boundingBox; //!< The CvRect defining the bounding box of the target.
 		IplImage* originImage; //!< A pointer to the IplImage the target originated from.

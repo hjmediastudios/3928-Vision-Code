@@ -15,8 +15,8 @@
  */
 struct DebugConstants
 {
-	#define USE_CAM 1 //!< Indicates whether the capture device is a camera (1) or provided video file.
-	#define VERBOSITY 0 //!< A value denoting the output level on the console.
+	#define USE_CAM 0 //!< Indicates whether the capture device is a camera (1) or provided video file.
+	#define VERBOSITY 1 //!< A value denoting the output level on the console.
 };
 
 /**
