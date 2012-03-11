@@ -83,8 +83,7 @@ int main()
 #endif
 			exit(0);
 		}
-		frameThreshed = Threshold::threshold_findGreen(frame, 5);
-		//		cvShowImage("Threshold", frameThreshed);
+		frameThreshed = Threshold::threshold_findGreen(frame, THRESHOLD_DILATES);
 		contours = Threshold::findContours(frameThreshed);
 		cvReleaseImage(&frameThreshed);
 		//cvShowImage("Contours", frame);

@@ -33,6 +33,7 @@ struct DebugConstants
 #define THRESHOLD_SAT_MAX 255 //!< The maximum saturation value for thresholding a image to find targets
 #define THRESHOLD_VAL_MIN 63 //!< The minimum value value for thresholding a image to find targets
 #define THRESHOLD_VAL_MAX 255 //!< The maximum value value for thresholding a image to find targets
+#define THRESHOLD_DILATES 2
 
 #define FILTER_CONTOURS_BBOXBORDERTHRESHOLD 5 //!< The minimum number of pixels a target's bounding box can be near to the edges of the image for the contour to be considered as a target. @see pickTargets
 #define FILTER_CONTOURS_BBOXMAXAREAPERCENT 0.4 //!< The maximum percentage of the screen that can be coved by a contour's bounding box before it won't be considered as a target. @see pickTargets
