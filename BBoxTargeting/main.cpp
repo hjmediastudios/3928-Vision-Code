@@ -30,7 +30,7 @@ int main()
 #if USE_CAM == 0
 		camera = cvCaptureFromAVI("TestImages/capture1.avi");
 #else
-		camera = cvCaptureFromCAM(CAMERA_INDEX);	//TODO Why?
+		camera = cvCaptureFromCAM(CAMERA_INDEX);	//TODO Implement switching of cameras to Logitech model
 #endif
 		//		storage = cvCreateMemStorage(0);
 

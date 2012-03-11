@@ -74,3 +74,13 @@ float Target::getAspectRatio()
 {
 	return ((float) boundingBox.width)/boundingBox.height;
 }
+
+void Target::setTargetIndex(int indx)
+{
+	targetIndex = indx;
+}
+
+int Target::getTargetIndex()
+{
+	return targetIndex;
+}

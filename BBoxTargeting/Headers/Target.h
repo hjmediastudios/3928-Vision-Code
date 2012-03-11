@@ -60,10 +60,13 @@ class Target
 		int getArea();
 		float getAspectRatio();
 		float getRectangularity();
+		int getTargetIndex();
+		void setTargetIndex(int indx);
 
 	private:
 		CvRect boundingBox; //!< The CvRect defining the bounding box of the target.
 		IplImage* originImage; //!< A pointer to the IplImage the target originated from.
+		int targetIndex; //!< The index the target is at. 0 = top target; 1 = middle left; 2 = middle right; 3 = bottom target
 
 };
 
