@@ -9,7 +9,6 @@
 #ifndef HELPERFUNCTIONS_H_
 #define HELPERFUNCTIONS_H_
 #include <opencv/cv.h>
-#include <aruco/aruco.h>
 #include <opencv/cvaux.h>
 
 /**
@@ -42,13 +41,7 @@ CvFont* getFont(float size);
  * @return The distance from the origin to the given point, expressed in the same units as the inputs.
  */
 float calculateVectorFrom3Offsets(float vecX, float vecY,float vecZ);
-/**
- * @brief Draws the 3D axis indicating the orientation of a Aruco marker object.
- * @param Image A pointer to the desied image to draw on.
- * @param m The Aruco marker object the axis indicates the orientation of.
- * @param CP The Aruco camera parameters used to project the axis onto the image.
- */
-void drawAxis(IplImage *Image, aruco::Marker &m,const aruco::CameraParameters &CP);
+
 /**
  * @brief Converts the dimensions of an Aruco marker (meters) to inches.
  * @param markerCoordinate The dimension in meters.
