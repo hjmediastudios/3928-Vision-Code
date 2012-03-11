@@ -78,27 +78,14 @@ void targetPositionDetermination::setTargetIndices(Target* targets, int* numTarg
 	cvLine(img, cvPoint(targets[rightmostTargetIndex].getBoundingBoxPoint2().x + 5, targets[rightmostTargetIndex].getBoundingBoxPoint1().y - 5),
 			cvPoint(targets[rightmostTargetIndex].getBoundingBoxPoint2().x + 5, targets[rightmostTargetIndex].getBoundingBoxPoint2().y + 5), CV_RGB(255,150,200), 2, 8, 0);
 
+	targets[highestTargetIndex].setTargetIndex(0);
 
-	if (highestTargetIndex == lowestTargetIndex && highestTargetIndex == rightmostTargetIndex && highestTargetIndex == rightmostTargetIndex)
-	{ //only 1 target case
-		targets[highestTargetIndex].setTargetIndex(0);
-	}
+	if (leftmostTargetIndex == lowestTargetIndex)
+		targets[lowestTargetIndex].setTargetIndex(1);
+	else if (rightmostTargetIndex == lowestTargetIndex)
+		targets[lowestTargetIndex].setTargetIndex(2);
 	else
-	{
-		if (leftmostTargetIndex == lowestTargetIndex)
-		{
-			targets[leftmostTargetIndex].setTargetIndex(1);
-		}
-		else if (leftmostTargetIndex == highestTargetIndex)
-		{
-			targets[leftmostTargetIndex].setTargetIndex(0);
-		} //TODO how to decide between top-right and left-bottom conundrum?
-
-		else if (rightmostTargetIndex == lowestTargetIndex)
-		{
-			targets[rightmostTargetIndex].setTargetIndex(2);
-		}
-	}
+		targets[lowestTargetIndex].setTargetIndex(3);
 
 }
 
