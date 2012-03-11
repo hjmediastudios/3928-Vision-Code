@@ -17,7 +17,7 @@
 
 namespace targetPositionDetermination
 {
-	void setTargetIndices(Target* targets, int* numTargets, IplImage* img);
+	int setTargetIndices(Target* targets, int* numTargets, IplImage* img);
 	bool targetAHigherThanB(Target a, Target b);
 
 }

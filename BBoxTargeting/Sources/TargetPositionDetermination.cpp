@@ -9,10 +9,8 @@
 
 using namespace std;
 
-void targetPositionDetermination::setTargetIndices(Target* targets, int* numTargets, IplImage* img)
+int targetPositionDetermination::setTargetIndices(Target* targets, int* numTargets, IplImage* img)
 {
-	std::cout << "Number of targets: " << *numTargets << endl;
-
 	//Determine the size of the image
 	CvSize imgSize = cvGetSize(img);
 
@@ -86,6 +84,8 @@ void targetPositionDetermination::setTargetIndices(Target* targets, int* numTarg
 		targets[lowestTargetIndex].setTargetIndex(2);
 	else
 		targets[lowestTargetIndex].setTargetIndex(3);
+
+	return highestTargetIndex; //assume that the highest target's index is the top target
 
 }
 
