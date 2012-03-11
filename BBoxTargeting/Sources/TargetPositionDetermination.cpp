@@ -78,37 +78,31 @@ void targetPositionDetermination::setTargetIndices(Target* targets, int* numTarg
 	cvLine(img, cvPoint(targets[rightmostTargetIndex].getBoundingBoxPoint2().x + 5, targets[rightmostTargetIndex].getBoundingBoxPoint1().y - 5),
 			cvPoint(targets[rightmostTargetIndex].getBoundingBoxPoint2().x + 5, targets[rightmostTargetIndex].getBoundingBoxPoint2().y + 5), CV_RGB(255,150,200), 2, 8, 0);
 
-	if ((*numTargets) == 1)
-	{ //If only one target is seen...
-		targets[highestTargetIndex].setTargetIndex(0); //...assume it's the highest one.
+
+	if (highestTargetIndex == lowestTargetIndex && highestTargetIndex == rightmostTargetIndex && highestTargetIndex == rightmostTargetIndex)
+	{ //only 1 target case
+		targets[highestTargetIndex].setTargetIndex(0);
 	}
-	else if ((*numTargets) == 2)
-	{ //If two targets are seen...
-		if (abs(targets[highestTargetIndex].getCenter().x - targets[lowestTargetIndex].getCenter().x) <= TARGET_INDEX_SELECTION_ACCEPTABLE_ALIGMENT_ERROR)
-		{ //...and they're aligned in the same X-direction...
-			targets[highestTargetIndex].setTargetIndex(0); //...assume the highest target is the upper target...
-			targets[lowestTargetIndex].setTargetIndex(3); //...and the lowest is the lower target.
+	else
+	{
+		if (leftmostTargetIndex == lowestTargetIndex)
+		{
+			targets[leftmostTargetIndex].setTargetIndex(1);
 		}
-		else if (abs(targets[rightmostTargetIndex].getCenter().y - targets[leftmostTargetIndex].getCenter().y) <= TARGET_INDEX_SELECTION_ACCEPTABLE_ALIGMENT_ERROR)
-		{ //...and they're aligned in the same Y-direction...
-			targets[rightmostTargetIndex].setTargetIndex(2); //...assume the rightmost one is the middle right target...
-			targets[leftmostTargetIndex].setTargetIndex(1); //...and the leftmost one is the middle left target.
-		}
+		else if (leftmostTargetIndex == highestTargetIndex)
+		{
+			targets[leftmostTargetIndex].setTargetIndex(0);
+		} //TODO how to decide between top-right and left-bottom conundrum?
+
 		else if (rightmostTargetIndex == lowestTargetIndex)
-		{ //...and the lowest one is the rightmost...
-			targets[rightmostTargetIndex].setTargetIndex(2); //...assume the rightmost one is the middle right...
-			targets[leftmostTargetIndex].setTargetIndex(0); //...and the leftmost one is the upper target.
-		}
-		else if (rightmostTargetIndex == highestTargetIndex)
-		{ //... and the highest one is rightmost...
-			targets[rightmostTargetIndex].setTargetIndex(2); //...assume the rightmost one is the middle right...
-			targets[leftmostTargetIndex].setTargetIndex(3); //...and the leftmost one is the bottom target.
-		}
-		else if (leftmostTargetIndex == lowestTargetIndex)
-		{ //...and the leftmost target is lowest...
-			targets[leftmostTargetIndex].setTargetIndex(1); //...assume the leftmost one is the middle left...
-			targets[rightmostTargetIndex].setTargetIndex(0); //...and the rightmost one is the upper target.
+		{
+			targets[rightmostTargetIndex].setTargetIndex(2);
 		}
 	}
 
+}
+
+bool targetPositionDetermination::targetAHigherThanB(Target a, Target b)
+{
+	return true;
 }
