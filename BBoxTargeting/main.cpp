@@ -3,7 +3,6 @@
 #include "./Headers/Threshold.h"
 #include "./Headers/Target.h"
 #include "Headers/TargetPositionDetermination.h"
-#include <sstream>
 #include <iostream>
 #include <cstdlib>
 
