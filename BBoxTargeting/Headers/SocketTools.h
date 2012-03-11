@@ -15,6 +15,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include "../Constants.h"
 
 int openSocket();
 int writeToSocket(char* data);

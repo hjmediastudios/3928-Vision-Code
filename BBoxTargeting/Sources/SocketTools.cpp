@@ -19,7 +19,9 @@ int openSocket()
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd < 0)
     {
-        printf("Could not open socket!");
+#if VERBOSITY >= 1
+        printf("Could not open socket!\n");
+#endif
 	return 0;
     }
 
@@ -27,7 +29,9 @@ int openSocket()
     server = gethostbyname(hostname);
     if (server == NULL)
     {
+#if VERBOSITY >= 1
         printf("ERROR, no such host as %s\n", hostname);
+#endif
  	return 0;
     }
 
@@ -41,7 +45,9 @@ int openSocket()
     /* connect: create a connection with the server */
     if (connect(sockfd, (struct sockaddr*)&serveraddr, sizeof(serveraddr)) < 0)
     {
-      printf("Error connecting\n");
+#if VERBOSITY >=1
+      printf("ERROR: Error connecting\n");
+#endif
       return 0;
     }
     return 1;
@@ -55,6 +61,8 @@ int writeToSocket(char* data)
     {
       return 0;
     }
-    printf("Send %d bytes\n", n);
+#if VERBOSITY >=2
+    printf("Sent %d bytes\n", n);
+#endif
     return 1;
 }

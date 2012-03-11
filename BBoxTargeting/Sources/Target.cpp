@@ -56,16 +56,19 @@ void Target::sendNavigationString()
 	//TODO add functions here to make it work
 	groundDistance = getGroundDistanceFromArea(boundingBox.width * boundingBox.height * 1.0);
 	char buffer[500];
-	float count = 0;
 
 	sprintf(buffer, "%f;%f", 0.0 + getCenter().x, groundDistance);
 	if(!writeToSocket(buffer))
 	{
-		printf("Something went wrong\n");
+#if VERBOSITY >= 1
+		printf("ERROR: Problem in sending packet to C-RIO.\n");
+#endif
 	}
 	else
 	{
+#if VERBOSITY >= 1
 		printf("Sent data %s\n", buffer);
+#endif
 	}
 }
 
