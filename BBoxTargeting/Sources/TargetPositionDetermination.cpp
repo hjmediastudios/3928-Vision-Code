@@ -5,8 +5,17 @@
  *      Author: nick
  */
 #include "../Headers/TargetPositionDetermination.h"
+#include <iostream>
 
-void targetPositionDetermination::setTargetIndices()
+using namespace std;
+
+void targetPositionDetermination::setTargetIndices(Target* targets, int* numTargets, IplImage* img)
 {
+	//Determine the size of the image
+	CvSize imgSize = cvGetSize(img);
+	int imgHeight = imgSize.height;
+	int imgWidth = imgSize.width;
+
+	std::cout << "Number of targets: " << *numTargets << endl;
 
 }

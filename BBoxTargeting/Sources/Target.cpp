@@ -23,6 +23,7 @@ Target::Target(CvSeq* cntr, IplImage* img)
 	boundingBox = cvBoundingRect(cntr);
 	originImage = img;
 	contour = *cntr;
+	targetIndex = 3; //set targets as bottom target by default
 }
 
 CvPoint Target::getBoundingBoxPoint1()
@@ -56,8 +57,15 @@ void Target::getNavigationString()
 	float y = getCenter().y - 240.0;
 	float angleX = asin((x*sin(CAMERA_VIEWING_ANGLE_HALF_X))/320); //0.608761429 = sin(37.5 degrees) //37.5 = half viewing angle in y direction
 	float angleY = -1 * asin((y*sin(CAMERA_VIEWING_ANGLE_HALF_Y))/240); //28.1255 = half viewing angle in X-direction
-	offsets[0] = rad2deg(angleX); //Offsets[0] = angle offset in x-direction.
-	offsets[1] = rad2deg(angleY);
+
+	//offsets[0] = angle offset in X direction
+	offsets[0] = rad2deg(angleX);
+
+	/*
+	 * offsets[1] = angle offset from center of camera in Y direction, with camera angle offset added to
+	 * get the angular Y offset from the center of the camera irrespective of camera rotation
+	 */
+	offsets[1] = rad2deg(angleY) + CAMERA_ROTATION_AXIS_X;
 }
 
 int Target::getArea()

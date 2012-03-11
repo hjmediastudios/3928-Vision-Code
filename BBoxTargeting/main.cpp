@@ -2,7 +2,13 @@
 #include <opencv/highgui.h>
 #include "./Headers/Threshold.h"
 #include "./Headers/Target.h"
+#include "Headers/TargetPositionDetermination.h"
 #include <sstream>
+#include <iostream>
+#include <cstdlib>
+
+using namespace targetPositionDetermination;
+using namespace std;
 
 IplImage *frame; //!< A pointer to the currently-evaluated frame.
 CvSize frameSize; //!< A CvSize object containing the frame's dimensions.
@@ -10,9 +16,6 @@ IplImage *frameThreshed; //!< A pointer to the thresholded (B & W) version of th
 CvCapture *camera = NULL; //!< A pointer to the current capture device.
 CvFont font1; //!< The font used for all drawing on the current frame.
 
-float movingCameraAverageForHighestTarget[OFFSETS_SAMPLESPERREADING][3]; //!< The number of samples taveraged together to provide a moving-camera average for he highest target's position
-float movingCameraRunningSum[3] = {0, 0, 0}; //!< The running sums (X, Y, Z) of the highest target's offsets.
-int currentSample = 0; //!< The current sample for the running average. @see movingCameraAveragForHighestTarget
 int highestTargetIndex = 0; //!< The index index in targetSet of the highest target in the view. @see targetSet
 
 CvSeq* contours; //!< A pointer to the CvSeq object containing the current set of contours in the image.
@@ -55,7 +58,6 @@ int main()
 			cvSetCaptureProperty(camera, CV_CAP_PROP_FRAME_WIDTH, 640);
 			cvSetCaptureProperty(camera, CV_CAP_PROP_FRAME_HEIGHT, 480);
 			cvInitFont(&font1,CV_FONT_HERSHEY_SIMPLEX|CV_FONT_ITALIC, 0.5,0.5,0,1);
-			memset(movingCameraAverageForHighestTarget, 0, sizeof(float)*3*OFFSETS_SAMPLESPERREADING);
 
 
 #if VERBOSITY >= 2
@@ -71,17 +73,19 @@ int main()
 	//Main image-processing loop
 	while (true)
 	{
+		std::cout << endl;
 		frame = cvQueryFrame(camera);
 
 		if (!frame)
 		{
+
 #if VERBOSITY >= 1
 			std::cerr << "ERROR: Couldn't query frame. Quitting.\n";
 #endif
 			exit(0);
 		}
 		frameThreshed = Threshold::threshold_findGreen(frame, 5);
-//		cvShowImage("Threshold", frameThreshed);
+		//		cvShowImage("Threshold", frameThreshed);
 		contours = Threshold::findContours(frameThreshed);
 		cvReleaseImage(&frameThreshed);
 		//cvShowImage("Contours", frame);
@@ -100,13 +104,13 @@ int main()
 
 					cvPutText(frame, floatToString(targetSet[i].offsets[0]), cvPoint(targetSet[i].getBoundingBoxPoint2().x+1,targetSet[i].getBoundingBoxPoint1().y), &font1, CV_RGB(255,255,255));
 					cvPutText(frame, floatToString(targetSet[i].offsets[1]), cvPoint(targetSet[i].getBoundingBoxPoint2().x+1,targetSet[i].getBoundingBoxPoint1().y + 14), &font1, CV_RGB(255,0,255));
-					cvPutText(frame, floatToString((float) targetSet[i].getArea()), cvPoint(targetSet[i].getBoundingBoxPoint1().x,targetSet[i].getBoundingBoxPoint2().y + 14), &font1, CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
-					cvPutText(frame, floatToString(targetSet[i].getAspectRatio()), cvPoint(targetSet[i].getBoundingBoxPoint1().x,targetSet[i].getBoundingBoxPoint2().y + 28), &font1, CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
-					cvPutText(frame, floatToString(targetSet[i].getRectangularity()), cvPoint(targetSet[i].getBoundingBoxPoint1().x,targetSet[i].getBoundingBoxPoint2().y + 42), &font1, CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
+					//print target index
+					cvPutText(frame, floatToString(targetSet[i].getTargetIndex() + 0.0), cvPoint(targetSet[i].getBoundingBoxPoint1().x, targetSet[i].getBoundingBoxPoint1().y - 8), &font1, CV_RGB(255,255,255));
 				}
 
-
+				targetPositionDetermination::setTargetIndices(targetSet, &numTargets, frame);
 			}
+
 
 		}
 
