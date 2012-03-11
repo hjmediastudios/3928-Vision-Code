@@ -88,6 +88,7 @@ void Target::drawTarget(CvScalar color)
 
 void Target::spacePointsEvenly(int numPointsPerSide)
 {
+<<<<<<< HEAD
 	CvPoint spacedPoints[500];
 	spacedPoints[0] = pointSet[0];
 	int numSpacedPoints = 1;
@@ -469,6 +470,12 @@ void Target::calculatePosition(aruco::CameraParameters camParams)
 
 
 
+=======
+	//TODO add functions here to make it work
+	offsets[0] = getXDistanceFromAspectRatio();
+	offsets[1] = getYDistanceFromBBoxHeight();
+	offsets[2] = getAngleFromOffsets();
+>>>>>>> refs/heads/heightWidthComparisonMethod
 }
 
 aruco::Marker Target::getMarker()
@@ -518,4 +525,22 @@ void Target::getNavInfo(float camAngleDegrees)
 	offsets[1] = (-1*newHoopCoordinates[13]) + inchesToMeters(CAMERA_HEIGHT);
 	offsets[2] = newHoopCoordinates[14]*cos(angle);
 
+}
+
+float Target::getYDistanceFromBBoxHeight()
+{
+	return 0.0;
+}
+
+float Target::getXDistanceFromAspectRatio()
+{
+	return 0.0;
+}
+
+float Target::getAngleFromOffsets()
+{
+	if(offsets[1] != 0)
+		return atan(offsets[0]/offsets[1]);
+	else
+		return 0.0;
 }
