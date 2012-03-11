@@ -48,8 +48,8 @@ void Target::drawTarget(CvScalar color)
 	cvRectangleR(originImage, boundingBox, color, 2, 8, 0);
 	cvDrawContours(originImage, &contour, color, color, 1, 1, 0);
 
-	cvLine(originImage, getCenter(), cvPoint(320, getCenter().y), color, 1, 8, 0);
-	cvLine(originImage, getCenter(), cvPoint(getCenter().x, 240), color, 1, 8, 0);
+	cvLine(originImage, cvPoint(leftX(), bottomY()), cvPoint(320, bottomY()), color, 1, 8, 0);
+	cvLine(originImage, cvPoint(leftX(), bottomY()), cvPoint(leftX(), 240), color, 1, 8, 0);
 }
 
 void Target::getNavigationString()
@@ -59,18 +59,19 @@ void Target::getNavigationString()
 	float x = leftX() - 320.0; // <-- Edit this
 	float y = bottomY() - 240.0; // <-- and this for perspective distortion
 	float angleX = asin((x*sin(CAMERA_VIEWING_ANGLE_HALF_X))/320); //0.608761429 = sin(37.5 degrees) //37.5 = half viewing angle in y direction
-	float angleY = -1 * asin((y*sin(CAMERA_VIEWING_ANGLE_HALF_Y))/240); //28.1255 = half viewing angle in X-direction
+	float angleY = asin((y*sin(CAMERA_VIEWING_ANGLE_HALF_Y))/240); //28.1255 = half viewing angle in X-direction
 
 	//offsets[0] = angle offset in X direction
 	offsets[0] = rad2deg(angleX);
-
+	angleY += deg2rad(CAMERA_ROTATION_AXIS_X);
 	/*
 	 * offsets[1] = angle offset from center of camera in Y direction, with camera angle offset added to
 	 * get the angular Y offset from the center of the camera irrespective of camera rotation
 	 */
-	offsets[1] = rad2deg(angleY) + CAMERA_ROTATION_AXIS_X;
-	offsets[2] = TOP_TARGET_HEIGHT_FROM_BOTTOM_TO_GROUND;
-	offsets[3] = (TOP_TARGET_HEIGHT_FROM_BOTTOM_TO_GROUND - CAMERA_HEIGHT_OFF_GROUND)/tan(deg2rad(offsets[1]));
+	offsets[1] = -1 * rad2deg(angleY);
+	offsets[2] = TOP_TARGET_HEIGHT_FROM_BOTTOM_TO_GROUND - CAMERA_HEIGHT_OFF_GROUND;
+	offsets[3] = (offsets[2])/(tan(angleY));
+
 }
 
 int Target::getArea()

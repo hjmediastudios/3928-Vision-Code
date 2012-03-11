@@ -15,7 +15,7 @@
  */
 struct DebugConstants
 {
-	#define USE_CAM 0 //!< Indicates whether the capture device is a camera (1) or provided video file.
+	#define USE_CAM 1 //!< Indicates whether the capture device is a camera (1) or provided video file.
 	#define VERBOSITY 0 //!< A value denoting the output level on the console.
 };
 
@@ -47,11 +47,11 @@ struct DebugConstants
 #define TARGET_INDEX_SELECTION_ACCEPTABLE_ALIGMENT_ERROR 25
 
 #define CAMERA_VIEWING_ANGLE_HALF_X 37.5
-#define CAMERA_VIEWING_ANGLE_HALF_Y 28.1255
+#define CAMERA_VIEWING_ANGLE_HALF_Y 28.125
 
 #define CAMERA_ROTATION_AXIS_X 0 //14.6209 //!< The vertical axis angle offset of the camera on the robot.
-#define CAMERA_HEIGHT_OFF_GROUND 19.5 //!< The camera's height on the robot.
+#define CAMERA_HEIGHT_OFF_GROUND 33 //!< The camera's height on the robot.
 
-#define TOP_TARGET_HEIGHT_FROM_BOTTOM_TO_GROUND 50
+#define TOP_TARGET_HEIGHT_FROM_BOTTOM_TO_GROUND 63
 
 #endif /* CONSTANTS_H_ */
