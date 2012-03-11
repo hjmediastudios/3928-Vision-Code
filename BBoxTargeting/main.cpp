@@ -3,8 +3,10 @@
 #include "./Headers/Threshold.h"
 #include "./Headers/Target.h"
 #include "Headers/TargetPositionDetermination.h"
+#include "Headers/SocketTools.h"
 #include <iostream>
 #include <cstdlib>
+#include <string>
 
 using namespace targetPositionDetermination;
 using namespace std;
@@ -67,7 +69,7 @@ int main()
 
 	frame = cvQueryFrame(camera);
 	frameSize = cvGetSize(frame);
-
+	openSocket();
 
 	//Main image-processing loop
 	while (true)
@@ -95,22 +97,20 @@ int main()
 
 			if (numTargets> 0) //Run the following code if targets have been found
 			{
-				int highestTargetIndex = targetPositionDetermination::setTargetIndices(targetSet, &numTargets, frame);
+				int lowestTargetIndex = targetPositionDetermination::setTargetIndices(targetSet, &numTargets, frame);
 				for (int i=0; i<numTargets; i++) //Cycle through targets.
 				{
 					targetSet[i].drawTarget(CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
 					//print target index
 					cvPutText(frame, floatToString(targetSet[i].getTargetIndex() + 0.0), cvPoint(targetSet[i].leftX(), targetSet[i].topY() - 8), &font1, CV_RGB(255,255,255));
-					targetSet[i].getNavigationString();
 					cvPutText(frame, floatToString(targetSet[i].width()), cvPoint(targetSet[i].leftX()+20,targetSet[i].topY()-8), &font1, CV_RGB(255, 0, 0)); //X-angle offset
 					cvPutText(frame, floatToString(targetSet[i].height()), cvPoint(targetSet[i].rightX()+6,targetSet[i].topY()+20), &font1, CV_RGB(0, 255, 0)); //X-angle offset
 					cvPutText(frame, floatToString(targetSet[i].getAspectRatio()), cvPoint(targetSet[i].rightX()+6,targetSet[i].topY()+34), &font1, CV_RGB(150, 150, 255)); //aspect ratio
 					cvPutText(frame, floatToString(targetSet[i].getRectangularity()), cvPoint(targetSet[i].rightX()+6,targetSet[i].topY()+48), &font1, CV_RGB(150, 255, 150)); //rectangularity
-
-
 					cvPutText(frame, floatToString(targetSet[i].groundDistance), cvPoint(targetSet[i].leftX()+6,targetSet[i].bottomY()+5), &font1, CV_RGB(255, 150, 150)); //X-offset
 
 				}
+				targetSet[lowestTargetIndex].sendNavigationString();
 			}
 		}
 

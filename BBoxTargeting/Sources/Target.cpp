@@ -51,10 +51,22 @@ void Target::drawTarget(CvScalar color)
 	cvLine(originImage, cvPoint(leftX(), bottomY()), cvPoint(leftX(), 240), color, 1, 8, 0);
 }
 
-void Target::getNavigationString()
+void Target::sendNavigationString()
 {
 	//TODO add functions here to make it work
 	groundDistance = getGroundDistanceFromArea(boundingBox.width * boundingBox.height * 1.0);
+	char buffer[500];
+	float count = 0;
+
+	sprintf(buffer, "%f;%f", 0.0 + getCenter().x, groundDistance);
+	if(!writeToSocket(buffer))
+	{
+		printf("Something went wrong\n");
+	}
+	else
+	{
+		printf("Sent data %s\n", buffer);
+	}
 }
 
 int Target::getArea()

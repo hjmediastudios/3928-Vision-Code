@@ -38,7 +38,7 @@ struct DebugConstants
 #define FILTER_CONTOURS_BBOXBORDERTHRESHOLD 5 //!< The minimum number of pixels a target's bounding box can be near to the edges of the image for the contour to be considered as a target. @see pickTargets
 #define FILTER_CONTOURS_BBOXMAXAREAPERCENT 0.4 //!< The maximum percentage of the screen that can be coved by a contour's bounding box before it won't be considered as a target. @see pickTargets
 
-#define FILTER_CONTOURS_MINAREA 200 //!< The minimum value of a contour's area for it to be selected as a target. @see pickTargets
+#define FILTER_CONTOURS_MINAREA 350 //!< The minimum value of a contour's area for it to be selected as a target. @see pickTargets
 #define FILTER_CONTOURS_ASPECTRATIO_MIN 0  //!< The minimum aspect ratio of a potential target's bounding box. @see pickTargets
 #define FILTER_CONTOURS_ASPECTRATIO_MAX 2 //!< The maximum aspect ratio of a potential target's bounding box. @see pickTargets
 #define FILTER_CONTOURS_POINTSPERCONTOURSIDE 6 //!< The number of points on each target's contour's shortest side. @see Target::spacePointsEvenly

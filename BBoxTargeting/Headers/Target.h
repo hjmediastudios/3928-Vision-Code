@@ -10,8 +10,8 @@
 #include <opencv/cv.h>
 #include "../Headers/HelperFunctions.h"
 #include "../Headers/Line.h"
-#include <string>
 #include <math.h>
+#include "../Headers/SocketTools.h"
 
 using namespace Lines;
 
@@ -58,7 +58,7 @@ class Target
 		 */
 		void drawTarget(CvScalar color); //!< Draws the target on an image
 
-		void getNavigationString();
+		void sendNavigationString();
 		int getArea();
 		float getAspectRatio();
 		float getRectangularity();
