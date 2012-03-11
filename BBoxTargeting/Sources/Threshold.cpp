@@ -7,6 +7,7 @@ IplImage* Threshold::threshold_findGreen(IplImage* img, int dilates)
 	IplImage *imgThreshold = cvCreateImage(imgSize, 8, 1);
 	cvCvtColor(img, imgHSV, CV_BGR2HSV); //convert the BGR image to an HSV image stored in imgHSV
 	cvInRangeS(imgHSV, cvScalar(THRESHOLD_HUE_MIN, THRESHOLD_SAT_MIN, THRESHOLD_VAL_MIN), cvScalar(THRESHOLD_HUE_MAX, THRESHOLD_SAT_MAX, THRESHOLD_VAL_MAX), imgThreshold);
+	//Dilates are sloooow...
 	for (int i=0; i<dilates; i++)
 		cvDilate(imgThreshold, imgThreshold);
 
@@ -50,9 +51,6 @@ void Threshold::pickTargets(IplImage* img, CvSeq* contours, CvSize imgSize, Targ
 				{
 					if (aspectRatio >= FILTER_CONTOURS_ASPECTRATIO_MIN && aspectRatio <= FILTER_CONTOURS_ASPECTRATIO_MAX) //filter based on aspect ratio
 					{
-#if VERBOSITY >= 2
-						std::cout << "Found another target!\n";
-#endif
 						CvSeq* contourPoints = cvConvexHull2((void*)contours, 0, CV_CLOCKWISE, 1);
 						tgtSet[*numTgts] = Target::Target(contourPoints, img);
 						(*numTgts)++;

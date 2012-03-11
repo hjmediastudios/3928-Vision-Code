@@ -85,7 +85,7 @@ int targetPositionDetermination::setTargetIndices(Target* targets, int* numTarge
 	else
 		targets[lowestTargetIndex].setTargetIndex(3);
 
-	return highestTargetIndex; //assume that the highest target's index is the top target
+	return lowestTargetIndex; //assume that the highest target's index is the top target
 
 }
 

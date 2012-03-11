@@ -57,7 +57,7 @@ float rad2deg(float rads)
 
 float deg2rad(float degrees)
 {
-	return degrees*0.0174532925;
+	return (degrees*0.0174532925);
 }
 
 CvPoint3D32f crossProduct(CvPoint3D32f a, CvPoint3D32f b)

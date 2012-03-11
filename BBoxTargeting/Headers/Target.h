@@ -10,6 +10,8 @@
 #include <opencv/cv.h>
 #include "../Headers/HelperFunctions.h"
 #include "../Headers/Line.h"
+#include <math.h>
+#include "../Headers/SocketTools.h"
 
 using namespace Lines;
 
@@ -46,7 +48,7 @@ class Target
 		 */
 		CvPoint getCenter(); //!< Gets the center point of the target.
 
-		float offsets[4]; //!< The X, Y, and Z offsets of the target from the camera
+		float groundDistance;
 		CvSeq contour; //!< The CvSeq contour of the target.
 
 		/**
@@ -56,7 +58,7 @@ class Target
 		 */
 		void drawTarget(CvScalar color); //!< Draws the target on an image
 
-		void getNavigationString();
+		void sendNavigationString();
 		int getArea();
 		float getAspectRatio();
 		float getRectangularity();
@@ -68,11 +70,15 @@ class Target
 		int rightX();
 		int leftX();
 
+		int width();
+		int height();
+
 	private:
 		CvRect boundingBox; //!< The CvRect defining the bounding box of the target.
 		IplImage* originImage; //!< A pointer to the IplImage the target originated from.
 		int targetIndex; //!< The index the target is at. 0 = top target; 1 = middle left; 2 = middle right; 3 = bottom target
 
+		float getGroundDistanceFromArea(float area);
 };
 
 

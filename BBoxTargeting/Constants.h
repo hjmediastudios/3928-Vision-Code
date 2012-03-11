@@ -16,7 +16,8 @@
 struct DebugConstants
 {
 	#define USE_CAM 0 //!< Indicates whether the capture device is a camera (1) or provided video file.
-	#define VERBOSITY 0 //!< A value denoting the output level on the console.
+	#define VERBOSITY 2 //!< A value denoting the output level on the console.
+	#define DEBUG true //!< Indicates whether to draw the images on the screen or not
 };
 
 /**
@@ -33,11 +34,12 @@ struct DebugConstants
 #define THRESHOLD_SAT_MAX 255 //!< The maximum saturation value for thresholding a image to find targets
 #define THRESHOLD_VAL_MIN 63 //!< The minimum value value for thresholding a image to find targets
 #define THRESHOLD_VAL_MAX 255 //!< The maximum value value for thresholding a image to find targets
+#define THRESHOLD_DILATES 4
 
 #define FILTER_CONTOURS_BBOXBORDERTHRESHOLD 5 //!< The minimum number of pixels a target's bounding box can be near to the edges of the image for the contour to be considered as a target. @see pickTargets
 #define FILTER_CONTOURS_BBOXMAXAREAPERCENT 0.4 //!< The maximum percentage of the screen that can be coved by a contour's bounding box before it won't be considered as a target. @see pickTargets
 
-#define FILTER_CONTOURS_MINAREA 200 //!< The minimum value of a contour's area for it to be selected as a target. @see pickTargets
+#define FILTER_CONTOURS_MINAREA 350 //!< The minimum value of a contour's area for it to be selected as a target. @see pickTargets
 #define FILTER_CONTOURS_ASPECTRATIO_MIN 0  //!< The minimum aspect ratio of a potential target's bounding box. @see pickTargets
 #define FILTER_CONTOURS_ASPECTRATIO_MAX 2 //!< The maximum aspect ratio of a potential target's bounding box. @see pickTargets
 #define FILTER_CONTOURS_POINTSPERCONTOURSIDE 6 //!< The number of points on each target's contour's shortest side. @see Target::spacePointsEvenly
@@ -47,11 +49,11 @@ struct DebugConstants
 #define TARGET_INDEX_SELECTION_ACCEPTABLE_ALIGMENT_ERROR 25
 
 #define CAMERA_VIEWING_ANGLE_HALF_X 37.5
-#define CAMERA_VIEWING_ANGLE_HALF_Y 28.1255
+#define CAMERA_VIEWING_ANGLE_HALF_Y 28.125
 
 #define CAMERA_ROTATION_AXIS_X 0 //14.6209 //!< The vertical axis angle offset of the camera on the robot.
-#define CAMERA_HEIGHT_OFF_GROUND 19.5 //!< The camera's height on the robot.
+#define CAMERA_HEIGHT_OFF_GROUND 33 //!< The camera's height on the robot.
 
-#define TOP_TARGET_HEIGHT_FROM_BOTTOM_TO_GROUND 50
+#define TOP_TARGET_HEIGHT_FROM_BOTTOM_TO_GROUND 63
 
 #endif /* CONSTANTS_H_ */

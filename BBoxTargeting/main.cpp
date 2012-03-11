@@ -3,9 +3,10 @@
 #include "./Headers/Threshold.h"
 #include "./Headers/Target.h"
 #include "Headers/TargetPositionDetermination.h"
-#include <sstream>
+#include "Headers/SocketTools.h"
 #include <iostream>
 #include <cstdlib>
+#include <string>
 
 using namespace targetPositionDetermination;
 using namespace std;
@@ -22,7 +23,6 @@ CvSeq* contours; //!< A pointer to the CvSeq object containing the current set o
 Target targetSet[50]; //!< A set of Target objects containing all valid targets visible in the current view. @see Target::Target
 int numTargets = 0; //!< The number of valid targets visible in the current view. @see targetSet
 //CvMemStorage* storage;
-int angle = 20 ;
 
 int main()
 {
@@ -68,12 +68,20 @@ int main()
 
 	frame = cvQueryFrame(camera);
 	frameSize = cvGetSize(frame);
+#if VERBOSITY >= 2
+	std::cout << "Waiting to connect to C-RIO...\n";
+#endif
+	while (!openSocket());
+#if VERBOSITY >=2
+	std::cout << "Connected to C-RIO.\n";
+#endif
+
+	std::cout << endl;
 
 
 	//Main image-processing loop
 	while (true)
 	{
-		std::cout << endl;
 		frame = cvQueryFrame(camera);
 
 		if (!frame)
@@ -84,8 +92,7 @@ int main()
 #endif
 			exit(0);
 		}
-		frameThreshed = Threshold::threshold_findGreen(frame, 5);
-		//		cvShowImage("Threshold", frameThreshed);
+		frameThreshed = Threshold::threshold_findGreen(frame, THRESHOLD_DILATES);
 		contours = Threshold::findContours(frameThreshed);
 		cvReleaseImage(&frameThreshed);
 		//cvShowImage("Contours", frame);
@@ -97,21 +104,21 @@ int main()
 
 			if (numTargets> 0) //Run the following code if targets have been found
 			{
-				int highestTargetIndex = targetPositionDetermination::setTargetIndices(targetSet, &numTargets, frame);
+				int lowestTargetIndex = targetPositionDetermination::setTargetIndices(targetSet, &numTargets, frame);
+#if DEBUG == true
 				for (int i=0; i<numTargets; i++) //Cycle through targets.
 				{
 					targetSet[i].drawTarget(CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
 					//print target index
 					cvPutText(frame, floatToString(targetSet[i].getTargetIndex() + 0.0), cvPoint(targetSet[i].leftX(), targetSet[i].topY() - 8), &font1, CV_RGB(255,255,255));
+					cvPutText(frame, floatToString(targetSet[i].width()), cvPoint(targetSet[i].leftX()+20,targetSet[i].topY()-8), &font1, CV_RGB(255, 0, 0)); //X-angle offset
+					cvPutText(frame, floatToString(targetSet[i].height()), cvPoint(targetSet[i].rightX()+6,targetSet[i].topY()+20), &font1, CV_RGB(0, 255, 0)); //X-angle offset
+					cvPutText(frame, floatToString(targetSet[i].getAspectRatio()), cvPoint(targetSet[i].rightX()+6,targetSet[i].topY()+34), &font1, CV_RGB(150, 150, 255)); //aspect ratio
+					cvPutText(frame, floatToString(targetSet[i].getRectangularity()), cvPoint(targetSet[i].rightX()+6,targetSet[i].topY()+48), &font1, CV_RGB(150, 255, 150)); //rectangularity
+//					cvPutText(frame, floatToString(targetSet[i].groundDistance), cvPoint(targetSet[i].leftX()+6,targetSet[i].bottomY()+5), &font1, CV_RGB(255, 150, 150)); //X-offset
 				}
-
-				targetSet[highestTargetIndex].getNavigationString();
-				//IMPORTANT: ALL OFFSETS ARE MEASURED FROM BOTTOM-LEFT CORNER
-				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[0]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY()), &font1, CV_RGB(255,255,255)); //X-angle offset
-				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[1]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY() + 14), &font1, CV_RGB(255,0,0)); //Y-angle offset
-				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[2]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY() + 28), &font1, CV_RGB(255,255,0)); //Height off ground of targeyt
-				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[3]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY() + 42), &font1, CV_RGB(0,255,255)); //camera distance to target
-
+#endif
+				targetSet[lowestTargetIndex].sendNavigationString();
 			}
 		}
 
@@ -121,7 +128,7 @@ int main()
 
 		cvShowImage("Targets", frame);
 		//Wait before moving on
-		int key = cvWaitKey(0);
+		int key = cvWaitKey(27);
 		if (key == 27)
 		{
 			exit(0);
