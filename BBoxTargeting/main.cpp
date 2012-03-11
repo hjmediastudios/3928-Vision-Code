@@ -97,17 +97,18 @@ int main()
 
 			if (numTargets> 0) //Run the following code if targets have been found
 			{
-				targetPositionDetermination::setTargetIndices(targetSet, &numTargets, frame);
+				int highestTargetIndex = targetPositionDetermination::setTargetIndices(targetSet, &numTargets, frame);
 				for (int i=0; i<numTargets; i++) //Cycle through targets.
 				{
 					targetSet[i].drawTarget(CV_RGB(255 - ((255/numTargets)*i), (255/numTargets)*i, 100));
-					targetSet[i].getNavigationString();
-
-					cvPutText(frame, floatToString(targetSet[i].offsets[0]), cvPoint(targetSet[i].getBoundingBoxPoint2().x+1,targetSet[i].getBoundingBoxPoint1().y), &font1, CV_RGB(255,255,255));
-					cvPutText(frame, floatToString(targetSet[i].offsets[1]), cvPoint(targetSet[i].getBoundingBoxPoint2().x+1,targetSet[i].getBoundingBoxPoint1().y + 14), &font1, CV_RGB(255,0,255));
 					//print target index
-					cvPutText(frame, floatToString(targetSet[i].getTargetIndex() + 0.0), cvPoint(targetSet[i].getBoundingBoxPoint1().x, targetSet[i].getBoundingBoxPoint1().y - 8), &font1, CV_RGB(255,255,255));
+					cvPutText(frame, floatToString(targetSet[i].getTargetIndex() + 0.0), cvPoint(targetSet[i].leftX(), targetSet[i].topY() - 8), &font1, CV_RGB(255,255,255));
 				}
+
+				targetSet[highestTargetIndex].getNavigationString();
+				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[0]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY()), &font1, CV_RGB(255,255,255));
+				cvPutText(frame, floatToString(targetSet[highestTargetIndex].offsets[1]), cvPoint(targetSet[highestTargetIndex].rightX()+1,targetSet[highestTargetIndex].topY() + 14), &font1, CV_RGB(255,0,255));
+
 			}
 		}
 

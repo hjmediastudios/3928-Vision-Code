@@ -92,3 +92,23 @@ int Target::getTargetIndex()
 {
 	return targetIndex;
 }
+
+int Target::leftX()
+{
+	return boundingBox.x;
+}
+
+int Target::rightX()
+{
+	return boundingBox.x + boundingBox.width;
+}
+
+int Target::topY()
+{
+	return boundingBox.y;
+}
+
+int Target::bottomY()
+{
+	return boundingBox.y + boundingBox.height;
+}
