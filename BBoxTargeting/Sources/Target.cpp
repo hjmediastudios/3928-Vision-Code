@@ -55,9 +55,7 @@ void Target::drawTarget(CvScalar color)
 void Target::getNavigationString()
 {
 	//TODO add functions here to make it work
-	offsets[0] = getXDistanceFromAspectRatio();
-	offsets[1] = getYDistanceFromBBoxHeight();
-	offsets[2] = getAngleFromOffsets();
+	groundDistance = getGroundDistanceFromArea();
 }
 
 int Target::getArea()
@@ -115,20 +113,7 @@ int Target::height()
 	return boundingBox.height;
 }
 
-float Target::getYDistanceFromBBoxHeight()
+float Target::getGroundDistanceFromArea()
 {
-	return 0.0;
-}
 
-float Target::getXDistanceFromAspectRatio()
-{
-	return 0.0;
-}
-
-float Target::getAngleFromOffsets()
-{
-	if(offsets[1] != 0)
-		return atan(offsets[0]/offsets[1]);
-	else
-		return 0.0;
 }
