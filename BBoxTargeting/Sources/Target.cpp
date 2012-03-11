@@ -22,7 +22,7 @@ Target::Target(CvSeq* cntr, IplImage* img)
 {
 	boundingBox = cvBoundingRect(cntr);
 	originImage = img;
-	contour = *cntr;.
+	contour = *cntr;
 }
 
 CvPoint Target::getBoundingBoxPoint1()
@@ -48,12 +48,6 @@ void Target::drawTarget(CvScalar color)
 
 	cvLine(originImage, getCenter(), cvPoint(320, getCenter().y), color, 1, 8, 0);
 	cvLine(originImage, getCenter(), cvPoint(getCenter().x, 240), color, 1, 8, 0);
-
-	//draw BBox Lines
-	for (int i=0; i<4; i++)
-	{
-		bBoxLines[i].drawInfiniteLine(originImage, color);
-	}
 }
 
 void Target::getNavigationString()
