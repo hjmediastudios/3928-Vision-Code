@@ -108,6 +108,10 @@ int main()
 					cvPutText(frame, floatToString(targetSet[i].height()), cvPoint(targetSet[i].rightX()+6,targetSet[i].topY()+20), &font1, CV_RGB(0, 255, 0)); //X-angle offset
 					cvPutText(frame, floatToString(targetSet[i].getAspectRatio()), cvPoint(targetSet[i].rightX()+6,targetSet[i].topY()+34), &font1, CV_RGB(150, 150, 150)); //X-angle offset
 
+					cvPutText(frame, floatToString(targetSet[i].offsets[0]), cvPoint(targetSet[i].leftX()+6,targetSet[i].bottomY()+5), &font1, CV_RGB(255, 150, 150)); //X-offset
+					cvPutText(frame, floatToString(targetSet[i].offsets[1]), cvPoint(targetSet[i].leftX()+6,targetSet[i].bottomY()+19), &font1, CV_RGB(150, 255, 150)); //Y offset
+					cvPutText(frame, floatToString(targetSet[i].offsets[2]), cvPoint(targetSet[i].leftX()+6,targetSet[i].bottomY()+33), &font1, CV_RGB(255, 150, 255)); //X-angle offset
+
 				}
 			}
 		}
