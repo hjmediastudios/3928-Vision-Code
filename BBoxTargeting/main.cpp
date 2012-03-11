@@ -68,13 +68,13 @@ int main()
 
 	frame = cvQueryFrame(camera);
 	frameSize = cvGetSize(frame);
-#if VERBOSITY >= 2
-	std::cout << "Waiting to connect to C-RIO...\n";
-#endif
-	while (!openSocket());
-#if VERBOSITY >=2
-	std::cout << "Connected to C-RIO.\n";
-#endif
+//#if VERBOSITY >= 2
+//	std::cout << "Waiting to connect to C-RIO...\n";
+//#endif
+//	while (!openSocket());
+//#if VERBOSITY >=2
+//	std::cout << "Connected to C-RIO.\n";
+//#endif
 
 	std::cout << endl;
 
@@ -118,7 +118,7 @@ int main()
 //					cvPutText(frame, floatToString(targetSet[i].groundDistance), cvPoint(targetSet[i].leftX()+6,targetSet[i].bottomY()+5), &font1, CV_RGB(255, 150, 150)); //X-offset
 				}
 #endif
-				targetSet[lowestTargetIndex].sendNavigationString();
+//				targetSet[lowestTargetIndex].sendNavigationString();
 			}
 		}
 
